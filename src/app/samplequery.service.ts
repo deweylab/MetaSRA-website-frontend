@@ -1,8 +1,10 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject'
 import { Subscription }   from 'rxjs/Subscription';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 import { ActivatedRoute, ParamMap }   from '@angular/router';
+import { Router } from '@angular/router';
 
 import { SampleQuery } from './samplequery'
 
@@ -20,34 +22,47 @@ export class SampleQueryService implements OnDestroy {
   private currentQuery: SampleQuery;
   private currentQueryUpdater: Subscription;
 
-  private urlParamsSubscription: Subscription;
-
   getCurrentQuery(): SampleQuery {
     return this.currentQuery;
   }
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     // Keep the 'currentQuery' variable always up-to-date whenever we issue a new query
-    this.currentQueryUpdater = this.query$.subscribe(
+    this.currentQueryUpdater = this.query$.distinctUntilChanged().subscribe(
       query => { this.currentQuery = query; }
     );
 
-    this.currentQuery = {and:'foo', not: 'bar'};
-    // this.updateQueryFromUrlParams(this.route.snapshot.queryParamMap)
-    this.urlParamsSubscription = this.route.queryParamMap.subscribe(params => this.updateQueryFromUrlParams(params))
+    this.currentQuery = this.parseQueryFromUrlParams(this.route.snapshot.queryParamMap)
+    this.query.next(this.currentQuery)
   }
 
-  updateQueryFromUrlParams(params: ParamMap): void {
-    this.currentQuery.and = params.get('and');
-    this.currentQuery.not = params.get('not');
-    this.query.next(this.currentQuery);
+  parseQueryFromUrlParams(params: ParamMap): SampleQuery {
+    return {
+      and: params.get('and'),
+      not: params.get('not')
+    }
   }
+
+  // When the search query changes, update the URL path accordingly.
+  updateUrlQueryString: Subscription = this.query$.subscribe(
+    query => {
+      let params:any = {};
+      if (query.and) { params.and = query.and }
+      if (query.not) { params.not = query.not }
+
+      this.router.navigate([''], {
+        queryParams: params,
+        relativeTo: this.route
+      })
+    }
+  )
 
   ngOnDestroy() {
     this.currentQueryUpdater.unsubscribe()
-    this.urlParamsSubscription.unsubscribe()
+    this.updateUrlQueryString.unsubscribe()
   }
 
 

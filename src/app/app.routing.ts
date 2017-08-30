@@ -8,19 +8,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainContainerComponent } from './main-container.component';
 
-// So far we only have one route.  The reason for having the router is so we can
-// pass query-string parameters
+// So far we only have one route.  The reason for having the router right now is
+// so we can use it to access and modify the URL query string.
 const appRoutes: Routes = [
   {
-    path: 'search',
-    component: MainContainerComponent
-  },
-
-  // For some reason Angular will not let an empty path have URL key=value parameters,
-  // so let's redirect everthing to /search.
-  {
     path: '**',
-    redirectTo: 'search'
+    component: MainContainerComponent
   }
 ];
 
