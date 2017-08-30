@@ -5,10 +5,10 @@ import { routing } from './app.routing';
 
 import { AppComponent }  from './app.component';
 import { MainContainerComponent } from './main-container.component'
-import { SearchControlsComponent } from './searchcontrols.component';
-import { SampleListComponent } from './samplelist.component'
+import { SearchControlsComponent } from './search-controls.component';
+import { SampleListComponent } from './sample-list.component'
 
-import { SampleQueryService } from './samplequery.service'
+import { SampleQueryService } from './sample-query.service'
 
 @NgModule({
   imports:      [ BrowserModule,

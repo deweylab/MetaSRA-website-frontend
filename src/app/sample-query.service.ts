@@ -6,7 +6,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import { ActivatedRoute, ParamMap }   from '@angular/router';
 import { Router } from '@angular/router';
 
-import { SampleQuery } from './samplequery'
+import { SampleQuery } from './sample-query'
 
 @Injectable()
 export class SampleQueryService implements OnDestroy {

@@ -1,15 +1,15 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription'
 
-import { SampleQueryService } from './samplequery.service'
+import { SampleQueryService } from './sample-query.service'
 
-import { SampleQuery } from './samplequery'
+import { SampleQuery } from './sample-query'
 
 
 @Component({
   moduleId: module.id,
   selector: 'search-controls',
-  templateUrl: 'searchcontrols.component.html'
+  templateUrl: 'search-controls.component.html'
 })
 export class SearchControlsComponent implements OnDestroy {
 

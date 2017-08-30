@@ -3,14 +3,14 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription'
 
-import { SampleQueryService } from './samplequery.service'
+import { SampleQueryService } from './sample-query.service'
 
-import { SampleQuery } from './samplequery'
+import { SampleQuery } from './sample-query'
 
 @Component({
   moduleId: module.id,
   selector: 'samplelist',
-  templateUrl: 'samplelist.component.html'
+  templateUrl: 'sample-list.component.html'
 })
 export class SampleListComponent {
 
