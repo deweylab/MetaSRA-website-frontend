@@ -2,6 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject'
 import { Subscription }   from 'rxjs/Subscription';
 
+import { ActivatedRoute, ParamMap }   from '@angular/router';
 
 import { SampleQuery } from './samplequery'
 
@@ -16,22 +17,37 @@ export class SampleQueryService implements OnDestroy {
 
   // Keep track of the current query, so we can re-issue new queries by modififying
   // the previous one.
-  private currentQuery: SampleQuery = {and:'foo', not: 'bar'};
+  private currentQuery: SampleQuery;
   private currentQueryUpdater: Subscription;
+
+  private urlParamsSubscription: Subscription;
 
   getCurrentQuery(): SampleQuery {
     return this.currentQuery;
   }
 
-  constructor() {
+  constructor(
+    private route: ActivatedRoute
+  ) {
     // Keep the 'currentQuery' variable always up-to-date whenever we issue a new query
     this.currentQueryUpdater = this.query$.subscribe(
       query => { this.currentQuery = query; }
     );
+
+    this.currentQuery = {and:'foo', not: 'bar'};
+    // this.updateQueryFromUrlParams(this.route.snapshot.queryParamMap)
+    this.urlParamsSubscription = this.route.queryParamMap.subscribe(params => this.updateQueryFromUrlParams(params))
+  }
+
+  updateQueryFromUrlParams(params: ParamMap): void {
+    this.currentQuery.and = params.get('and');
+    this.currentQuery.not = params.get('not');
+    this.query.next(this.currentQuery);
   }
 
   ngOnDestroy() {
     this.currentQueryUpdater.unsubscribe()
+    this.urlParamsSubscription.unsubscribe()
   }
 
 
