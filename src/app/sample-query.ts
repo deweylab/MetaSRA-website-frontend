@@ -4,4 +4,9 @@
 export class SampleQuery {
   and: string;
   not: string;
+
+  isEmpty(): boolean {
+    // in Javascript an empty string is false
+    return !(this.and || this.not)
+  }
 }
