@@ -19,9 +19,9 @@ export class SampleListComponent implements OnInit, OnDestroy{
     query => { this.sampleQuery = query; }
   )
 
-  private queryStatus: QueryStatus;
+  private queryStatus: QueryStatus = this.sampleQueryService.getCurrentQueryStatus();
   private queryStatusSubscription: Subscription;
-  private queryStatusString: string;
+  private queryStatusString: string = JSON.stringify(this.queryStatus);  //TODO: remove this
 
   constructor(
     private sampleQueryService: SampleQueryService

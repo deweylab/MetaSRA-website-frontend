@@ -11,6 +11,7 @@ the URL when the user changes the query, and updates the application state from
 the URL when the page first loads.
 
 TODO: add other query parameters like page and sampletype.
+TODO: add network/server error handling
 */
 
 
@@ -114,12 +115,14 @@ export class SampleQueryService implements OnDestroy {
 
   // Observable keeping track of query validity/loading/error/complete status,
   // and used for passing query results to components.
+  // TODO: remove debouncetime operator after implementing autocomplete
   queryStatus$: Observable<QueryStatus> = this.query$
         .debounceTime(300)
         .switchMap(query => query.isEmpty()
           ? Observable.of<QueryStatus>({validQuery: false, loading: false, results: null})
           : this.lookupResults(query)
         )
+
 
   // Given a query, construct a URL and hit the API server to fetch samples.
   // Returns an Observable<QueryStatus>, which first issues a loading flag
@@ -145,6 +148,18 @@ export class SampleQueryService implements OnDestroy {
       // Issue loading message
       .startWith({validQuery: true, loading: true, results:null})
   }
+
+
+  // Keep track of the current query status and expose a method to access it.
+  // (For page initialization.)
+  private currentQueryStatus: QueryStatus;
+  private queryStatusSubscription: Subscription = this.queryStatus$.subscribe(
+    status => this.currentQueryStatus = status
+  )
+  getCurrentQueryStatus(): QueryStatus {
+    return this.currentQueryStatus;
+  }
+
 
 
 
