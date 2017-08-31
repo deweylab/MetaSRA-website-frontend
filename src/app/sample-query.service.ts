@@ -14,7 +14,7 @@ TODO: add other query parameters like page and sampletype.
 */
 
 
-import { Injectable, OnInit, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Http, URLSearchParams }       from '@angular/http';
 import { ActivatedRoute, ParamMap }   from '@angular/router';
 import { Router } from '@angular/router';
@@ -35,14 +35,22 @@ import { SampleQuery } from './sample-query'
 
 
 @Injectable()
-export class SampleQueryService implements OnInit, OnDestroy {
+export class SampleQueryService implements OnDestroy {
+
 
   // Injected services
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private http: Http
-  ) {}
+  ) {
+    // When the page first loads, construct the first query from the URL parameters.
+    this.initQueryFromUrl()
+  }
+
+
+
+
 
   // Event stream for queries against the sample database
   private query = new Subject<SampleQuery>();
@@ -53,74 +61,65 @@ export class SampleQueryService implements OnInit, OnDestroy {
 
   // Keep track of the current query, so we can re-issue new queries by modififying
   // the previous one.
+  // TODO: distinctUntilChanged is probably unneccesary
   private currentQuery: SampleQuery;
-  private currentQueryUpdater: Subscription;
-
-  // Subscription to query$ to keep the URL query string updated
-  private updateUrlQueryString: Subscription;
-
-  // Observable keeping track of query validity/loading/error/complete status,
-  // and used for passing query results to components.
-  queryStatus$: Observable<QueryStatus>;
-
-
-  ngOnInit() {
-    // Keep the 'currentQuery' variable always up-to-date whenever we issue a new query
-    // TODO: distinctUntilChanged is probably unneccesary
-    this.currentQueryUpdater = this.query$.distinctUntilChanged().subscribe(
-      query => { this.currentQuery = query; }
-    );
-
-    // When the search query changes, update the URL path accordingly.
-    // TODO: add page number?
-    this.updateUrlQueryString = this.query$.subscribe(
-      query => {
-        let params:any = {};
-        if (query.and) { params.and = query.and }
-        if (query.not) { params.not = query.not }
-
-        this.router.navigate([''], {
-          queryParams: params,
-          relativeTo: this.route
-        })
-      }
-    )
-
-    // When the page first loads, construct the first query from the URL parameters.
-    this.currentQuery = this.parseQueryFromUrlParams(this.route.snapshot.queryParamMap)
-    this.query.next(this.currentQuery)
-
-    this.queryStatus$ = this.query$
-      .debounceTime(300)
-      .switchMap(query => query.isEmpty()
-        ? Observable.of<QueryStatus>({validQuery: false, loading: false, results: null})
-        : this.lookupResults(query)
-      )
-  }
-
-  // Clean up: unsibscribe from observables when service is destroyed.
-  ngOnDestroy() {
-    this.currentQueryUpdater.unsubscribe()
-    this.updateUrlQueryString.unsubscribe()
-  }
-
-
-
+  private currentQueryUpdater: Subscription = this.query$.distinctUntilChanged().subscribe(
+    query => { this.currentQuery = query; }
+  );
 
   // Return a shapshot of the current query.
   getCurrentQuery(): SampleQuery {
     return this.currentQuery;
   }
 
+
+
+
+
+
+  // Subscription to query$ to keep the URL query string updated.
+  // TODO: add sample type (and page number?)
+  private updateUrlQueryString: Subscription = this.query$.subscribe(
+    query => {
+      let params:any = {};
+      if (query.and) { params.and = query.and }
+      if (query.not) { params.not = query.not }
+
+      this.router.navigate([''], {
+        queryParams: params,
+        relativeTo: this.route
+      })
+    }
+  )
+
   // When the page is first loaded, this function is called to parse a query
   // out of the URL parameters.
+  // TODO: add sample type (and page number?)
   private parseQueryFromUrlParams(params: ParamMap): SampleQuery {
     let query = new SampleQuery()
     query.and = params.get('and')
     query.not = params.get('not')
-
     return query
   }
+
+  private initQueryFromUrl(): void {
+    // When the page first loads, construct the first query from the URL parameters.
+    this.currentQuery = this.parseQueryFromUrlParams(this.route.snapshot.queryParamMap)
+    this.query.next(this.currentQuery)
+  }
+
+
+
+
+
+  // Observable keeping track of query validity/loading/error/complete status,
+  // and used for passing query results to components.
+  queryStatus$: Observable<QueryStatus> = this.query$
+        .debounceTime(300)
+        .switchMap(query => query.isEmpty()
+          ? Observable.of<QueryStatus>({validQuery: false, loading: false, results: null})
+          : this.lookupResults(query)
+        )
 
   // Given a query, construct a URL and hit the API server to fetch samples.
   // Returns an Observable<QueryStatus>, which first issues a loading flag
@@ -146,6 +145,19 @@ export class SampleQueryService implements OnInit, OnDestroy {
       // Issue loading message
       .startWith({validQuery: true, loading: true, results:null})
   }
+
+
+
+
+
+  // Clean up: unsibscribe from observables when service is destroyed.
+  ngOnDestroy() {
+    this.currentQueryUpdater.unsubscribe()
+    this.updateUrlQueryString.unsubscribe()
+  }
+
+
+
 
 
 
