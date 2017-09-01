@@ -1,2 +1,16 @@
-Query: {{ sampleQuery?.and }}, {{ sampleQuery?.not }}!<br />
-QueryStatus: {{ queryStatusString }}
+<ngb-alert *ngIf="queryStatus?.loading" type="secondary" [dismissible]="false">
+  Loading...
+</ngb-alert>
+
+<ngb-alert *ngIf="queryStatus?.results?.error" type="danger" [dismissible]="false">
+  <b>Error:</b> {{ queryStatus.results.error }}
+</ngb-alert>
+
+<ngb-alert *ngIf="queryStatus?.results && !queryStatus.results.studycount"
+  type="danger" [dismissible]="false">
+  No matching samples found.  Please try a different query.
+</ngb-alert>
+
+<div *ngIf="queryStatus?.results?.studycount">
+  Matching samples!
+</div>

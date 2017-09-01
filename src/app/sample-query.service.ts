@@ -204,12 +204,12 @@ export class QueryStatus {
 // Nestable classes represening the structure of results returned by the server.
 
 export class QueryResults {
-  studies: null | undefined | Study[];
-  count: null | undefined | number;
+  studies: null | undefined | ResultStudy[];
+  studycount: null | undefined | number;
   error: null | undefined | string;
 }
 
-export class Study {
+export class ResultStudy {
   id: string;
   title: string;
   samplegroups: any[];

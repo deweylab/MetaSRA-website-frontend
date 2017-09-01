@@ -9,7 +9,7 @@ import { SampleQuery } from './sample-query'
 
 @Component({
   moduleId: module.id,
-  selector: 'samplelist',
+  selector: 'sample-list',
   templateUrl: 'sample-list.component.html'
 })
 export class SampleListComponent implements OnInit, OnDestroy{
@@ -21,7 +21,6 @@ export class SampleListComponent implements OnInit, OnDestroy{
 
   private queryStatus: QueryStatus = this.sampleQueryService.getCurrentQueryStatus();
   private queryStatusSubscription: Subscription;
-  private queryStatusString: string = JSON.stringify(this.queryStatus);  //TODO: remove this
 
   constructor(
     private sampleQueryService: SampleQueryService
@@ -29,7 +28,7 @@ export class SampleListComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.queryStatusSubscription = this.sampleQueryService.queryStatus$.subscribe(
-      status => {this.queryStatus = status; this.queryStatusString = JSON.stringify(status)}
+      status => this.queryStatus = status
     )
   }
 
