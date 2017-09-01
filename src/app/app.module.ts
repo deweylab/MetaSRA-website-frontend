@@ -9,6 +9,7 @@ import { AppComponent }  from './app.component';
 import { MainContainerComponent } from './main-container.component'
 import { SearchControlsComponent } from './search-controls.component';
 import { SampleListComponent } from './sample-list.component'
+import { ResultStudyComponent } from './result-study.component'
 
 import { SampleQueryService } from './sample-query.service'
 
@@ -21,7 +22,8 @@ import { SampleQueryService } from './sample-query.service'
   declarations: [ AppComponent,
                   MainContainerComponent,
                   SearchControlsComponent,
-                  SampleListComponent ],
+                  SampleListComponent,
+                  ResultStudyComponent ],
 
   bootstrap:    [ AppComponent ],
 

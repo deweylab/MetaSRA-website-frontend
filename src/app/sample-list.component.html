@@ -12,5 +12,5 @@
 </ngb-alert>
 
 <div *ngIf="queryStatus?.results?.studycount">
-  Matching samples!
+  <result-study *ngFor="let study of queryStatus.results.studies" [study]="study"></result-study>
 </div>
