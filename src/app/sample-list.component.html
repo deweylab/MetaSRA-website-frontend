@@ -13,11 +13,7 @@
 
 <div *ngIf="queryStatus?.results?.studyCount">
   <result-study *ngFor="let study of queryStatus.results.studies" [study]="study"></result-study>
-  <!--<ngb-pagination
-    [collectionSize]="queryStatus.results.studyCount"
-    [page]="sampleQuery.page"
-    [pageSize]="STUDIES_PER_RESULTS_PAGE"
-    ></ngb-pagination>-->
+
   <ngb-pagination
     [collectionSize]="queryStatus.results.studyCount"
     [page]="sampleQuery.page"

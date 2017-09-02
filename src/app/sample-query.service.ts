@@ -231,3 +231,19 @@ export class ResultStudy {
   title: string;
   samplegroups: any[];
 }
+
+export class SampleGroup {
+  dterms: string[]; // d for display
+  samples: string[];
+  attr: string[][];
+}
+
+export class Sample {
+  id: string;
+  type: SampleType;
+}
+
+export class SampleType {
+  type: string;
+  conf: number; // confidence
+}

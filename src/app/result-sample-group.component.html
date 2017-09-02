@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="description-cell col-md-4">
+    <div class="sample-name">Sample name</div>
+    <div class="sample" *ngFor="let sample of sampleGroup.samples">
+      <a class="sample-id" [href]="'http://slashdot.org'">{{ sample.id }}</a>
+      <span class="sample-type">{{ sample.type.type }} ({{ sample.type.conf | percent:'1.1-1' }})</span>
+    </div>
+  </div>
+  <div class="term-cell col-md-4">
+
+  </div>
+  <div class="attribute-cell col-md-4">
+    <table>
+      <tr *ngFor="let attr of sampleGroup.attr">
+        <td class="attr-key">{{ attr[0] }}:</td>
+        <td class="attr-val">{{ attr[1] }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

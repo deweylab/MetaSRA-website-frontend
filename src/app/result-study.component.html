@@ -1,4 +1,8 @@
 <div class="studybox">
-  <a href="http://slashdot.org" target="_blank" class="study-id">{{ study.study.id }}</a><br>
-  <span class="study-title">{{ study.study.title }}</span>
+  <a [href]="'https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' +  study.study.id" target="_blank" class="study-id">{{ study.study.id }}</a><br>
+  <span class="study-title h4">{{ study.study.title }}</span>
+
+  <div class="container-fluid">
+    <result-sample-group *ngFor="let sampleGroup of study.sampleGroups" [sampleGroup]="sampleGroup">
+    </result-sample-group>
 </div>
