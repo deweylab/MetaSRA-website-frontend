@@ -6,11 +6,22 @@
   <b>Error:</b> {{ queryStatus.results.error }}
 </ngb-alert>
 
-<ngb-alert *ngIf="queryStatus?.results && !queryStatus.results.studycount"
+<ngb-alert *ngIf="queryStatus?.results && !queryStatus.results.studyCount"
   type="danger" [dismissible]="false">
   No matching samples found.  Please try a different query.
 </ngb-alert>
 
-<div *ngIf="queryStatus?.results?.studycount">
+<div *ngIf="queryStatus?.results?.studyCount">
   <result-study *ngFor="let study of queryStatus.results.studies" [study]="study"></result-study>
+  <!--<ngb-pagination
+    [collectionSize]="queryStatus.results.studyCount"
+    [page]="sampleQuery.page"
+    [pageSize]="STUDIES_PER_RESULTS_PAGE"
+    ></ngb-pagination>-->
+  <ngb-pagination
+    [collectionSize]="queryStatus.results.studyCount"
+    [page]="sampleQuery.page"
+    [pageSize]="STUDIES_PER_RESULTS_PAGE"
+    (pageChange)="pageChange($event)"
+    ></ngb-pagination>
 </div>

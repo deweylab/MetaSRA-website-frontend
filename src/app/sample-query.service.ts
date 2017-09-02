@@ -15,6 +15,8 @@ TODO: add network/server error handling
 */
 
 
+import { STUDIES_PER_RESULTS_PAGE } from './CONFIG'
+
 import { Injectable, OnDestroy } from '@angular/core';
 import { Http, URLSearchParams }       from '@angular/http';
 import { ActivatedRoute, ParamMap }   from '@angular/router';
@@ -86,6 +88,7 @@ export class SampleQueryService implements OnDestroy {
       let params:any = {};
       if (query.and) { params.and = query.and }
       if (query.not) { params.not = query.not }
+      if (query.page) { params.page = query.page }
 
       this.router.navigate([''], {
         queryParams: params,
@@ -101,6 +104,7 @@ export class SampleQueryService implements OnDestroy {
     let query = new SampleQuery()
     query.and = params.get('and')
     query.not = params.get('not')
+    if (params.get('page')) { query.page = +(params.get('page')) }
     return query
   }
 
@@ -140,6 +144,10 @@ export class SampleQueryService implements OnDestroy {
     let params: URLSearchParams = new URLSearchParams()
     if (query.and) { params.set('and', query.and) }
     if (query.not) { params.set('not', query.not) }
+
+    // Calculate skip and limit for paging
+    params.set('skip', String(STUDIES_PER_RESULTS_PAGE * (query.page - 1)))
+    params.set('limit', String(STUDIES_PER_RESULTS_PAGE))
 
     // Hit the server, issue a QueryStatus object when the request returns.
     return this.http.get(SAMPLE_API_PATH, {search: params})
@@ -193,6 +201,11 @@ export class SampleQueryService implements OnDestroy {
     this.query.next(this.currentQuery);
   }
 
+  updatePage(page: number): void {
+    this.currentQuery.page = page;
+    this.query.next(this.currentQuery);
+  }
+
 }
 
 
@@ -209,7 +222,7 @@ export class QueryStatus {
 
 export class QueryResults {
   studies: null | undefined | ResultStudy[];
-  studycount: null | undefined | number;
+  studyCount: null | undefined | number;
   error: null | undefined | string;
 }
 

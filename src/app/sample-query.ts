@@ -4,6 +4,12 @@
 export class SampleQuery {
   and: string;
   not: string;
+  page: number;
+
+  // Start at page 1, there is no page 0
+  constructor() {
+    this.page = 1;
+  }
 
   isEmpty(): boolean {
     // in Javascript an empty string is false
