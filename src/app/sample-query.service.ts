@@ -29,6 +29,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/share'
 
 import { SampleQuery } from './sample-query'
 
@@ -122,6 +123,9 @@ export class SampleQueryService implements OnDestroy {
           ? Observable.of<QueryStatus>({validQuery: false, loading: false, results: null})
           : this.lookupResults(query)
         )
+
+        // So multiple subscriptions don't cause redundant HTTP requests
+        .share()
 
 
   // Given a query, construct a URL and hit the API server to fetch samples.
