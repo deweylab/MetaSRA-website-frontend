@@ -3,3 +3,25 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
 }
+
+
+
+.hilight-UBERON {
+  background-color: #f57900;
+}
+
+.hilight-EFO {
+  background-color: #8ae234;
+}
+
+.hilight-DOID {
+  background-color: #ef2929;
+}
+
+.hilight-CL {
+  background-color: #729fcf;
+}
+
+.hilight-CVCL {
+  background-color: #ad7fa8;
+}

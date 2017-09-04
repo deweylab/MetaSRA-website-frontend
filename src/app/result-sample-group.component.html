@@ -1,13 +1,25 @@
-<div class="row">
+<div class="row sample-group-row">
   <div class="description-cell col-md-4">
-    <div class="sample-name">Sample name</div>
-    <div class="sample" *ngFor="let sample of sampleGroup.samples">
-      <a class="sample-id" [href]="'http://slashdot.org'">{{ sample.id }}</a>
-      <span class="sample-type">{{ sample.type.type }} ({{ sample.type.conf | percent:'1.1-1' }})</span>
+
+    <div
+      class="sample"
+      *ngFor="let sample of (sampleGroup.samples | slice:0:(samplesExpanded ? undefined : INITIAL_SAMPLE_DISPLAY))">
+        <span *ngIf="sample.name" class="sample-name">{{ sample.name }}</span>
+        <a class="sample-id" [href]="'http://slashdot.org'">{{ sample.id }}</a>
+        <span class="sample-type">{{ sample.type.type }} ({{ sample.type.conf | percent:'1.1-1' }})</span>
     </div>
+
+    <a (click)="expandSamples()"
+      *ngIf="sampleGroup.samples.length > INITIAL_SAMPLE_DISPLAY && !samplesExpanded">
+      (+) Show all {{ sampleGroup.samples.length }} samples
+    </a>
   </div>
   <div class="term-cell col-md-4">
-
+    <div
+      *ngFor="let term of sampleGroup.dterms"
+      [class]="'btn-sm term-tag hilight-' + term[0].split(':')[0]">
+      {{ term[1] }}
+    </div>
   </div>
   <div class="attribute-cell col-md-4">
     <table>

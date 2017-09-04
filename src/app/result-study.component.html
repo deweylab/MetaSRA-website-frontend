@@ -1,8 +1,13 @@
 <div class="studybox">
   <a [href]="'https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' +  study.study.id" target="_blank" class="study-id">{{ study.study.id }}</a><br>
-  <span class="study-title h4">{{ study.study.title }}</span>
+  <span class="study-title h3">{{ study.study.title }}</span>
 
   <div class="container-fluid">
-    <result-sample-group *ngFor="let sampleGroup of study.sampleGroups" [sampleGroup]="sampleGroup">
-    </result-sample-group>
+    <result-sample-group *ngFor="let sampleGroup of (study.sampleGroups | slice:0:(sampleGroupsExpanded ? undefined : INITIAL_SAMPLEGROUP_DISPLAY))" [sampleGroup]="sampleGroup"></result-sample-group>
+    <div
+      class="btn btn-primary"
+      *ngIf="study.sampleGroups.length > INITIAL_SAMPLEGROUP_DISPLAY && !sampleGroupsExpanded"
+      (click)="expandSampleGroups()">
+      (+) Show all samples
+    </div>
 </div>

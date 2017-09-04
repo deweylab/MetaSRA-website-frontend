@@ -233,7 +233,7 @@ export class ResultStudy {
 }
 
 export class SampleGroup {
-  dterms: string[]; // d for display
+  dterms: string[][]; // d for display
   samples: string[];
   attr: string[][];
 }
@@ -241,6 +241,7 @@ export class SampleGroup {
 export class Sample {
   id: string;
   type: SampleType;
+  name: string | null | undefined;
 }
 
 export class SampleType {

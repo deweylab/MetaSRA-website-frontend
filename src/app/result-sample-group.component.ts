@@ -14,4 +14,11 @@ export class ResultSampleGroupComponent {
   @Input()
   sampleGroup: SampleGroup;
 
+  private INITIAL_SAMPLE_DISPLAY = 5
+  private samplesExpanded = false;
+
+  expandSamples(): void {
+    this.samplesExpanded = true
+  }
+
 }

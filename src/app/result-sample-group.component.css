@@ -1,0 +1,28 @@
+.term-tag {
+  display: inline-block;
+  margin: 2px;
+}
+
+.sample-group-row {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.attr-key {
+  text-align: right;
+  vertical-align: top;
+  line-height: 1.1;
+  padding-bottom: 0.4em;
+  color: #555;
+}
+
+.attr-val {
+  padding-left: 6px;
+  vertical-align: bottom;
+  line-height: 1.1;
+  padding-bottom: 0.4em;
+}
+
+.sample-name {
+  font-weight: bold;
+}
