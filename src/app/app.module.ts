@@ -11,8 +11,10 @@ import { SearchControlsComponent } from './search-controls.component';
 import { SampleListComponent } from './sample-list.component'
 import { ResultStudyComponent } from './result-study.component'
 import { ResultSampleGroupComponent } from './result-sample-group.component'
+import { TermInputComponent } from './term-input.component'
 
 import { SampleQueryService } from './sample-query.service'
+import { TermLookupService } from './term-lookup.service'
 
 @NgModule({
   imports:      [ BrowserModule,
@@ -25,10 +27,12 @@ import { SampleQueryService } from './sample-query.service'
                   SearchControlsComponent,
                   SampleListComponent,
                   ResultStudyComponent,
-                  ResultSampleGroupComponent ],
+                  ResultSampleGroupComponent,
+                  TermInputComponent ],
 
   bootstrap:    [ AppComponent ],
 
-  providers:    [ SampleQueryService ]
+  providers:    [ SampleQueryService,
+                  TermLookupService ]
 })
 export class AppModule { }

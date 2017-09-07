@@ -1,0 +1,15 @@
+<div id="term-list">
+  <div class="btn-group term-tag" role="group" *ngFor="let term of terms">
+    <div [class]="'btn btn-sm hilight-' + term.id.split(':')[0]">{{ term.name }}</div>
+    <div [class]="'btn btn-sm close hilight-' + term.id.split(':')[0]" (click)="removeTerm(term)">&times;</div>
+  </div>
+</div>
+
+<input
+  id="typeahead-terms"
+  type="text"
+  class="form-control"
+  [ngbTypeahead]="search"
+  placeholder="Find term"
+  (selectItem)="addTerm($event.item)"
+  [resultFormatter]="resultFormatter"/>

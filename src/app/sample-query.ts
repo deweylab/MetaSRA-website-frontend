@@ -16,3 +16,15 @@ export class SampleQuery {
     return !(this.and || this.not)
   }
 }
+
+
+
+export class Term {
+  id: string;
+  name: string;
+
+  syn: string | null | undefined; // synonyms
+  up: Term[] | null | undefined; // ancestor terms
+  down: Term[] | null | undefined;
+
+}
