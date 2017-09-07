@@ -1,5 +1,4 @@
 <div id="search-controls">
-  <term-input></term-input><br /><br />
-  <label>All: <input #andterms [value]="sampleQuery?.and" (keyup)="this.sampleQueryService.updateANDTerms(andterms.value)"/></label>
-  <label>None: <input #notterms [value]="sampleQuery?.not" (keyup)="this.sampleQueryService.updateNOTTerms(notterms.value)"/></label>
+  All: <term-input #andterms [terms]="sampleQuery?.and" (termChange)="this.sampleQueryService.updateANDTerms($event.terms)"></term-input><br />
+  None: <term-input #notterms [terms]="sampleQuery?.not" (termChange)="this.sampleQueryService.updateNOTTerms($event.terms)"></term-input><br /><br />
 </div>

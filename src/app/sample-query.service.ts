@@ -33,7 +33,8 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/share'
 
-import { SampleQuery } from './sample-query'
+import { TermLookupService } from './term-lookup.service'
+import { SampleQuery, Term } from './sample-query'
 
 
 
@@ -78,6 +79,11 @@ export class SampleQueryService implements OnDestroy {
 
 
 
+  // Fired shortly after the page loads, if we need to look up names of ontology
+  // terms from the server.
+  private termInfoUpdate = new Subject<SampleQuery>();
+  termInfoUpdate$ = this.termInfoUpdate.asObservable()
+
 
 
 
@@ -86,8 +92,9 @@ export class SampleQueryService implements OnDestroy {
   private updateUrlQueryString: Subscription = this.query$.subscribe(
     query => {
       let params:any = {};
-      if (query.and) { params.and = query.and }
-      if (query.not) { params.not = query.not }
+      // TODO
+      //if (query.and) { params.and = query.and }
+      //if (query.not) { params.not = query.not }
       if (query.page) { params.page = query.page }
 
       this.router.navigate([''], {
@@ -102,8 +109,9 @@ export class SampleQueryService implements OnDestroy {
   // TODO: add sample type (and page number?)
   private parseQueryFromUrlParams(params: ParamMap): SampleQuery {
     let query = new SampleQuery()
-    query.and = params.get('and')
-    query.not = params.get('not')
+    // TODO
+    //query.and = params.get('and')
+    //query.not = params.get('not')
     if (params.get('page')) { query.page = +(params.get('page')) }
     return query
   }
@@ -132,6 +140,7 @@ export class SampleQueryService implements OnDestroy {
         .share()
 
 
+
   // Given a query, construct a URL and hit the API server to fetch samples.
   // Returns an Observable<QueryStatus>, which first issues a loading flag
   // and then issues the query results once the request returns from the server.
@@ -142,8 +151,8 @@ export class SampleQueryService implements OnDestroy {
 
     // Put together query string to send to server
     let params: URLSearchParams = new URLSearchParams()
-    if (query.and) { params.set('and', query.and) }
-    if (query.not) { params.set('not', query.not) }
+    if (query.and) { params.set('and', query.and.map(term => term.id).join(',')) }
+    if (query.not) { params.set('not', query.not.map(term => term.id).join(',')) }
 
     // Calculate skip and limit for paging
     params.set('skip', String(STUDIES_PER_RESULTS_PAGE * (query.page - 1)))
@@ -191,13 +200,13 @@ export class SampleQueryService implements OnDestroy {
 
   // Methods for updating sample type
 
-  updateANDTerms(val: string): void {
-    this.currentQuery.and = val;
+  updateANDTerms(terms: Term[]): void {
+    this.currentQuery.and = terms;
     this.query.next(this.currentQuery);
   }
 
-  updateNOTTerms(val: string): void {
-    this.currentQuery.not = val;
+  updateNOTTerms(terms: Term[]): void {
+    this.currentQuery.not = terms;
     this.query.next(this.currentQuery);
   }
 

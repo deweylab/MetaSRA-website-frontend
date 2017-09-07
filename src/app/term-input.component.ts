@@ -1,5 +1,5 @@
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { TermLookupService } from './term-lookup.service'
 import { Term } from './sample-query'
@@ -22,8 +22,8 @@ import 'rxjs/add/operator/switchMap';
 })
 export class TermInputComponent {
 
-  @Input()
-  change: (terms: Term[]) => void = (terms) => null;
+  @Output()
+  termChange: EventEmitter<any> = new EventEmitter()
 
   @Input()
   public terms: Term[] = [];
@@ -33,12 +33,18 @@ export class TermInputComponent {
   ) {}
 
   addTerm(term: Term): void {
-    if (this.indexOfTerm(term) == -1) this.terms.push(term);
+    if (this.indexOfTerm(term) == -1) {
+      this.terms.push(term);
+      this.termChange.emit({terms: this.terms});
+    }
   }
 
   removeTerm(term: Term): void {
     let i = this.indexOfTerm(term);
-    if (i > -1) this.terms.splice(i, 1);
+    if (i > -1) {
+      this.terms.splice(i, 1);
+      this.termChange.emit({terms: this.terms});
+    }
   }
 
   // Find the index of a term in the list of entered terms.
