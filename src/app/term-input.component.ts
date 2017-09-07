@@ -50,7 +50,12 @@ export class TermInputComponent {
     return -1;
   }
 
-  resultFormatter = (term: Term) => term.name;
+  // Called when one of the term buttons in the autocomplete is clicked
+  private selectTerm(term: Term, searchBoxElement: any): void {
+    this.addTerm(term);
+    searchBoxElement.value = '';
+  }
+
 
   search = (text$: Observable<string>) =>
     text$

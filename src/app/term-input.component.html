@@ -5,11 +5,29 @@
   </div>
 </div>
 
+<ng-template #rt let-term="result" let-userinput="term">
+  <div class="autocomplete-item">
+    <div class="term-ancestors">
+      <div *ngFor="let t of term.up" [class]="'btn btn-sm related-term hilight-'+ t[0].split(':')[0]" (click)="selectTerm({id:t[0], name:t[1]}, searchBox)">
+          {{ t[1] }}
+      </div>
+    </div>
+    <div [class]="'btn btn-lg hilight-' + term.id.split(':')[0]" (click)="selectTerm(term, searchBox)">{{ term.name }}</div><br>
+    <div class="synonyms">Synonyms: {{ term.syn }}</div>
+    <div class="term-descendents">
+      <div *ngFor="let t of term.down" [class]="'btn btn-sm related-term hilight-'+ t[0].split(':')[0]" (click)="selectTerm({id:t[0], name:t[1]}, searchBox)">
+          {{ t[1] }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
 <input
   id="typeahead-terms"
+  #searchBox
   type="text"
   class="form-control"
   [ngbTypeahead]="search"
   placeholder="Find term"
-  (selectItem)="addTerm($event.item)"
-  [resultFormatter]="resultFormatter"/>
+  (selectItem)="$event.preventDefault()"
+  [resultTemplate]="rt" />

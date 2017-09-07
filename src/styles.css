@@ -9,19 +9,34 @@ h1 {
 .hilight-UBERON {
   background-color: #f57900;
 }
+.hilight-UBERON:hover {
+  background-color: #f99d44;
+}
 
 .hilight-EFO {
   background-color: #8ae234;
 }
+.hilight-EFO:hover {
+  background-color: #a4f752;
+}
 
 .hilight-DOID {
-  background-color: #ef2929;
+  background-color: #f44141;
+}
+.hilight-DOID:hover {
+  background-color: #f66060;
 }
 
 .hilight-CL {
   background-color: #729fcf;
 }
+.hilight-CL:hover {
+  background-color: #83baf5;
+}
 
 .hilight-CVCL {
   background-color: #ad7fa8;
+}
+.hilight-CVCL:hover {
+  background-color: #cc7ec4;
 }

@@ -1,3 +1,29 @@
 .term-tag .close {
   opacity: 1
 }
+
+.synonyms {
+  color: #555;
+  font-size: 90%;
+}
+
+
+::ng-deep .dropdown-item.active, ::ng-deep .dropdown-item:active {
+  /* override default hilighting */
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+.autocomplete-item {
+  white-space: normal;
+  background: white;
+  width: 600px; /*TODO*/
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.btn-sm.related-term {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 1px;
+}
