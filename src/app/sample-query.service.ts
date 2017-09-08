@@ -47,7 +47,8 @@ export class SampleQueryService implements OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private http: Http
+    private http: Http,
+    private termLookupService: TermLookupService
   ) {
     // When the page first loads, construct the first query from the URL parameters.
     this.initQueryFromUrl()
@@ -79,8 +80,16 @@ export class SampleQueryService implements OnDestroy {
 
 
 
+
+
   // Fired shortly after the page loads, if we need to look up names of ontology
-  // terms from the server.
+  // terms from the server.  The results shouldn't subscribe to this because the
+  // actual query doesn't change, but the search-controls should subscribe to this
+  // because we now have the term names.
+  //
+  // There is a bit of a race condition here where there will be a problem if
+  // the user does a search before the request comes back, but I think this is
+  // pretty unlikely to be a noticable problem.
   private termInfoUpdate = new Subject<SampleQuery>();
   termInfoUpdate$ = this.termInfoUpdate.asObservable()
 
@@ -92,10 +101,9 @@ export class SampleQueryService implements OnDestroy {
   private updateUrlQueryString: Subscription = this.query$.subscribe(
     query => {
       let params:any = {};
-      // TODO
-      //if (query.and) { params.and = query.and }
-      //if (query.not) { params.not = query.not }
-      if (query.page) { params.page = query.page }
+      if (query.and.length) { params.and = query.and.map(term => term.id).join(',') }
+      if (query.not.length) { params.not = query.not.map(term => term.id).join(',') }
+      if (query.page > 1) { params.page = query.page }
 
       this.router.navigate([''], {
         queryParams: params,
@@ -110,6 +118,33 @@ export class SampleQueryService implements OnDestroy {
   private parseQueryFromUrlParams(params: ParamMap): SampleQuery {
     let query = new SampleQuery()
     // TODO
+
+    if (params.get('and')) {
+      // Intialize terms with only ID's for now
+      query.and = params.get('and').split(',').map(id => new Term(id))
+
+      // Look up term names, and when it comes back from the server issue
+      // a termsInfoUpdate event.
+      this.termLookupService.lookup(params.get('and'))
+        .subscribe(terms => {
+          this.currentQuery.and = terms;
+          this.termInfoUpdate.next(this.currentQuery)
+        })
+    }
+
+    if (params.get('not')) {
+      // Initialize terms with only ID's for now
+      query.not = params.get('not').split(',').map(id => new Term(id))
+
+      // Look up term names, and when it comes back from the server issue
+      // a termsInfoUpdate event.
+      this.termLookupService.lookup(params.get('not'))
+        .subscribe(terms => {
+          this.currentQuery.not = terms;
+          this.termInfoUpdate.next(this.currentQuery)
+        })
+    }
+
     //query.and = params.get('and')
     //query.not = params.get('not')
     if (params.get('page')) { query.page = +(params.get('page')) }

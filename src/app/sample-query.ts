@@ -29,4 +29,7 @@ export class Term {
   up: Term[] | null | undefined; // ancestor terms
   down: Term[] | null | undefined;
 
+  constructor(id: string) {
+    this.id = id;
+  }
 }

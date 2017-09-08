@@ -15,12 +15,21 @@ export class SearchControlsComponent implements OnDestroy {
 
   private sampleQuery: SampleQuery;
   private sampleQuerySubscripion: Subscription;
+  private termInfoUpdateSubscription: Subscription;
 
   constructor(
     private sampleQueryService: SampleQueryService
   ) {
     this.sampleQuery = this.sampleQueryService.getCurrentQuery();
     this.sampleQuerySubscripion = this.sampleQueryService.query$.subscribe(
+      query => { this.sampleQuery = query; }
+    )
+
+    // This observable may be triggered right after the page loads, to update
+    // term names from the ID's in the URL query string.  It's a separate observable
+    // because we don't want to change the results, only the display of the query
+    // terms.
+    this.termInfoUpdateSubscription = this.sampleQueryService.termInfoUpdate$.subscribe(
       query => { this.sampleQuery = query; }
     )
   }
