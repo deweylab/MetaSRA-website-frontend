@@ -1,3 +1,33 @@
+body {
+  background-color: #F3F3F3;
+}
+
+div#header-title {
+  color: #C0178C;
+  font-family: Dosis;
+  font-size: 600%;
+  margin-top: 100px;
+  font-weight: 200;
+  line-height: 1.1;
+}
+
+div#header-tagline {
+  color: #333;
+  font-family: Dosis;
+  font-size: 140%;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+a {
+  color: #C0178C;
+}
+a:hover {
+  color: #EC0C8E;
+}
+
+
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
@@ -7,36 +37,41 @@ h1 {
 
 
 .hilight-UBERON {
-  background-color: #f57900;
+  background-color: #ff7f00;
+  color: #000;
 }
 .hilight-UBERON:hover {
-  background-color: #f99d44;
+  background-color: #ff7f00;
 }
 
 .hilight-EFO {
-  background-color: #8ae234;
+  background-color: #4daf4a;
+  color: #000;
 }
 .hilight-EFO:hover {
-  background-color: #a4f752;
+  background-color: #4daf4a;
 }
 
 .hilight-DOID {
-  background-color: #f44141;
+  background-color: #e41a1c;
+  color: #000;
 }
 .hilight-DOID:hover {
-  background-color: #f66060;
+  background-color: #e41a1c;
 }
 
 .hilight-CL {
-  background-color: #729fcf;
+  background-color: #377eb8;
+  color: #000;
 }
 .hilight-CL:hover {
-  background-color: #83baf5;
+  background-color: #377eb8;
 }
 
 .hilight-CVCL {
-  background-color: #ad7fa8;
+  background-color: #ffff33;
+  color: #000;
 }
 .hilight-CVCL:hover {
-  background-color: #cc7ec4;
+  background-color: #a65628;
 }

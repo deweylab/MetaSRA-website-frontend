@@ -9,7 +9,8 @@ import { SampleQuery } from './sample-query'
 @Component({
   moduleId: module.id,
   selector: 'search-controls',
-  templateUrl: 'search-controls.component.html'
+  templateUrl: 'search-controls.component.html',
+  styleUrls: ['search-controls.component.css']
 })
 export class SearchControlsComponent implements OnDestroy {
 
