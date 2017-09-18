@@ -1,13 +1,22 @@
 <div class="row sample-group-row">
   <div class="description-cell col-md-4">
 
-    <div
-      class="sample"
-      *ngFor="let sample of (sampleGroup.samples | slice:0:(samplesExpanded ? undefined : INITIAL_SAMPLE_DISPLAY))">
-        <span *ngIf="sample.name" class="sample-name">{{ sample.name }}</span>
-        <a class="sample-id" [href]="'http://slashdot.org'">{{ sample.id }}</a>
-        <span class="sample-type">{{ sample.type.type }} ({{ sample.type.conf | percent:'1.1-1' }})</span>
+    <div class="sample-label">
+      {{ sampleGroup.samples.length }}
+      {{ sampleGroup.samples.length > 1 ? 'samples' : 'sample' }}
     </div>
+    <div class="sample-type-label">
+      {{ sampleGroup.samples[0].type.type }}
+      <span *ngIf="sampleGroup.samples[0].type.conf < 0.7" class="sampletype-low-confidence">(Low confidence)</span>
+    </div>
+    <a
+      [href]="'http://slashdot.org'"
+      target="_blank"
+      class="btn btn-sm btn-sample"
+      *ngFor="let sample of (sampleGroup.samples | slice:0:(samplesExpanded ? undefined : INITIAL_SAMPLE_DISPLAY))">
+        <div class="sample-id">{{ sample.id }}</div>
+        <div *ngIf="sample.name" class="sample-name">{{ sample.name }}</div>
+    </a>
 
     <a (click)="expandSamples()"
       *ngIf="sampleGroup.samples.length > INITIAL_SAMPLE_DISPLAY && !samplesExpanded">

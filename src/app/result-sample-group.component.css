@@ -4,8 +4,8 @@
 }
 
 .sample-group-row {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
 
 .attr-key {
@@ -21,6 +21,33 @@
   vertical-align: bottom;
   line-height: 1.1;
   padding-bottom: 0.4em;
+}
+
+
+.sample-label {
+  font-size: 160%;
+  color: #333;
+}
+
+.sample-type-label {
+  color: #666;
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+
+.btn-sample {
+  display: inline-block;
+  color: #C0178C;
+  border: solid 1px #C0178C;
+  background-color: #F8F8F8;
+  text-align: left;
+  margin-bottom: 2px;
+  white-space: normal;
+  line-height: 1.2;
+}
+.btn-sample:hover {
+  border-color: #EC0C8E;
+  color: #EC0C8E;
 }
 
 .sample-name {
