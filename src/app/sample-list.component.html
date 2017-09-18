@@ -6,7 +6,7 @@
   <b>Error:</b> {{ queryStatus.results.error }}
 </ngb-alert>
 
-<ngb-alert *ngIf="queryStatus?.results && !queryStatus.results.studyCount"
+<ngb-alert *ngIf="!queryStatus?.results?.error && queryStatus?.results && !queryStatus.results.studyCount"
   type="danger" [dismissible]="false">
   No matching samples found.  Please try a different query.
 </ngb-alert>

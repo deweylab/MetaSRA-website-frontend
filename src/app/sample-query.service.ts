@@ -101,8 +101,8 @@ export class SampleQueryService implements OnDestroy {
   private updateUrlQueryString: Subscription = this.query$.subscribe(
     query => {
       let params:any = {};
-      if (query.and.length) { params.and = query.and.map(term => term.id).join(',') }
-      if (query.not.length) { params.not = query.not.map(term => term.id).join(',') }
+      if (query.and.length) { params.and = query.and.map(term => term.ids[0]).join(',') }
+      if (query.not.length) { params.not = query.not.map(term => term.ids[0]).join(',') }
       if (query.page > 1) { params.page = query.page }
 
       this.router.navigate([''], {
@@ -121,7 +121,7 @@ export class SampleQueryService implements OnDestroy {
 
     if (params.get('and')) {
       // Intialize terms with only ID's for now
-      query.and = params.get('and').split(',').map(id => new Term(id))
+      query.and = params.get('and').split(',').map(id => new Term([id]))
 
       // Look up term names, and when it comes back from the server issue
       // a termsInfoUpdate event.
@@ -134,7 +134,7 @@ export class SampleQueryService implements OnDestroy {
 
     if (params.get('not')) {
       // Initialize terms with only ID's for now
-      query.not = params.get('not').split(',').map(id => new Term(id))
+      query.not = params.get('not').split(',').map(id => new Term([id]))
 
       // Look up term names, and when it comes back from the server issue
       // a termsInfoUpdate event.
@@ -186,8 +186,8 @@ export class SampleQueryService implements OnDestroy {
 
     // Put together query string to send to server
     let params: URLSearchParams = new URLSearchParams()
-    if (query.and) { params.set('and', query.and.map(term => term.id).join(',')) }
-    if (query.not) { params.set('not', query.not.map(term => term.id).join(',')) }
+    if (query.and) { params.set('and', query.and.map(term => term.ids[0]).join(',')) }
+    if (query.not) { params.set('not', query.not.map(term => term.ids[0]).join(',')) }
 
     // Calculate skip and limit for paging
     params.set('skip', String(STUDIES_PER_RESULTS_PAGE * (query.page - 1)))

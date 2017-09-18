@@ -15,21 +15,21 @@ export class SampleQuery {
 
   isEmpty(): boolean {
     // in Javascript an empty string is false
-    return !(this.and || this.not)
+    return !(this.and.length || this.not.length)
   }
 }
 
 
 
 export class Term {
-  id: string;
+  ids: string[];
   name: string | null;
 
   syn: string | null | undefined; // synonyms
-  up: Term[] | null | undefined; // ancestor terms
-  down: Term[] | null | undefined;
+  ancestors: Term[] | null | undefined; // ancestor terms
+  descendents: Term[] | null | undefined;
 
-  constructor(id: string) {
-    this.id = id;
+  constructor(ids: string[]) {
+    this.ids = ids;
   }
 }
