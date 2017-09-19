@@ -49,9 +49,12 @@ export class TermInputComponent {
 
   // Find the index of a term in the list of entered terms.
   // If the term isn't in the list, return -1.
+  // A term is a match if they have any ids in common.
   private indexOfTerm(term: Term): number {
     for (let i = 0; i < this.terms.length; i++) {
-      if (term.id == this.terms[i].id) return i;
+      for (let param_id of term.ids) {
+        if (this.terms[i].ids.indexOf(param_id) > -1) return i;
+      }
     }
     return -1;
   }
