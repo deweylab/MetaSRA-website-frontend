@@ -1,7 +1,7 @@
 <div id="search-controls">
   <div class="form-group row">
     <div class="col-lg-3 col-form-label">
-      Find samples matching <b>all</b> of these terms:
+      Match <b>all</b> of these terms:
     </div>
     <div class="col-lg-9">
       <term-input #andterms [terms]="sampleQuery?.and" (termChange)="this.sampleQueryService.updateANDTerms($event.terms)"></term-input><br />

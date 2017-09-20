@@ -11,25 +11,51 @@
 .synonyms {
   color: #555;
   font-size: 90%;
+  margin-bottom: 20px;
 }
 
 
 ::ng-deep .dropdown-item.active, ::ng-deep .dropdown-item:active {
   /* override default hilighting */
-  background-color: inherit !important;
+  background-color: #FFF !important;
   color: inherit !important;
+}
+
+::ng-deep .dropdown-item {
+  background: #FFF;
+
+  margin-bottom: 8px;
+  border: 1px #888 solid;
+  border-radius: 5px;
+
+  -webkit-box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.4);
+  -moz-box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.4);
+  box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.4);
+}
+
+::ng-deep .dropdown-menu {
+  border: 0;
+  background-color: rgba(0,0,0,0);
 }
 
 .autocomplete-item {
   white-space: normal;
   background: white;
   width: 600px; /*TODO*/
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .btn-sm.related-term {
   padding-top: 0px;
   padding-bottom: 0px;
   margin: 1px;
+  transition: 0s;
+}
+.btn-sm.related-term:hover {
+  transition: 0s;
+}
+
+.btn-lg {
+  margin-top: 10px;
 }

@@ -36,42 +36,27 @@ h1 {
 
 
 
-.hilight-UBERON {
-  background-color: #ff7f00;
-  color: #000;
-}
-.hilight-UBERON:hover {
-  background-color: #ff7f00;
-}
+.hilight-UBERON { background-color: #ff7f00; color: #000; }
+.hilight-UBERON:hover { background-color: #ff7f00; }
+.hilight-UBERON.related-term { background-color: #fff; border: solid 1px #ff7f00; }
+.hilight-UBERON.related-term:hover { background-color: #ff7f00; }
 
-.hilight-EFO {
-  background-color: #4daf4a;
-  color: #000;
-}
-.hilight-EFO:hover {
-  background-color: #4daf4a;
-}
+.hilight-EFO { background-color: #4daf4a; color: #000; }
+.hilight-EFO:hover { background-color: #4daf4a; }
+.hilight-EFO.related-term { background-color: #fff; border: solid 1px #4daf4a; }
+.hilight-EFO.related-term:hover { background-color: #4daf4a; }
 
-.hilight-DOID {
-  background-color: #e41a1c;
-  color: #000;
-}
-.hilight-DOID:hover {
-  background-color: #e41a1c;
-}
+.hilight-DOID { background-color: #e41a1c; color: #000; }
+.hilight-DOID:hover { background-color: #e41a1c; }
+.hilight-DOID.related-term { background-color: #fff; border: solid 1px #e41a1c; }
+.hilight-DOID.related-term:hover { background-color: #e41a1c; }
 
-.hilight-CL {
-  background-color: #377eb8;
-  color: #000;
-}
-.hilight-CL:hover {
-  background-color: #377eb8;
-}
+.hilight-CL { background-color: #377eb8; color: #000; }
+.hilight-CL:hover { background-color: #377eb8; }
+.hilight-CL.related-term { background-color: #fff; border: solid 1px #377eb8; }
+.hilight-CL.related-term:hover { background-color: #377eb8; }
 
-.hilight-CVCL {
-  background-color: #E0D610;
-  color: #000;
-}
-.hilight-CVCL:hover {
-  background-color: #E0D610;
-}
+.hilight-CVCL { background-color: #E0D610; color: #000; }
+.hilight-CVCL:hover { background-color: #E0D610; }
+.hilight-CVCL.related-term { background-color: #fff; border: solid 1px #E0D610; }
+.hilight-CVCL.related-term:hover { background-color: #E0D610; }
