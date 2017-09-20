@@ -1,5 +1,11 @@
 .term-tag .close {
-  opacity: 1
+  opacity: 1;
+  text-shadow: inherit;
+}
+
+.term-tag {
+  padding-right: 4px;
+  padding-bottom: 2px;
 }
 
 .synonyms {

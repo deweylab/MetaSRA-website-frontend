@@ -44,6 +44,8 @@
   margin-bottom: 2px;
   white-space: normal;
   line-height: 1.2;
+  float: left;
+  clear: both;
 }
 .btn-sample:hover {
   border-color: #EC0C8E;

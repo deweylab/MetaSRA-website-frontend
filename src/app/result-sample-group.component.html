@@ -12,7 +12,7 @@
     <a
       [href]="'http://slashdot.org'"
       target="_blank"
-      class="btn btn-sm btn-sample"
+      class="btn btn-sample"
       *ngFor="let sample of (sampleGroup.samples | slice:0:(samplesExpanded ? undefined : INITIAL_SAMPLE_DISPLAY))">
         <div class="sample-id">{{ sample.id }}</div>
         <div *ngIf="sample.name" class="sample-name">{{ sample.name }}</div>
