@@ -71,13 +71,21 @@ export class TermInputComponent {
       .debounceTime(300)
       .distinctUntilChanged()
       //.do(() => this.searching = true)
-      .switchMap(term =>
-        this.termLookupService.search(term)
-          //.do(() => this.searchFailed = false)
-          .catch(() => {
-            //this.searchFailed = true;
-            return Observable.of([]);
-          }))
-      //.do(() => this.searching = false)
+      .switchMap(inputText => {
+        if (inputText.length >= 3) {
+          return this.termLookupService.search(inputText)
+            //.do(() => this.searchFailed = false)
+            .catch(() => {
+              //this.searchFailed = true;
+              return Observable.of([]);
+            })
+        }
+        else {
+          return Observable.of([]);
+        }
+
+      })
+
+          //.do(() => this.searching = false)
       //.merge(this.hideSearchingWhenUnsubscribed);
 }
