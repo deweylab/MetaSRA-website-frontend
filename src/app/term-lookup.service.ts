@@ -16,12 +16,12 @@ export class TermLookupService {
   constructor(
     private http: Http,
   ) {}
-  
+
 
   // Lookup terms by search string
   search(q: string): Observable<Term[]> {
     return this.http
-            .get(`/api/v01/terms?q=${q}`)
+            .get(`/api/v01/terms?limit=10&q=${q}`)
             .map(response => response.json().terms as Term[]);
   }
 
