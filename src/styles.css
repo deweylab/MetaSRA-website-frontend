@@ -1,5 +1,6 @@
 body {
   background-color: #F3F3F3;
+  padding-bottom: 100px;
 }
 
 div#header-title {
@@ -39,6 +40,7 @@ h1 {
 }
 
 
+/* Ontology term tag colors */
 .hilight-UBERON { background-color: #ff7f00; color: #000; }
 .hilight-UBERON:hover { background-color: #ff7f00; }
 .hilight-UBERON.related-term { background-color: #fff; border: solid 1px #ff7f00; }
@@ -63,3 +65,17 @@ h1 {
 .hilight-CVCL:hover { background-color: #E0D610; }
 .hilight-CVCL.related-term { background-color: #fff; border: solid 1px #E0D610; }
 .hilight-CVCL.related-term:hover { background-color: #E0D610; }
+
+
+/* Override pager styles */
+.page-link {
+  color: #C0178C;
+}
+.page-link:focus, .page-link:hover {
+  color: #EC0C8E;
+  background-color: #f3f3f3;
+}
+.page-item.active .page-link {
+  background-color: #C0178C;
+  border-color: #C0178C;
+}

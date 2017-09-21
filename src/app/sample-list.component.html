@@ -12,6 +12,11 @@
 </ngb-alert>
 
 <div *ngIf="queryStatus?.results?.studyCount">
+
+  <div style="margin-top:30px;margin-bottom:10px;padding-left:4px">
+    Found <b> {{ queryStatus.results.sampleCount }} </b> samples in <b> {{ queryStatus.results.studyCount }} </b> studies
+  </div>
+
   <result-study *ngFor="let study of queryStatus.results.studies" [study]="study"></result-study>
 
   <ngb-pagination
@@ -19,5 +24,7 @@
     [page]="sampleQuery.page"
     [pageSize]="STUDIES_PER_RESULTS_PAGE"
     (pageChange)="pageChange($event)"
+    [maxSize]="7"
+    [rotate]="true"
     ></ngb-pagination>
 </div>
