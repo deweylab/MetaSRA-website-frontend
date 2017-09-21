@@ -5,10 +5,10 @@
 
   <div class="container-fluid">
     <result-sample-group *ngFor="let sampleGroup of (study.sampleGroups | slice:0:(sampleGroupsExpanded ? undefined : INITIAL_SAMPLEGROUP_DISPLAY))" [sampleGroup]="sampleGroup"></result-sample-group>
-    <div
-      class="btn btn-primary"
+    <a
+      class="show-all-samples"
       *ngIf="study.sampleGroups.length > INITIAL_SAMPLEGROUP_DISPLAY && !sampleGroupsExpanded"
       (click)="expandSampleGroups()">
-      (+) Show all samples
-    </div>
+      (+) Show all <b>{{ study.sampleCount }}</b> matching samples for this study
+    </a>
 </div>

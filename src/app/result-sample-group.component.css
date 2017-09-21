@@ -55,3 +55,15 @@
 .sample-name {
   font-weight: bold;
 }
+
+
+a.show-all-samples {
+  color: #C0178C;
+  cursor: pointer;
+  display: inline-block;
+  clear: both;
+}
+a.show-all-samples:hover {
+  color: #EC0C8E;
+  text-decoration: underline;
+}

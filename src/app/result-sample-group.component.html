@@ -19,6 +19,7 @@
     </a>
 
     <a (click)="expandSamples()"
+      class="show-all-samples"
       *ngIf="sampleGroup.samples.length > INITIAL_SAMPLE_DISPLAY && !samplesExpanded">
       (+) Show all {{ sampleGroup.samples.length }} samples
     </a>

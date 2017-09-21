@@ -34,6 +34,9 @@ h1 {
   font-size: 250%;
 }
 
+.btn {
+  cursor: pointer;
+}
 
 
 .hilight-UBERON { background-color: #ff7f00; color: #000; }

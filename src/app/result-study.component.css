@@ -20,3 +20,14 @@ a.study-id {
   font-size: 120%;
   padding-left: 20px;
 }
+
+
+a.show-all-samples {
+  color: #C0178C;
+  font-size: 140%;
+  cursor: pointer;
+}
+a.show-all-samples:hover {
+  color: #EC0C8E;
+  text-decoration: underline;
+}
