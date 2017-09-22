@@ -282,11 +282,11 @@ export class SampleGroup {
   dterms: string[][]; // d for display
   samples: string[];
   attr: string[][];
+  type: SampleType;
 }
 
 export class Sample {
   id: string;
-  type: SampleType;
   name: string | null | undefined;
 }
 

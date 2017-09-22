@@ -6,8 +6,8 @@
       {{ sampleGroup.samples.length > 1 ? 'samples' : 'sample' }}
     </div>
     <div class="sample-type-label">
-      {{ sampleGroup.samples[0].type.type }}
-      <span *ngIf="sampleGroup.samples[0].type.conf < 0.7" class="sampletype-low-confidence">(Low confidence)</span>
+      {{ sampleGroup.type.type }}
+      <span *ngIf="sampleGroup.type.conf < 0.7" class="sampletype-low-confidence">(Low confidence)</span>
     </div>
     <a
       [href]="'http://slashdot.org'"
