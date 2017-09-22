@@ -5,3 +5,8 @@ div#search-controls {
   border-radius: 4px;
   margin-bottom: 16px;
 }
+
+div#search-controls-title {
+  font-size: 160%;
+  padding-bottom: 20px;
+}
