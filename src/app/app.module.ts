@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule }   from '@angular/forms';
 
 import { routing } from './app.routing';
 
@@ -20,7 +21,8 @@ import { TermLookupService } from './term-lookup.service'
   imports:      [ BrowserModule,
                   HttpModule,
                   NgbModule.forRoot(),
-                  routing ],
+                  routing,
+                  FormsModule ],
 
   declarations: [ AppComponent,
                   MainContainerComponent,

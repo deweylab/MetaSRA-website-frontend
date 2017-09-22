@@ -4,6 +4,7 @@
 export class SampleQuery {
   and: Term[];
   not: Term[];
+  sampleType: string;
   page: number;
 
   // Start at page 1, there is no page 0
@@ -13,6 +14,8 @@ export class SampleQuery {
     this.page = 1;
   }
 
+  // This is used to avoid hitting the server if the user has deleted all the
+  // terms from the query.
   isEmpty(): boolean {
     // in Javascript an empty string is false
     return !(this.and.length || this.not.length)

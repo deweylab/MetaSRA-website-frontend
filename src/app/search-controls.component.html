@@ -18,4 +18,23 @@
       <term-input #notterms [terms]="sampleQuery?.not" (termChange)="this.sampleQueryService.updateNOTTerms($event.terms)"></term-input><br /><br />
     </div>
   </div>
+  <div class="form-group row">
+    <div class="col-lg-3 col-form-label">
+      Sample type:
+    </div>
+    <div class="col-lg-9">
+      <div ngbRadioGroup name="sampleType" class="sample-type-buttongroup"
+        (change)="this.sampleQueryService.updateSampleType($event.target.value)"
+        [(ngModel)]="selectedSampleType">
+        <label ngbButtonLabel class="btn-primary btn-sm">
+           <input ngbButton type="radio" [value]="null">All
+        </label><label
+          *ngFor="let sampleType of sampleTypes"
+          ngbButtonLabel
+          class="btn-primary btn-sm">
+           <input ngbButton type="radio" [value]="sampleType">{{ sampleType }}
+        </label>
+      </div>
+    </div>
+  </div>
 </div>

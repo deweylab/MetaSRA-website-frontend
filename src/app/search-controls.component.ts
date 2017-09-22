@@ -2,9 +2,9 @@ import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription'
 
 import { SampleQueryService } from './sample-query.service'
-
 import { SampleQuery } from './sample-query'
 
+import { SAMPLE_TYPES } from './CONFIG'
 
 @Component({
   moduleId: module.id,
@@ -17,6 +17,9 @@ export class SearchControlsComponent implements OnDestroy {
   private sampleQuery: SampleQuery;
   private sampleQuerySubscripion: Subscription;
   private termInfoUpdateSubscription: Subscription;
+
+  private sampleTypes = SAMPLE_TYPES;
+  private selectedSampleType: string;
 
   constructor(
     private sampleQueryService: SampleQueryService
@@ -31,12 +34,13 @@ export class SearchControlsComponent implements OnDestroy {
     // because we don't want to change the results, only the display of the query
     // terms.
     this.termInfoUpdateSubscription = this.sampleQueryService.termInfoUpdate$.subscribe(
-      query => { this.sampleQuery = query; }
+      query => { this.sampleQuery = query; this.selectedSampleType = query.sampleType }
     )
   }
 
   ngOnDestroy() {
     this.sampleQuerySubscripion.unsubscribe();
   }
+
 
 }

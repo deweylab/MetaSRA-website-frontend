@@ -104,6 +104,7 @@ export class SampleQueryService implements OnDestroy {
       if (query.and.length) { params.and = query.and.map(term => term.ids[0]).join(',') }
       if (query.not.length) { params.not = query.not.map(term => term.ids[0]).join(',') }
       if (query.page > 1) { params.page = query.page }
+      if (query.sampleType) { params.sampletype = query.sampleType }
 
       this.router.navigate([''], {
         queryParams: params,
@@ -145,9 +146,11 @@ export class SampleQueryService implements OnDestroy {
         })
     }
 
-    //query.and = params.get('and')
-    //query.not = params.get('not')
+
     if (params.get('page')) { query.page = +(params.get('page')) }
+
+    if (params.get('sampletype')) { query.sampleType = params.get('sampletype') }
+
     return query
   }
 
@@ -186,8 +189,9 @@ export class SampleQueryService implements OnDestroy {
 
     // Put together query string to send to server
     let params: URLSearchParams = new URLSearchParams()
-    if (query.and) { params.set('and', query.and.map(term => term.ids[0]).join(',')) }
-    if (query.not) { params.set('not', query.not.map(term => term.ids[0]).join(',')) }
+    if (query.and.length) { params.set('and', query.and.map(term => term.ids[0]).join(',')) }
+    if (query.not.length) { params.set('not', query.not.map(term => term.ids[0]).join(',')) }
+    if (query.sampleType) { params.set('sampletype', query.sampleType) }
 
     // Calculate skip and limit for paging
     params.set('skip', String(STUDIES_PER_RESULTS_PAGE * (query.page - 1)))
@@ -233,7 +237,7 @@ export class SampleQueryService implements OnDestroy {
 
 
 
-  // Methods for updating sample type
+  // Methods for updating query parameters
 
   updateANDTerms(terms: Term[]): void {
     this.currentQuery.and = terms;
@@ -243,6 +247,12 @@ export class SampleQueryService implements OnDestroy {
 
   updateNOTTerms(terms: Term[]): void {
     this.currentQuery.not = terms;
+    this.currentQuery.page = 1;
+    this.query.next(this.currentQuery);
+  }
+
+  updateSampleType(sampleType: string): void {
+    this.currentQuery.sampleType = sampleType;
     this.currentQuery.page = 1;
     this.query.next(this.currentQuery);
   }

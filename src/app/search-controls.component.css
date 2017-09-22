@@ -10,3 +10,8 @@ div#search-controls-title {
   font-size: 160%;
   padding-bottom: 20px;
 }
+
+.sample-type-buttongroup label {
+  margin-left: 2px;
+  margin-bottom: 2px;
+}
