@@ -10,7 +10,7 @@
       <span *ngIf="sampleGroup.type.conf < 0.7" class="sampletype-low-confidence">(low confidence)</span>
     </div>
     <a
-      [href]="'http://slashdot.org'"
+      [href]="'https://www.ncbi.nlm.nih.gov/biosample/' + sample.id"
       target="_blank"
       class="btn btn-sample"
       *ngFor="let sample of (sampleGroup.samples | slice:0:(samplesExpanded ? undefined : INITIAL_SAMPLE_DISPLAY))">
