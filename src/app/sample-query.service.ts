@@ -237,11 +237,13 @@ export class SampleQueryService implements OnDestroy {
 
   updateANDTerms(terms: Term[]): void {
     this.currentQuery.and = terms;
+    this.currentQuery.page = 1;
     this.query.next(this.currentQuery);
   }
 
   updateNOTTerms(terms: Term[]): void {
     this.currentQuery.not = terms;
+    this.currentQuery.page = 1;
     this.query.next(this.currentQuery);
   }
 
