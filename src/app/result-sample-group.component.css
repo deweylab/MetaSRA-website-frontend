@@ -33,6 +33,7 @@
   color: #666;
   margin-top: -8px;
   margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .btn-sample {
@@ -61,6 +62,7 @@ a.show-all-samples {
   color: #C0178C;
   cursor: pointer;
   display: inline-block;
+  float: left;
   clear: both;
 }
 a.show-all-samples:hover {

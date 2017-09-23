@@ -2,12 +2,11 @@
   <div class="description-cell col-md-4">
 
     <div class="sample-label">
-      {{ sampleGroup.samples.length }}
-      {{ sampleGroup.samples.length > 1 ? 'samples' : 'sample' }}
+      {{ sampleGroup.samples.length > 1 ? sampleGroup.samples.length + ' similar samples' : 'Sample' }}
     </div>
     <div class="sample-type-label">
       {{ sampleGroup.type.type }}
-      <span *ngIf="sampleGroup.type.conf < 0.7" class="sampletype-low-confidence">(low confidence)</span>
+      <span class="sampletype-confidence">{{ sampleGroup.type.conf < 0.7 ? '(low confidence)' : '(high confidence)' }}</span>
     </div>
     <a
       [href]="'https://www.ncbi.nlm.nih.gov/biosample/' + sample.id"
