@@ -251,8 +251,8 @@ export class SampleQueryService implements OnDestroy {
     this.query.next(this.currentQuery);
   }
 
-  updateSampleType(sampleType: string): void {
-    this.currentQuery.sampleType = sampleType;
+  updateSampleType(sampleType: string|null): void {
+    this.currentQuery.sampleType = sampleType || null; // Must be null instead of empty string for radio button to work
     this.currentQuery.page = 1;
     this.query.next(this.currentQuery);
   }

@@ -12,6 +12,7 @@ export class SampleQuery {
     this.and = [];
     this.not = [];
     this.page = 1;
+    this.sampleType = null; // this must be null instead of undefined for radio buttons
   }
 
   // This is used to avoid hitting the server if the user has deleted all the

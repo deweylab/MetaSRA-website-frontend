@@ -19,14 +19,21 @@ export class SearchControlsComponent implements OnDestroy {
   private termInfoUpdateSubscription: Subscription;
 
   private sampleTypes = SAMPLE_TYPES;
+
+  // The selected sample type is split out into a separate variable so we can
+  // use it with ngForms to keep the radio button state updated.  (This is a
+  // background-position tedious to keep updated, but there's no other way to
+  // set the value of the ngbRadioGroup.)
   private selectedSampleType: string;
 
   constructor(
     private sampleQueryService: SampleQueryService
   ) {
     this.sampleQuery = this.sampleQueryService.getCurrentQuery();
+    this.selectedSampleType = this.sampleQuery.sampleType
+
     this.sampleQuerySubscripion = this.sampleQueryService.query$.subscribe(
-      query => { this.sampleQuery = query; }
+      query => { this.sampleQuery = query; this.selectedSampleType = query.sampleType }
     )
 
     // This observable may be triggered right after the page loads, to update
