@@ -15,21 +15,16 @@ div#search-controls-title {
   margin-left: 4px;
   margin-bottom: 4px;
   color: #fff;
-  border: solid 1px #fff;
-  background-color: #444;
+  background-color: #555;
 }
 
 .btn-sampletype.active {
   color: #fff;
   background-color: #C0178C;
-  border-color: #fff;
 }
 
 .btn-sampletype:hover {
-  background-color: rgba(193, 23, 140, 0.6);
-}
-.btn-sampletype.active:hover {
-  background-color: #C0178C;
+  background-color:  #C0178C;
 }
 
 .btn-sampletype.focus {
