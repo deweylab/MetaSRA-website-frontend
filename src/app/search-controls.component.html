@@ -26,12 +26,12 @@
       <div ngbRadioGroup name="sampleType" class="sample-type-buttongroup"
         (change)="this.sampleQueryService.updateSampleType($event.target.value)"
         [(ngModel)]="selectedSampleType">
-        <label ngbButtonLabel class="btn-primary btn-sm">
+        <label ngbButtonLabel class="btn-sampletype btn-sm">
            <input ngbButton type="radio" [value]="null">All
         </label><label
           *ngFor="let sampleType of sampleTypes"
           ngbButtonLabel
-          class="btn-primary btn-sm">
+          class="btn-sampletype btn-sm">
            <input ngbButton type="radio" [value]="sampleType">{{ sampleType }}
         </label>
       </div>

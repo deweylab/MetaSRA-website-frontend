@@ -11,7 +11,27 @@ div#search-controls-title {
   padding-bottom: 20px;
 }
 
-.sample-type-buttongroup label {
-  margin-left: 2px;
-  margin-bottom: 2px;
+.btn-sampletype {
+  margin-left: 4px;
+  margin-bottom: 4px;
+  color: #fff;
+  border: solid 1px #fff;
+  background-color: #444;
+}
+
+.btn-sampletype.active {
+  color: #fff;
+  background-color: #C0178C;
+  border-color: #fff;
+}
+
+.btn-sampletype:hover {
+  background-color: rgba(193, 23, 140, 0.6);
+}
+.btn-sampletype.active:hover {
+  background-color: #C0178C;
+}
+
+.btn-sampletype.focus {
+  box-shadow: 0 0 0 2px rgba(193, 23, 140, 0.6);
 }
