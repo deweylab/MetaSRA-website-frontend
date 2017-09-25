@@ -8,11 +8,6 @@
   padding-bottom: 2px;
 }
 
-.synonyms {
-  color: #555;
-  font-size: 90%;
-  margin-bottom: 20px;
-}
 
 
 ::ng-deep .dropdown-item.active, ::ng-deep .dropdown-item:active {
@@ -58,6 +53,7 @@
 
 .btn-lg {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 

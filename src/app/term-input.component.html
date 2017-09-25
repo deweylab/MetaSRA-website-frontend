@@ -14,7 +14,6 @@
       </div>
     </div>
     <div [class]="'btn btn-lg hilight-' + term.ids[0].split(':')[0]" (click)="selectTerm(term, searchBox)">{{ term.name }}</div><br>
-    <div *ngIf="term.syn" class="synonyms">Synonyms: {{ term.syn }}</div>
     <div class="term-descendents" *ngIf="term.descendents.length">
       <div class="term-descendents-label">More specific</div>
       <div *ngFor="let t of term.descendents" [class]="'btn btn-sm related-term hilight-'+ t.ids[0].split(':')[0]" (click)="selectTerm(t, searchBox)">
