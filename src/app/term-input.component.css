@@ -10,13 +10,13 @@
 
 
 
-::ng-deep .dropdown-item.active, ::ng-deep .dropdown-item:active {
+::ng-deep term-input .dropdown-item.active, ::ng-deep term-input .dropdown-item:active {
   /* override default hilighting */
   background-color: #FFF !important;
   color: inherit !important;
 }
 
-::ng-deep .dropdown-item {
+::ng-deep term-input .dropdown-item {
   background: #FFF;
 
   margin-bottom: 8px;
@@ -28,7 +28,7 @@
   box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.4);
 }
 
-::ng-deep .dropdown-menu {
+::ng-deep term-input .dropdown-menu {
   border: 0;
   background-color: rgba(0,0,0,0);
 }

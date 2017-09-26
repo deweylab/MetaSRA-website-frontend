@@ -12,7 +12,8 @@ import { STUDIES_PER_RESULTS_PAGE } from './CONFIG'
 @Component({
   moduleId: module.id,
   selector: 'sample-list',
-  templateUrl: 'sample-list.component.html'
+  templateUrl: 'sample-list.component.html',
+  styleUrls: ['sample-list.component.css']
 })
 export class SampleListComponent implements OnInit, OnDestroy{
 

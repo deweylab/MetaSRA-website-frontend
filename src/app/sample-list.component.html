@@ -13,8 +13,16 @@
 
 <div *ngIf="queryStatus?.results?.studyCount">
 
-  <div style="margin-top:30px;margin-bottom:10px;padding-left:4px">
+  <div class="result-description">
     Found <b> {{ queryStatus.results.sampleCount }} </b> samples in <b> {{ queryStatus.results.studyCount }} </b> studies
+
+    <div ngbDropdown class="d-inline-block download-dropdown dropdown float-right">
+      <button class="btn btn-download" ngbDropdownToggle id="download-dropdown-button">Download</button>
+      <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="download-dropdown-button">
+        <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'json')" target="_blank">JSON</a>
+        <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'csv')">CSV</a>
+      </div>
+    </div>
   </div>
 
   <result-study *ngFor="let study of queryStatus.results.studies" [study]="study"></result-study>

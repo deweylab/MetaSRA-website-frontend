@@ -10,12 +10,15 @@ It also handles the URL query string of the main application page: it changes
 the URL when the user changes the query, and updates the application state from
 the URL when the page first loads.
 
-TODO: add other query parameters like page and sampletype.
 TODO: add network/server error handling
 */
 
 
-import { STUDIES_PER_RESULTS_PAGE } from './CONFIG'
+const SAMPLE_API_PATH = '/api/v01/samples';
+
+
+
+import { STUDIES_PER_RESULTS_PAGE } from './CONFIG';
 
 import { Injectable, OnDestroy } from '@angular/core';
 import { Http, URLSearchParams }       from '@angular/http';
@@ -185,8 +188,6 @@ export class SampleQueryService implements OnDestroy {
   // TODO: put the API path in a config file
   // TODO: add error handling
   private lookupResults(query: SampleQuery): Observable<QueryStatus> {
-    let SAMPLE_API_PATH = '/api/v01/samples'
-
     // Put together query string to send to server
     let params: URLSearchParams = new URLSearchParams()
     if (query.and.length) { params.set('and', query.and.map(term => term.ids[0]).join(',')) }
@@ -220,6 +221,17 @@ export class SampleQueryService implements OnDestroy {
     return this.currentQueryStatus;
   }
 
+
+
+
+  downloadURL(query: SampleQuery, extension: string): string {
+    let params: URLSearchParams = new URLSearchParams()
+    if (query.and.length) { params.set('and', query.and.map(term => term.ids[0]).join(',')) }
+    if (query.not.length) { params.set('not', query.not.map(term => term.ids[0]).join(',')) }
+    if (query.sampleType) { params.set('sampletype', query.sampleType) }
+
+    return SAMPLE_API_PATH + '.' + extension + '?' + params.toString();
+  }
 
 
 
