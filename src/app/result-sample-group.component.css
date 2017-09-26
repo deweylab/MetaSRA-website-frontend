@@ -23,6 +23,21 @@
   padding-bottom: 0.4em;
 }
 
+.term-cell {
+  text-align: center;
+}
+
+
+.term-cell-header, .attribute-cell-header {
+  color: #777;
+  font-size: 80%;
+  padding-bottom: 8px;
+  text-align: center;
+}
+.attribute-cell-header {
+  text-align: center;
+}
+
 
 .sample-label {
   font-size: 160%;

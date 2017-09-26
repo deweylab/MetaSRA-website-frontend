@@ -23,14 +23,20 @@
       (+) Show all {{ sampleGroup.samples.length }} samples
     </a>
   </div>
+
+
   <div class="term-cell col-md-4">
+    <div class="term-cell-header">EXTRACTED TERMS</div>
     <div
       *ngFor="let term of sampleGroup.dterms"
       [class]="'btn-sm term-tag hilight-' + term.ids[0].split(':')[0]">
       {{ term.name }}
     </div>
   </div>
+
+
   <div class="attribute-cell col-md-4">
+    <div class="attribute-cell-header">RAW SRA METADATA</div>
     <table>
       <tr *ngFor="let attr of sampleGroup.attr">
         <td class="attr-key">{{ attr[0] }}:</td>
