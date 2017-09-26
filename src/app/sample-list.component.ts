@@ -1,6 +1,6 @@
 
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription'
 
@@ -29,10 +29,12 @@ export class SampleListComponent implements OnInit, OnDestroy{
 
   private pageChange(page: number): void {
     this.sampleQueryService.updatePage(page);
+    this.elRef.nativeElement.scrollIntoView({behavior: 'smooth'});
   }
 
   constructor(
-    private sampleQueryService: SampleQueryService
+    private sampleQueryService: SampleQueryService,
+    private elRef: ElementRef
   ) {}
 
   ngOnInit() {
