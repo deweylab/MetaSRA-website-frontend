@@ -26,8 +26,8 @@
   <div class="term-cell col-md-4">
     <div
       *ngFor="let term of sampleGroup.dterms"
-      [class]="'btn-sm term-tag hilight-' + term[0].split(':')[0]">
-      {{ term[1] }}
+      [class]="'btn-sm term-tag hilight-' + term.ids[0].split(':')[0]">
+      {{ term.name }}
     </div>
   </div>
   <div class="attribute-cell col-md-4">

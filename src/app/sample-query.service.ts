@@ -289,7 +289,7 @@ export class ResultStudy {
 }
 
 export class SampleGroup {
-  dterms: string[][]; // d for display
+  dterms: Term[]; // d for display
   samples: string[];
   attr: string[][];
   type: SampleType;
