@@ -30,7 +30,6 @@ import { Subject } from 'rxjs/Subject'
 import { Subscription }   from 'rxjs/Subscription';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/distinctUntilChanged'; // delete?
-import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
@@ -169,9 +168,7 @@ export class SampleQueryService implements OnDestroy {
 
   // Observable keeping track of query validity/loading/error/complete status,
   // and used for passing query results to components.
-  // TODO: remove debouncetime operator after implementing autocomplete
   queryStatus$: Observable<QueryStatus> = this.query$
-        .debounceTime(300)
         .switchMap(query => query.isEmpty()
           ? Observable.of<QueryStatus>({validQuery: false, loading: false, results: null})
           : this.lookupResults(query)
