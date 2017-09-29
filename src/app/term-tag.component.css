@@ -1,0 +1,41 @@
+.term-popover-container {
+  text-align: center;
+  min-width: 360px;
+  padding: 30px;
+  padding-bottom: 0px;
+}
+
+.term-name {
+  font-size: 240%;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.synonyms {
+  font-size: 90%;
+  color: #555;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.term-disclaimer {
+  font-weight: bold;
+  color: #777;
+  font-size: 90%;
+  margin-top: 30px;
+}
+
+.btn.btn-requireterm, .btn.btn-excludeterm {
+  color: #fff;
+  background-color: #C0178C;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 8px;
+}
+.btn.btn-requireterm {
+  margin-top: 30px;
+}
+
+.btn.btn-requireterm:hover, .btn.btn-excludeterm:hover {
+  background-color: #EC0C8E;
+}

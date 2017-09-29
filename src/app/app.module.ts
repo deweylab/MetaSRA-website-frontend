@@ -13,6 +13,7 @@ import { SampleListComponent } from './sample-list.component'
 import { ResultStudyComponent } from './result-study.component'
 import { ResultSampleGroupComponent } from './result-sample-group.component'
 import { TermInputComponent } from './term-input.component'
+import { TermTagComponent } from './term-tag.component'
 
 import { SampleQueryService } from './sample-query.service'
 import { TermLookupService } from './term-lookup.service'
@@ -30,7 +31,8 @@ import { TermLookupService } from './term-lookup.service'
                   SampleListComponent,
                   ResultStudyComponent,
                   ResultSampleGroupComponent,
-                  TermInputComponent ],
+                  TermInputComponent,
+                  TermTagComponent ],
 
   bootstrap:    [ AppComponent ],
 

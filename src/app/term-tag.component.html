@@ -1,0 +1,30 @@
+<div
+  [class]="classes + ' btn term-tag hilight-' + term.ids[0].split(':')[0]"
+  [style]="style"
+  [ngbPopover]="popOver"
+  triggers="click"
+  (focus)="lookupTerm()"
+  tabindex="0">
+  {{ term.name }}
+</div>
+
+
+
+<ng-template #popOver>
+  <div class="term-popover-container">
+  <div class="term-name">{{ term.name }}</div>
+
+  <div *ngIf="expandedTerm == null">
+    Loading...
+  </div>
+
+  <div *ngIf="expandedTerm != null" class="synonyms">
+    {{expandedTerm.syn}}
+  </div>
+
+  <button class="btn btn-requireterm">Require this term</button>
+  <button class="btn btn-excludeterm">Exclude this term</button>
+
+  <div class="term-disclaimer">computationally-extracted ontology term</div>
+  </div>
+</ng-template>
