@@ -51,9 +51,11 @@
   display: inline-block;
   color: #C0178C;
   border: solid 1px #C0178C;
+  border-bottom: solid 5px;
   background-color: #F8F8F8;
   text-align: left;
-  margin-bottom: 2px;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
   white-space: normal;
   line-height: 1.2;
   float: left;
@@ -62,6 +64,7 @@
 .btn-sample:hover {
   border-color: #EC0C8E;
   color: #EC0C8E;
+  background: #FFF;
 }
 
 .sample-name {

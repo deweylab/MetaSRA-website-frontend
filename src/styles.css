@@ -42,27 +42,27 @@ h1 {
 
 /* Ontology term tag colors */
 .hilight-UBERON { background-color: #ff9933; color: #000; }
-.hilight-UBERON:hover { background-color: #ff9933; }
+.hilight-UBERON:hover { background-color: #ff7f00; }
 .hilight-UBERON.related-term { background-color: #fff; border: solid 1px #ff9933; }
 .hilight-UBERON.related-term:hover { background-color: #ff9933; }
 
 .hilight-EFO { background-color: #92d090; color: #000; }
-.hilight-EFO:hover { background-color: #92d090; }
+.hilight-EFO:hover { background-color: #4daf4a; }
 .hilight-EFO.related-term { background-color: #fff; border: solid 1px #92d090; }
 .hilight-EFO.related-term:hover { background-color: #92d090; }
 
 .hilight-DOID { background-color: #f76e70; color: #000; }
-.hilight-DOID:hover { background-color: #f76e70; }
+.hilight-DOID:hover { background-color: #e02f31; }
 .hilight-DOID.related-term { background-color: #fff; border: solid 1px #f76e70; }
 .hilight-DOID.related-term:hover { background-color: #f76e70; }
 
 .hilight-CL { background-color: #89b7dc; color: #000; }
-.hilight-CL:hover { background-color: #89b7dc; }
+.hilight-CL:hover { background-color: #468bc3; }
 .hilight-CL.related-term { background-color: #fff; border: solid 1px #89b7dc; }
 .hilight-CL.related-term:hover { background-color: #89b7dc; }
 
 .hilight-CVCL { background-color: #f2e940; color: #000; }
-.hilight-CVCL:hover { background-color: #f2e940; }
+.hilight-CVCL:hover { background-color: #E0D610; }
 .hilight-CVCL.related-term { background-color: #fff; border: solid 1px #f2e940; }
 .hilight-CVCL.related-term:hover { background-color: #f2e940; }
 
