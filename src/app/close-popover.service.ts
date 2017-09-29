@@ -21,6 +21,12 @@ export class ClosePopoverService {
 
   // This is called when a new popover opens, to keep track of the currently-opened popover.
   registerPopover(popover: NgbPopover): void {
+
+    // Make sure the previously-opened popover is closed.
+    if (this.popover && this.popover.isOpen()) {
+      this.popover.close();
+    }
+
     this.active = false;
     this.popover = popover;
   }
