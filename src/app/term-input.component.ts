@@ -75,6 +75,10 @@ export class TermInputComponent {
     }, 0);
   }
 
+  // Clear the text box when an item is selected.
+  private nullInputFormatter (): string {
+    return '';
+  }
 
 
   search = (text$: Observable<string>) =>

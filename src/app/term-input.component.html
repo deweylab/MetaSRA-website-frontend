@@ -30,6 +30,7 @@
   class="form-control"
   [ngbTypeahead]="search"
   placeholder="Find term"
-  (selectItem)="$event.preventDefault()"
+  (selectItem)="selectTerm($event.item, searchBox)"
   [resultTemplate]="rt"
-  (focus)="textBoxFocus($event)" />
+  (focus)="textBoxFocus($event)"
+  [inputFormatter]="nullInputFormatter"/>
