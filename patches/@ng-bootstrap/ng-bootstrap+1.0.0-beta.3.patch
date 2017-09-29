@@ -1,0 +1,40 @@
+diff --git a/node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js b/node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js
+index 7e722a9..ff0ed4c 100644
+--- a/node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js
++++ b/node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js
+@@ -2219,7 +2219,7 @@ NgbTypeaheadWindow = __decorate([
+         selector: 'ngb-typeahead-window',
+         exportAs: 'ngbTypeaheadWindow',
+         host: { 'class': 'dropdown-menu', 'style': 'display: block', 'role': 'listbox', '[id]': 'id' },
+-        template: "\n    <ng-template #rt let-result=\"result\" let-term=\"term\" let-formatter=\"formatter\">\n      <ngb-highlight [result]=\"formatter(result)\" [term]=\"term\"></ngb-highlight>\n    </ng-template>\n    <ng-template ngFor [ngForOf]=\"results\" let-result let-idx=\"index\">\n      <button type=\"button\" class=\"dropdown-item\" role=\"option\"\n        [id]=\"id + '-' + idx\"\n        [class.active]=\"idx === activeIdx\"\n        (mouseenter)=\"markActive(idx)\"\n        (click)=\"select(result)\">\n          <ng-template [ngTemplateOutlet]=\"resultTemplate || rt\"\n          [ngTemplateOutletContext]=\"{result: result, term: term, formatter: formatter}\"></ng-template>\n      </button>\n    </ng-template>\n  "
++        template: "\n    <ng-template #rt let-result=\"result\" let-term=\"term\" let-formatter=\"formatter\">\n      <ngb-highlight [result]=\"formatter(result)\" [term]=\"term\"></ngb-highlight>\n    </ng-template>\n    <ng-template ngFor [ngForOf]=\"results\" let-result let-idx=\"index\">\n      <div class=\"dropdown-item\" role=\"option\"\n        [id]=\"id + '-' + idx\"\n        [class.active]=\"idx === activeIdx\"\n        (mouseenter)=\"markActive(idx)\"\n        (click)=\"select(result)\">\n          <ng-template [ngTemplateOutlet]=\"resultTemplate || rt\"\n          [ngTemplateOutletContext]=\"{result: result, term: term, formatter: formatter}\"></ng-template>\n      </div>\n    </ng-template>\n  "
+     })
+ ], NgbTypeaheadWindow);
+ exports.NgbTypeaheadWindow = NgbTypeaheadWindow;
+@@ -6486,4 +6486,4 @@ exports.NgbModule = NgbModule;
+ /***/ })
+ /******/ ]);
+ });
+-//# sourceMappingURL=ng-bootstrap.js.map
+\ No newline at end of file
++//# sourceMappingURL=ng-bootstrap.js.map
+diff --git a/node_modules/@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window.js b/node_modules/@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window.js
+index 7d233b0..c2b6a9b 100644
+--- a/node_modules/@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window.js
++++ b/node_modules/@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window.js
+@@ -60,7 +60,7 @@ NgbTypeaheadWindow.decorators = [
+                 selector: 'ngb-typeahead-window',
+                 exportAs: 'ngbTypeaheadWindow',
+                 host: { 'class': 'dropdown-menu', 'style': 'display: block', 'role': 'listbox', '[id]': 'id' },
+-                template: "\n    <ng-template #rt let-result=\"result\" let-term=\"term\" let-formatter=\"formatter\">\n      <ngb-highlight [result]=\"formatter(result)\" [term]=\"term\"></ngb-highlight>\n    </ng-template>\n    <ng-template ngFor [ngForOf]=\"results\" let-result let-idx=\"index\">\n      <button type=\"button\" class=\"dropdown-item\" role=\"option\"\n        [id]=\"id + '-' + idx\"\n        [class.active]=\"idx === activeIdx\"\n        (mouseenter)=\"markActive(idx)\"\n        (click)=\"select(result)\">\n          <ng-template [ngTemplateOutlet]=\"resultTemplate || rt\"\n          [ngTemplateOutletContext]=\"{result: result, term: term, formatter: formatter}\"></ng-template>\n      </button>\n    </ng-template>\n  "
++                template: "\n    <ng-template #rt let-result=\"result\" let-term=\"term\" let-formatter=\"formatter\">\n      <ngb-highlight [result]=\"formatter(result)\" [term]=\"term\"></ngb-highlight>\n    </ng-template>\n    <ng-template ngFor [ngForOf]=\"results\" let-result let-idx=\"index\">\n      <div class=\"dropdown-item\" role=\"option\"\n        [id]=\"id + '-' + idx\"\n        [class.active]=\"idx === activeIdx\"\n        (mouseenter)=\"markActive(idx)\"\n        (click)=\"select(result)\">\n          <ng-template [ngTemplateOutlet]=\"resultTemplate || rt\"\n          [ngTemplateOutletContext]=\"{result: result, term: term, formatter: formatter}\"></ng-template>\n      </div>\n    </ng-template>\n  "
+             },] },
+ ];
+ /** @nocollapse */
+@@ -75,4 +75,4 @@ NgbTypeaheadWindow.propDecorators = {
+     'selectEvent': [{ type: Output, args: ['select',] },],
+     'activeChangeEvent': [{ type: Output, args: ['activeChange',] },],
+ };
+-//# sourceMappingURL=typeahead-window.js.map
+\ No newline at end of file
++//# sourceMappingURL=typeahead-window.js.map

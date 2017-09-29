@@ -1,0 +1,7 @@
+This patch is to fix a bug that keeps the term-autocomplete feature from working in firefox.
+
+It modifies the @ng-bootstrap/ng-bootstrap package, and may break if the package version changes from 1.0.0-beta.3.  (The package version is fixed in package.json, so it shouldn't change on its own.)
+
+The patch should be automatically installed by the "prepare" hook when you do "npm install" to install dependencies.
+
+The fix itself is to change the <button> tags to <div> tags in the autocomplete widgets.  (I've done it both in the source code and the concatenated "bundle" file.)
