@@ -16,6 +16,8 @@
   color: #555;
   line-height: 1.2;
   margin-bottom: 20px;
+  max-height: 120px;
+  overflow-y: auto;
 }
 
 .term-disclaimer {
