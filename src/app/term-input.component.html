@@ -31,4 +31,5 @@
   [ngbTypeahead]="search"
   placeholder="Find term"
   (selectItem)="$event.preventDefault()"
-  [resultTemplate]="rt" />
+  [resultTemplate]="rt"
+  (focus)="textBoxFocus($event)" />

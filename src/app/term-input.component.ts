@@ -66,6 +66,17 @@ export class TermInputComponent {
   }
 
 
+  // Fire an 'input' event when the text box is focused, to trigger the autocomplete.
+  private textBoxFocus(e: Event): void {
+    e.stopPropagation()
+    setTimeout(() => {
+        const inputEvent: Event = new Event('input');
+        e.target.dispatchEvent(inputEvent);
+    }, 0);
+  }
+
+
+
   search = (text$: Observable<string>) =>
     text$
       .debounceTime(300)
