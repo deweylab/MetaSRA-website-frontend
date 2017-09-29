@@ -72,7 +72,8 @@ export class TermInputComponent {
       .distinctUntilChanged()
       //.do(() => this.searching = true)
       .switchMap(inputText => {
-        if (inputText.length >= 3) {
+        // Wait for at least 2 characters
+        if (inputText.length >= 2) {
           return this.termLookupService.search(inputText)
             //.do(() => this.searchFailed = false)
             .catch(() => {
