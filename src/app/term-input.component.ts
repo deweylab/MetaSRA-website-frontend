@@ -22,11 +22,23 @@ import 'rxjs/add/operator/switchMap';
 })
 export class TermInputComponent {
 
-  @Output()
-  termChange: EventEmitter<any> = new EventEmitter()
-
   @Input()
   public terms: Term[] = [];
+
+  @Output()
+  termAdd: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  termRemove: EventEmitter<any> = new EventEmitter();
+
+  addTerm(term: Term): void {
+    this.termAdd.emit({term: term})
+  }
+
+  removeTerm(term: Term): void {
+    this.termRemove.emit({term: term})
+  }
+
 
   // Keep track of the top term in the returned search results; to add if the user
   // presses enter.
@@ -36,32 +48,6 @@ export class TermInputComponent {
     private termLookupService: TermLookupService,
   ) {}
 
-  addTerm(term: Term): void {
-    if (this.indexOfTerm(term) == -1) {
-      this.terms.push(term);
-      this.termChange.emit({terms: this.terms});
-    }
-  }
-
-  removeTerm(term: Term): void {
-    let i = this.indexOfTerm(term);
-    if (i > -1) {
-      this.terms.splice(i, 1);
-      this.termChange.emit({terms: this.terms});
-    }
-  }
-
-  // Find the index of a term in the list of entered terms.
-  // If the term isn't in the list, return -1.
-  // A term is a match if they have any ids in common.
-  private indexOfTerm(term: Term): number {
-    for (let i = 0; i < this.terms.length; i++) {
-      for (let param_id of term.ids) {
-        if (this.terms[i].ids.indexOf(param_id) > -1) return i;
-      }
-    }
-    return -1;
-  }
 
   // Called when one of the term buttons in the autocomplete is clicked
   private selectTerm(term: Term, searchBoxElement: any): void {

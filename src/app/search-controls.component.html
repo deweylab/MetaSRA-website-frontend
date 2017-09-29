@@ -7,7 +7,12 @@
       matching <b>all</b> of these terms:
     </div>
     <div class="col-lg-9">
-      <term-input #andterms [terms]="sampleQuery?.and" (termChange)="this.sampleQueryService.updateANDTerms($event.terms)"></term-input><br />
+      <term-input
+        #andterms
+        [terms]="sampleQuery?.and"
+        (termAdd)="this.sampleQueryService.addANDTerm($event.term)"
+        (termRemove)="this.sampleQueryService.removeANDTerm($event.term)">
+      </term-input><br />
     </div>
   </div>
   <div class="form-group row">
@@ -15,7 +20,12 @@
       and <b>none</b> of these terms:
     </div>
     <div class="col-lg-9">
-      <term-input #notterms [terms]="sampleQuery?.not" (termChange)="this.sampleQueryService.updateNOTTerms($event.terms)"></term-input><br /><br />
+      <term-input
+        #notterms
+        [terms]="sampleQuery?.not"
+        (termAdd)="this.sampleQueryService.addNOTTerm($event.term)"
+        (termRemove)="this.sampleQueryService.removeNOTTerm($event.term)">
+      </term-input><br /><br />
     </div>
   </div>
   <div class="form-group row">

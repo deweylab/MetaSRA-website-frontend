@@ -22,8 +22,8 @@
     {{expandedTerm.syn}}
   </div>
 
-  <button class="btn btn-requireterm">Require this term</button>
-  <button class="btn btn-excludeterm">Exclude this term</button>
+  <button class="btn btn-requireterm" (click)="this.sampleQueryService.addANDTerm(term)">Require this term</button>
+  <button class="btn btn-excludeterm" (click)="this.sampleQueryService.addNOTTerm(term)">Exclude this term</button>
 
   <div class="term-disclaimer">computationally-extracted ontology term</div>
   </div>

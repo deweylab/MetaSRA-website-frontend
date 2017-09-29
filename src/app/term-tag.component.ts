@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable'
 
+import { SampleQueryService } from './sample-query.service'
 import { TermLookupService } from './term-lookup.service'
 import { Term } from './sample-query'
 
@@ -33,6 +34,7 @@ export class TermTagComponent {
 
   constructor(
     private termLookupService: TermLookupService,
+    private sampleQueryService: SampleQueryService
   ) {}
 
   lookupTerm(): void {

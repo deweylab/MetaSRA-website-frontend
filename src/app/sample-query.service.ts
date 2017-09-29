@@ -248,18 +248,6 @@ export class SampleQueryService implements OnDestroy {
 
   // Methods for updating query parameters
 
-  updateANDTerms(terms: Term[]): void {
-    this.currentQuery.and = terms;
-    this.currentQuery.page = 1;
-    this.query.next(this.currentQuery);
-  }
-
-  updateNOTTerms(terms: Term[]): void {
-    this.currentQuery.not = terms;
-    this.currentQuery.page = 1;
-    this.query.next(this.currentQuery);
-  }
-
   updateSampleType(sampleType: string|null): void {
     this.currentQuery.sampleType = sampleType || null; // Must be null instead of empty string for radio button to work
     this.currentQuery.page = 1;
@@ -270,6 +258,75 @@ export class SampleQueryService implements OnDestroy {
     this.currentQuery.page = page;
     this.query.next(this.currentQuery);
   }
+
+
+
+  updateANDTerms(terms: Term[]): void {
+    this.currentQuery.and = terms;
+    this.currentQuery.page = 1;
+    this.query.next(this.currentQuery);
+  }
+
+  addANDTerm(term: Term): void {
+    this.updateANDTerms(this.addTerm(term, this.currentQuery.and));
+  }
+
+  removeANDTerm(term: Term): void {
+    this.updateANDTerms(this.removeTerm(term, this.currentQuery.and))
+  }
+
+
+
+  updateNOTTerms(terms: Term[]): void {
+    this.currentQuery.not = terms;
+    this.currentQuery.page = 1;
+    this.query.next(this.currentQuery);
+  }
+
+  addNOTTerm(term: Term): void {
+    this.updateNOTTerms(this.addTerm(term, this.currentQuery.not))
+  }
+
+  removeNOTTerm(term: Term): void {
+    this.updateNOTTerms(this.removeTerm(term, this.currentQuery.not))
+  }
+
+
+
+
+  // Methods for manipulating lists of terms
+
+  // Find the index of a term in a list of query terms.
+  // If the term isn't in the list, return -1.
+  // A term is a match if they have any ids in common.
+  private indexOfTerm(term: Term, termList: Term[]): number {
+    for (let i = 0; i < termList.length; i++) {
+      for (let param_id of term.ids) {
+        if (termList[i].ids.indexOf(param_id) > -1) return i;
+      }
+    }
+    return -1;
+  }
+
+  // Given a term and a list of terms, add the term if it's not already in the list.
+  // Modifies the array passed as termList, and returns the new array.
+  addTerm(term: Term, termList: Term[]): Term[] {
+    if (this.indexOfTerm(term, termList) == -1) {
+      termList.push(term);
+    }
+    return termList
+  }
+
+  // Given a term and a terms list, return the list with the term removed if it
+  // is present.  This also modifies the array passe in the termsList parameter.
+  removeTerm(term: Term, termsList: Term[]): Term[] {
+    let i = this.indexOfTerm(term, termsList);
+    if (i > -1) {
+      termsList.splice(i, 1);
+    }
+    return termsList;
+  }
+
 
 }
 
