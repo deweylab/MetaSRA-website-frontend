@@ -17,6 +17,7 @@ import { TermTagComponent } from './term-tag.component'
 
 import { SampleQueryService } from './sample-query.service'
 import { TermLookupService } from './term-lookup.service'
+import { ClosePopoverService } from './close-popover.service'
 
 @NgModule({
   imports:      [ BrowserModule,
@@ -37,6 +38,7 @@ import { TermLookupService } from './term-lookup.service'
   bootstrap:    [ AppComponent ],
 
   providers:    [ SampleQueryService,
-                  TermLookupService ]
+                  TermLookupService,
+                  ClosePopoverService ]
 })
 export class AppModule { }

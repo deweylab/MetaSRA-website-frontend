@@ -2,8 +2,9 @@
   [class]="classes + ' btn term-tag hilight-' + term.ids[0].split(':')[0]"
   [style]="style"
   [ngbPopover]="popOver"
-  triggers="click"
-  (focus)="lookupTerm()"
+  #p="ngbPopover"
+  triggers="manual"
+  (click)="this.closePopoverService.registerPopover(p); p.open(); lookupTerm()"
   tabindex="0">
   {{ term.name }}
 </div>
