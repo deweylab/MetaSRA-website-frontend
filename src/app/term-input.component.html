@@ -9,14 +9,14 @@
   <div class="autocomplete-item">
     <div class="term-ancestors" *ngIf="term.ancestors.length">
       <div class="term-ancestors-label">Less specific</div>
-      <div *ngFor="let t of term.ancestors" [class]="'btn btn-sm related-term hilight-'+ t.ids[0].split(':')[0]" (click)="selectTerm(t, searchBox)">
+      <div *ngFor="let t of term.ancestors" [class]="'btn btn-sm related-term hilight-'+ t.ids[0].split(':')[0]" (click)="selectTerm(t, searchBox); $event.stopPropagation()">
           {{ t.name }}
       </div>
     </div>
-    <div [class]="'btn btn-lg hilight-' + term.ids[0].split(':')[0]" (click)="selectTerm(term, searchBox)">{{ term.name }}</div><br>
+    <div [class]="'btn btn-lg hilight-' + term.ids[0].split(':')[0]" (click)="selectTerm(term, searchBox); $event.stopPropagation()">{{ term.name }}</div><br>
     <div class="term-descendents" *ngIf="term.descendents.length">
       <div class="term-descendents-label">More specific</div>
-      <div *ngFor="let t of term.descendents" [class]="'btn btn-sm related-term hilight-'+ t.ids[0].split(':')[0]" (click)="selectTerm(t, searchBox)">
+      <div *ngFor="let t of term.descendents" [class]="'btn btn-sm related-term hilight-'+ t.ids[0].split(':')[0]" (click)="selectTerm(t, searchBox); $event.stopPropagation()">
           {{ t.name }}
       </div>
     </div>
@@ -30,7 +30,7 @@
   class="form-control"
   [ngbTypeahead]="search"
   placeholder="Find term"
-  (selectItem)="selectTerm($event.item, searchBox)"
+  (selectItem)="$event.preventDefault()"
   [resultTemplate]="rt"
   (focus)="textBoxFocus($event)"
-  [inputFormatter]="nullInputFormatter"/>
+  (keyup)="handleKeyUp($event)"/>

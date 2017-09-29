@@ -9,7 +9,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-//import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 //import 'rxjs/add/operator/merge';
@@ -27,6 +27,10 @@ export class TermInputComponent {
 
   @Input()
   public terms: Term[] = [];
+
+  // Keep track of the top term in the returned search results; to add if the user
+  // presses enter.
+  topTerm: Term = null;
 
   constructor(
     private termLookupService: TermLookupService,
@@ -75,9 +79,14 @@ export class TermInputComponent {
     }, 0);
   }
 
-  // Clear the text box when an item is selected.
-  private nullInputFormatter (): string {
-    return '';
+
+  // Select the top term on enter key press
+  private handleKeyUp(e: KeyboardEvent): void {
+    if (e.keyCode == 13) {
+      if (this.topTerm) {
+        this.selectTerm(this.topTerm, e.target);
+      }
+    }
   }
 
 
@@ -86,17 +95,21 @@ export class TermInputComponent {
       .debounceTime(300)
       .distinctUntilChanged()
       //.do(() => this.searching = true)
+      //.do(() => this.topTerm = null)
       .switchMap(inputText => {
         // Wait for at least 2 characters
         if (inputText.length >= 2) {
           return this.termLookupService.search(inputText)
             //.do(() => this.searchFailed = false)
+            .do((result) => this.topTerm = result[0])
             .catch(() => {
               //this.searchFailed = true;
+              this.topTerm = null;
               return Observable.of([]);
             })
         }
         else {
+          this.topTerm = null;
           return Observable.of([]);
         }
 
