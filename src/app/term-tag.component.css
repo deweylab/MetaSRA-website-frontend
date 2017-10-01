@@ -1,3 +1,13 @@
+.term-tag {
+  margin-bottom: 2px;
+  padding: 0;
+}
+
+.term-tag .close {
+  opacity: 1;
+  text-shadow: inherit;
+}
+
 .term-popover-container {
   text-align: center;
   min-width: 360px;

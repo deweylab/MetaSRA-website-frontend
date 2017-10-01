@@ -1,5 +1,5 @@
 
-import { Component, Input, Injectable } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable'
 
@@ -22,11 +22,14 @@ export class TermTagComponent {
   @Input()
   term: Term;
 
-  @Input()
-  onClose: ()=>void = null;
+  @Output()
+  termRemove: EventEmitter<any> = new EventEmitter();
 
   @Input()
-  classes: string = '';
+  removeButton: boolean = false;
+
+  @Input()
+  buttonClasses: string = '';
 
   @Input()
   style: string = '';
@@ -44,6 +47,12 @@ export class TermTagComponent {
   lookupTerm(): void {
     this.termLookupService.lookup(this.term.ids[0])
       .subscribe((results) => this.expandedTerm = results[0]);
+  }
+
+  closeClick(): void {
+    if (this.termRemove) {
+      this.termRemove.emit({term:this.term})
+    }
   }
 
 }

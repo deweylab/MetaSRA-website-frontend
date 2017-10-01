@@ -1,8 +1,5 @@
 <div id="term-list">
-  <div class="btn-group term-tag" role="group" *ngFor="let term of terms">
-    <div [class]="'btn btn-sm hilight-' + term.ids[0].split(':')[0]">{{ term.name }}</div>
-    <div [class]="'btn btn-sm close hilight-' + term.ids[0].split(':')[0]" (click)="removeTerm(term)">&times;</div>
-  </div>
+  <term-tag [term]="term" *ngFor="let term of terms" (termRemove)="removeTerm(term)" [removeButton]="true" buttonClasses="btn-sm"></term-tag>
 </div>
 
 <ng-template #rt let-term="result" let-userinput="term">

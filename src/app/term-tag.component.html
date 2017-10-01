@@ -1,14 +1,20 @@
-<div
-  [class]="classes + ' btn term-tag hilight-' + term.ids[0].split(':')[0]"
-  [style]="style"
-  [ngbPopover]="popOver"
-  #p="ngbPopover"
-  triggers="manual"
-  (click)="this.closePopoverService.registerPopover(p); p.open(); lookupTerm()"
-  tabindex="0">
-  {{ term.name }}
+<div [class]="'btn-group term-tag ' + buttonClasses" role="group">
+  <div
+    [class]="buttonClasses + ' btn hilight-' + term.ids[0].split(':')[0]"
+    [ngbPopover]="popOver"
+    #p="ngbPopover"
+    triggers="manual"
+    (click)="this.closePopoverService.registerPopover(p); p.open(); lookupTerm()"
+    tabindex="0">
+    {{ term.name }}
+  </div>
+  <div
+    *ngIf="removeButton"
+    [class]="buttonClasses + ' btn hilight-' + term.ids[0].split(':')[0]"
+    (click)="closeClick()">
+    &times;
+  </div>
 </div>
-
 
 
 <ng-template #popOver>
