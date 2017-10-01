@@ -39,8 +39,16 @@
     </a>
   </div>
 
-  <button class="btn btn-requireterm" (click)="this.sampleQueryService.addANDTerm(term)">Require this term</button>
-  <button class="btn btn-excludeterm" (click)="this.sampleQueryService.addNOTTerm(term)">Exclude this term</button>
+  <button
+    class="btn btn-requireterm"
+    (click)="this.sampleQueryService.addANDTerm(term); scrollToSearchControls()">
+    Require this term
+  </button>
+  <button
+    class="btn btn-excludeterm"
+    (click)="this.sampleQueryService.addNOTTerm(term); scrollToSearchControls()">
+    Exclude this term
+  </button>
 
   <div class="term-disclaimer">computationally-extracted ontology term</div>
   </div>

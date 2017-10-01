@@ -59,4 +59,8 @@ export class TermTagComponent {
     }
   }
 
+  scrollToSearchControls(): void {
+    document.getElementById('search-controls').scrollIntoView({behavior: 'smooth'})
+  }
+
 }
