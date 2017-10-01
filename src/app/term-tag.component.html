@@ -29,6 +29,16 @@
     {{expandedTerm.syn}}
   </div>
 
+  <div *ngIf="expandedTerm != null" class="term-id-list">
+    <a
+      *ngFor="let id of expandedTerm.ids"
+      [class]="'term-id btn btn-sm hilight-' + id.split(':')[0]"
+      target="_blank"
+      [href]="term_link(id)">
+      {{ ONTOLOGY_NAMES[id.split(':')[0]] }} {{ id }}
+    </a>
+  </div>
+
   <button class="btn btn-requireterm" (click)="this.sampleQueryService.addANDTerm(term)">Require this term</button>
   <button class="btn btn-excludeterm" (click)="this.sampleQueryService.addNOTTerm(term)">Exclude this term</button>
 

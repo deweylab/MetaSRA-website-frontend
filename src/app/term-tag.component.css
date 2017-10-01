@@ -51,3 +51,11 @@
 .btn.btn-requireterm:hover, .btn.btn-excludeterm:hover {
   background-color: #EC0C8E;
 }
+
+a.term-id {
+  display:inline-block;
+  margin: 1px;
+}
+a.term-id:hover {
+  color: black;
+}

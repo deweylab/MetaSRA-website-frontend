@@ -7,6 +7,7 @@ import { ClosePopoverService } from './close-popover.service'
 import { SampleQueryService } from './sample-query.service'
 import { TermLookupService } from './term-lookup.service'
 import { Term } from './sample-query'
+import { ONTOLOGY_NAMES, term_link } from './CONFIG'
 
 
 
@@ -37,6 +38,9 @@ export class TermTagComponent {
   // This is null until lookupTerm is called, then the term info is fetched
   // from the server and this is filled in.
   expandedTerm: Term = null;
+
+  ONTOLOGY_NAMES = ONTOLOGY_NAMES;
+  term_link = term_link;
 
   constructor(
     private termLookupService: TermLookupService,
