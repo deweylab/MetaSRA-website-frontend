@@ -18,9 +18,7 @@ import { STUDIES_PER_RESULTS_PAGE } from './CONFIG'
 export class ResultContainerComponent implements OnInit, OnDestroy{
 
   private sampleQuery: SampleQuery = this.sampleQueryService.getCurrentQuery();
-  private sampleQuerySubscription: Subscription = this.sampleQueryService.query$.subscribe(
-    query => { this.sampleQuery = query; }
-  )
+  private sampleQuerySubscription: Subscription;
 
   private queryStatus: QueryStatus = this.sampleQueryService.getCurrentQueryStatus();
   private queryStatusSubscription: Subscription;
@@ -33,6 +31,13 @@ export class ResultContainerComponent implements OnInit, OnDestroy{
     this.elRef.nativeElement.scrollIntoView({behavior: 'smooth'});
   }
 
+  // Keep track of whether the user has clicked a link to show the full terms
+  // list, otherwise truncate it.
+  private termsListExpanded = false;
+  private expandTerms() {
+    this.termsListExpanded = true;
+  }
+
   constructor(
     private sampleQueryService: SampleQueryService,
     private elRef: ElementRef
@@ -40,7 +45,14 @@ export class ResultContainerComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.queryStatusSubscription = this.sampleQueryService.queryStatus$.subscribe(
-      status => this.queryStatus = status
+      status => {
+        this.termsListExpanded = false;
+        this.queryStatus = status;
+      }
+    )
+
+    this.sampleQuerySubscription = this.sampleQueryService.query$.subscribe(
+      query => { this.sampleQuery = query; }
     )
   }
 

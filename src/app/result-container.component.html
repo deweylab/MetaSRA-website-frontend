@@ -27,17 +27,28 @@
 
   <div class="result-term-list">
     <div class="term-list-label">Most common terms:</div>
-    <term-tag *ngFor="let term of queryStatus.results.terms" [term]="term.dterm" buttonClasses="btn-sm"></term-tag>
+    <term-tag
+      *ngFor="let term of queryStatus.results.terms.slice(0, termsListExpanded ? undefined : 30)"
+      [term]="term.dterm"
+      buttonClasses="btn-sm"></term-tag>
+    <button
+      (click)="expandTerms()"
+      *ngIf="!termsListExpanded && queryStatus.results.terms.length > 30"
+      class="btn btn-outline-secondary btn-sm btn-expand-terms-list">
+      See all
+    </button>
   </div>
 
   <result-study *ngFor="let study of queryStatus.results.studies" [study]="study"></result-study>
 
-  <ngb-pagination
-    [collectionSize]="queryStatus.results.studyCount"
-    [page]="sampleQuery.page"
-    [pageSize]="STUDIES_PER_RESULTS_PAGE"
-    (pageChange)="pageChange($event)"
-    [maxSize]="7"
-    [rotate]="true"
-    ></ngb-pagination>
+  <div class="pagination-widget">
+    <ngb-pagination
+      [collectionSize]="queryStatus.results.studyCount"
+      [page]="sampleQuery.page"
+      [pageSize]="STUDIES_PER_RESULTS_PAGE"
+      (pageChange)="pageChange($event)"
+      [maxSize]="7"
+      [rotate]="true"
+      ></ngb-pagination>
+    </div>
 </div>

@@ -14,7 +14,21 @@
 }
 
 .result-description {
+  margin-top: 70px;
+  margin-bottom: 40px;
+  padding-left: 4px;
+  font-size: 135%;
+}
+
+.expand-terms-list-btn {
+  margin-bottom: 2px;
+}
+
+.result-term-list {
+  margin-bottom: 40px;
+  padding-left: 4px;
+}
+
+.pagination-widget {
   margin-top: 50px;
-  margin-bottom: 10px;
-  padding-left: 4px
 }
