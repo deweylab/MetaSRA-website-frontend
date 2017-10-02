@@ -25,6 +25,11 @@
     </div>
   </div>
 
+  <div class="result-term-list">
+    <div class="term-list-label">Most common terms:</div>
+    <term-tag *ngFor="let term of queryStatus.results.terms" [term]="term.dterm" buttonClasses="btn-sm"></term-tag>
+  </div>
+
   <result-study *ngFor="let study of queryStatus.results.studies" [study]="study"></result-study>
 
   <ngb-pagination
