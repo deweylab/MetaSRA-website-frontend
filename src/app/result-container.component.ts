@@ -11,11 +11,11 @@ import { STUDIES_PER_RESULTS_PAGE } from './CONFIG'
 
 @Component({
   moduleId: module.id,
-  selector: 'sample-list',
-  templateUrl: 'sample-list.component.html',
-  styleUrls: ['sample-list.component.css']
+  selector: 'result-container',
+  templateUrl: 'result-container.component.html',
+  styleUrls: ['result-container.component.css']
 })
-export class SampleListComponent implements OnInit, OnDestroy{
+export class ResultContainerComponent implements OnInit, OnDestroy{
 
   private sampleQuery: SampleQuery = this.sampleQueryService.getCurrentQuery();
   private sampleQuerySubscription: Subscription = this.sampleQueryService.query$.subscribe(

@@ -9,7 +9,7 @@ import { routing } from './app.routing';
 import { AppComponent }  from './app.component';
 import { MainContainerComponent } from './main-container.component'
 import { SearchControlsComponent } from './search-controls.component';
-import { SampleListComponent } from './sample-list.component'
+import { ResultContainerComponent } from './result-container.component'
 import { ResultStudyComponent } from './result-study.component'
 import { ResultSampleGroupComponent } from './result-sample-group.component'
 import { TermInputComponent } from './term-input.component'
@@ -29,7 +29,7 @@ import { ClosePopoverService } from './close-popover.service'
   declarations: [ AppComponent,
                   MainContainerComponent,
                   SearchControlsComponent,
-                  SampleListComponent,
+                  ResultContainerComponent,
                   ResultStudyComponent,
                   ResultSampleGroupComponent,
                   TermInputComponent,

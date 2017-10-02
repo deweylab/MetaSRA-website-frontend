@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <div class="container">
       <search-controls></search-controls>
-      <sample-list></sample-list>
+      <result-container></result-container>
     </div>`,
 })
 export class MainContainerComponent  { }
