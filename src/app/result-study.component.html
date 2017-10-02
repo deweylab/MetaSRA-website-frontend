@@ -1,18 +1,24 @@
 <div class="studybox">
-  <span class="study-label">STUDY</span>
-  <a [href]="'https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' +  study.study.id" target="_blank" class="study-id">{{ study.study.id }}</a><br>
-  <span class="study-title h3">{{ study.study.title }}</span>
+  <div class="study-info">
+    <span class="study-label">STUDY</span>
+    <a [href]="'https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' +  study.study.id" target="_blank" class="study-id">{{ study.study.id }}</a><br>
+    <a [href]="'https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' +  study.study.id" class="study-title">{{ study.study.title }}</a>
+  </div>
 
-  <div *ngIf="!sampleGroupsVisible" class="container-fluid">
+  <div *ngIf="!sampleGroupsVisible" class="container-fluid sample-summary-row">
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-lg-4 col-md-5 sample-count-col">
+        <div class="sample-count-label" (click)="showSampleGroups()">
+          <span class="sample-count">{{ study.sampleCount }}</span>
+          {{ study.sampleCount > 1 ? 'matching samples' : 'matching sample' }}
+        </div>
         <button
           (click)="showSampleGroups()"
-          class="btn btn-primary btn-large show-samples-button">
-          View <b>{{ study.sampleCount }}</b> matching samples
+          class="btn btn-lg show-samples-button">
+          View sample metadata
         </button>
       </div>
-      <div class="col-md-7">
+      <div class="col-lg-8 col-md-7 study-terms-col">
         <term-tag *ngFor="let term of study.dterms" [term]="term" buttonClasses="btn-sm"></term-tag>
       </div>
     </div>

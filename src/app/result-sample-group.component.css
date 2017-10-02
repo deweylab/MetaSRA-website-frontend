@@ -1,7 +1,7 @@
 
 .sample-group-row {
-  margin-bottom: 50px;
-  margin-top: 50px;
+  padding: 50px 20px;
+  border-top: solid 1px #DDD;
 }
 
 .attr-key {
@@ -52,7 +52,7 @@
   color: #C0178C;
   border: solid 1px #C0178C;
   border-bottom: solid 5px;
-  background-color: #F8F8F8;
+  background-color: #FFF;
   text-align: left;
   margin-bottom: 6px;
   padding-bottom: 4px;
@@ -64,7 +64,6 @@
 .btn-sample:hover {
   border-color: #EC0C8E;
   color: #EC0C8E;
-  background: #FFF;
 }
 
 .sample-name {
