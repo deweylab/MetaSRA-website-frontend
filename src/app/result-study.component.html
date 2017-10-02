@@ -3,7 +3,22 @@
   <a [href]="'https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' +  study.study.id" target="_blank" class="study-id">{{ study.study.id }}</a><br>
   <span class="study-title h3">{{ study.study.title }}</span>
 
-  <div class="container-fluid">
+  <div *ngIf="!sampleGroupsVisible" class="container-fluid">
+    <div class="row">
+      <div class="col-md-5">
+        <button
+          (click)="showSampleGroups()"
+          class="btn btn-primary btn-large show-samples-button">
+          View <b>{{ study.sampleCount }}</b> matching samples
+        </button>
+      </div>
+      <div class="col-md-7">
+        <term-tag *ngFor="let term of study.dterms" [term]="term" buttonClasses="btn-sm"></term-tag>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="sampleGroupsVisible" class="container-fluid">
     <result-sample-group *ngFor="let sampleGroup of (study.sampleGroups | slice:0:(sampleGroupsExpanded ? undefined : INITIAL_SAMPLEGROUP_DISPLAY))" [sampleGroup]="sampleGroup"></result-sample-group>
     <a
       class="show-all-samples"
