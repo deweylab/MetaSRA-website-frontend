@@ -1,6 +1,6 @@
 
 // Number of studies to show on each results page
-export const STUDIES_PER_RESULTS_PAGE = 10
+export const STUDIES_PER_RESULTS_PAGE = 25
 
 export const SAMPLE_TYPES = [
   'cell line',
