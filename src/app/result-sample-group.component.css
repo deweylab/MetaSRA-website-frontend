@@ -60,12 +60,19 @@
   line-height: 1.2;
   float: left;
   clear: both;
+  background-image: url('assets/icons/icon-linkout.png');
+  background-repeat: no-repeat;
+  background-position: top 8px right 9px;
 }
 .btn-sample:hover {
   border-color: #EC0C8E;
   color: #EC0C8E;
+  background-image: url('assets/icons/icon-linkout-hover.png')
 }
 
+.sample-id {
+  padding-right: 30px;
+}
 .sample-name {
   font-weight: bold;
 }
