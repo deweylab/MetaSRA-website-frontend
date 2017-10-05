@@ -4,12 +4,8 @@ body {
 }
 
 div#header-title {
-  color: #C0178C;
-  font-family: Dosis;
-  font-size: 600%;
   margin-top: 100px;
-  font-weight: 200;
-  line-height: 1.1;
+  margin-bottom: 20px;
 }
 
 a {
