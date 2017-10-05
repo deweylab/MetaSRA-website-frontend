@@ -8,6 +8,13 @@ div#header-title {
   margin-bottom: 20px;
 }
 
+.top-nav {
+  margin-top: 10px;
+}
+.top-nav a:first-child {
+  padding-left: 0;
+}
+
 a {
   color: #C0178C;
 }
