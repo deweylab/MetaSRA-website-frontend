@@ -12,15 +12,6 @@ div#header-title {
   line-height: 1.1;
 }
 
-div#header-tagline {
-  color: #333;
-  font-family: Dosis;
-  font-size: 140%;
-  font-weight: 400;
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-
 a {
   color: #C0178C;
 }

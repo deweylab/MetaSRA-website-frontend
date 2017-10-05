@@ -30,9 +30,9 @@
   </div>
 
   <div *ngIf="expandedTerm != null" class="term-id-list">
-    <span class="in-ontologies-label">
+    <div class="in-ontologies-label">
       {{ expandedTerm.ids.length > 1 ? 'From ontologies:' : 'From ontology:' }}
-    </span>
+    </div>
     <a
       *ngFor="let id of expandedTerm.ids"
       class="term-id"
