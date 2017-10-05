@@ -32,3 +32,22 @@
 .pagination-widget {
   margin-top: 50px;
 }
+
+
+
+.examples {
+  margin-top: 30px;
+}
+
+.examples li {
+  margin-top: 10px;
+}
+
+.examples .btn {
+  pointer-events: none;
+}
+
+.examples .sample-type-tag {
+  color: #FFF;
+  background-color: #555;
+}

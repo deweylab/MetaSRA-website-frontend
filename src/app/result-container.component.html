@@ -52,3 +52,19 @@
       ></ngb-pagination>
     </div>
 </div>
+
+<div class="examples" *ngIf="!queryStatus?.validQuery">
+  <span style="font-weight: bold; font-size: 140%;">Examples</span><br />
+  <ul>
+    <li>
+      <b>Find healthy liver tissue:</b> require <span class="btn btn-sm hilight-UBERON">liver</span>, exclude <span class="btn btn-sm hilight-DOID">disease</span> and <span class="btn btn-sm hilight-EFO">treatment</span>.  Sample type: <span class="sample-type-tag btn btn-sm">tissue</span>.
+    </li>
+    <li>
+      <b>Find healthy, primary T-cells:</b> require <span class="btn btn-sm hilight-CL">T cell</span>, exclude <span class="btn btn-sm hilight-DOID">disease</span> and <span class="btn btn-sm hilight-EFO">treatment</span>.  Sample type: <span class="sample-type-tag btn btn-sm">primary cells</span>.
+    </li>
+    <li>
+      <b>Find glioblastoma samples:</b> require <span class="btn btn-sm hilight-DOID">glioblastoma multiforme</span> and <span class="btn btn-sm hilight-UBERON">brain</span>.
+    </li>
+  </ul>
+
+</div>
