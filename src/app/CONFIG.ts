@@ -2,6 +2,11 @@
 // Number of studies to show on each results page
 export const STUDIES_PER_RESULTS_PAGE = 25
 
+
+// The number of 'most common terms' to show before the user
+// clicks the "Show all" button.
+export const INITIAL_COMMON_TERM_COUNT = 30
+
 export const SAMPLE_TYPES = [
   'cell line',
   'tissue',
