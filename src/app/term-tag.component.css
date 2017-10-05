@@ -12,13 +12,12 @@
   text-align: center;
   min-width: 360px;
   padding: 30px;
-  padding-bottom: 0px;
 }
 
 .term-name {
   font-size: 240%;
   line-height: 1.2;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .synonyms {
@@ -30,19 +29,15 @@
   overflow-y: auto;
 }
 
-.term-disclaimer {
-  font-weight: bold;
-  color: #777;
-  font-size: 90%;
-  margin-top: 30px;
-}
 
 .btn.btn-requireterm, .btn.btn-excludeterm {
   color: #fff;
   background-color: #C0178C;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 40px;
+  padding-right: 20px;
   margin-bottom: 8px;
+  background-repeat: no-repeat;
+  background-position: 14px 9px;
 }
 .btn.btn-requireterm {
   margin-top: 30px;
@@ -52,10 +47,29 @@
   background-color: #EC0C8E;
 }
 
+.btn.btn-requireterm {
+  background-image: url('assets/icons/require.png')
+}
+.btn.btn-excludeterm {
+  background-image: url('assets/icons/exclude.png');
+}
+
+
+.in-ontologies-label {
+  color: '#666';
+  font-size: 90%;
+}
+.ontology-dot {
+  font-size: 300%;
+  vertical-align: -5px;
+  line-height: 0;
+}
 a.term-id {
   display:inline-block;
   margin: 1px;
+  color: #007bff;
 }
 a.term-id:hover {
-  color: black;
+  color: #0056b3;
+  text-decoration: none;
 }

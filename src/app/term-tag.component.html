@@ -25,17 +25,21 @@
     Loading...
   </div>
 
-  <div *ngIf="expandedTerm != null" class="synonyms">
-    {{expandedTerm.syn}}
+  <div *ngIf="expandedTerm?.syn" class="synonyms">
+    Synonyms: {{expandedTerm.syn}}
   </div>
 
   <div *ngIf="expandedTerm != null" class="term-id-list">
+    <span class="in-ontologies-label">
+      {{ expandedTerm.ids.length > 1 ? 'From ontologies:' : 'From ontology:' }}
+    </span>
     <a
       *ngFor="let id of expandedTerm.ids"
-      [class]="'term-id btn btn-sm hilight-' + id.split(':')[0]"
+      class="term-id"
       target="_blank"
       [href]="term_link(id)">
-      {{ ONTOLOGY_NAMES[id.split(':')[0]] }} {{ id }}
+      <span [class]="'ontology-dot ontology-dot-' + id.split(':')[0]">&#x25CF;</span>
+      {{ ONTOLOGY_NAMES[id.split(':')[0]] }}: {{ id.split(':')[1] }}
     </a>
   </div>
 
@@ -49,7 +53,4 @@
     (click)="this.sampleQueryService.addNOTTerm(term); scrollToSearchControls()">
     Exclude this term
   </button>
-
-  <div class="term-disclaimer">computationally-extracted ontology term</div>
-  </div>
-</ng-template>
+</div>
