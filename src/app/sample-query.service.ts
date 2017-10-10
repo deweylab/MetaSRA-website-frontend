@@ -38,7 +38,8 @@ import 'rxjs/add/operator/share'
 import { TermLookupService } from './term-lookup.service'
 import { SampleQuery, Term } from './sample-query'
 
-
+// Tell the typescript compiler about google analytics
+declare var ga: any;
 
 
 @Injectable()
@@ -194,6 +195,9 @@ export class SampleQueryService implements OnDestroy {
     // Calculate skip and limit for paging
     params.set('skip', String(STUDIES_PER_RESULTS_PAGE * (query.page - 1)))
     params.set('limit', String(STUDIES_PER_RESULTS_PAGE))
+
+    // Google Analytics
+    ga('send', 'pageview', SAMPLE_API_PATH + '?' + params.toString())
 
     // Hit the server, issue a QueryStatus object when the request returns.
     return this.http.get(SAMPLE_API_PATH, {search: params})
