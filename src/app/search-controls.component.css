@@ -12,14 +12,6 @@ div#search-controls-title {
   padding-bottom: 50px;
 }
 
-div#search-controls-title a {
-  color: white;
-  text-decoration: underline;
-}
-div#search-controls-title a:hover {
-  color: #C0178C;
-}
-
 .col-form-label {
   font-size: 115%;
 }

@@ -4,8 +4,26 @@ body {
 }
 
 div#header-title {
-  margin-top: 100px;
+  margin-top: 70px;
+  margin-bottom: 8px;
+}
+
+div#tagline {
+  padding-left: 94px;
+  color: #777;
   margin-bottom: 20px;
+  font-size: 135%;
+}
+div#tagline a {
+  color: #777;
+  text-decoration: none;
+  border-bottom: solid 2px #aaa;
+  display: inline-block;
+  line-height: 1;
+}
+div#tagline a:hover {
+  color: #999;
+  border-bottom: solid 2px #bbb;
 }
 
 .top-nav {
@@ -14,6 +32,13 @@ div#header-title {
 .top-nav a:first-child {
   padding-left: 0;
 }
+
+.footer {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+
 
 a {
   color: #C0178C;
