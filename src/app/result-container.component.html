@@ -8,7 +8,12 @@
 
 <ngb-alert *ngIf="!queryStatus?.results?.error && queryStatus?.results && !queryStatus.results.studyCount"
   type="danger" [dismissible]="false">
-  No matching samples found.  Please try a different query.
+  <br />
+  <h4>No matching samples found</h4>
+  <ul>
+    <li>Try searching for less-specific terms.</li>
+    <li>MetaSRA currently only has <b>RNA-seq</b> samples for <b>humans</b>.
+  </ul>
 </ngb-alert>
 
 <div *ngIf="queryStatus?.results?.studyCount">
