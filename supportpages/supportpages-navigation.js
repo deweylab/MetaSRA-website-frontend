@@ -2,7 +2,7 @@
 // client-side include to keep the navication bar consistent between all
 // support pages.
 
-document.write('<nav class="top-nav nav d-flex align-items-center"><a class="nav-link" href="index"><img src="assets/logo.png" class="nav-logo"/></a><a class="nav-link" href="download.html">Download</a><a class="nav-link" href="faq.html">FAQ</a><a class="nav-link" href="users.html">Mailing List</a><a class="nav-link" href="publication.html">Publication</a><a class="nav-link" href="links.html">Links</a><a class="nav-link" href="contact.html">Contact</a></nav>');
+document.write('<nav class="top-nav nav d-flex align-items-center"><a class="nav-link" href="index"><img src="assets/logo.png" class="nav-logo"/></a><a class="nav-link" href="download.html">Download</a><a class="nav-link" href="faq.html">FAQ</a><a class="nav-link" href="users.html">Mailing List</a><a class="nav-link" href="publication.html">Publication</a><a class="nav-link" href="links.html">Links</a><a class="nav-link" href="contact.html">Contact</a><a class="btn btn-feedback nav-item ml-auto" href="https://docs.google.com/forms/d/e/1FAIpQLSc86s4Bi_g1E0vFLpMBwty8JEE3IMFKwasPrFzBAmngILjJQg/viewform?usp=sf_link" target="_blank">Give Feedback</a></nav>');
 
 
 // Also google analytics
