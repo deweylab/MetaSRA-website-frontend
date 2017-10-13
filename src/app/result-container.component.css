@@ -1,16 +1,10 @@
 .btn-download {
-  color: #fff;
-  background-color: #C0178C;
   position: relative;
   bottom: 16px;
   padding-left: 40px;
   background-image: url('assets/icons/icon-download.png');
   background-repeat: no-repeat;
   background-position: 18px center;
-}
-
-.btn-download:hover {
-  background-color: #EC0C8E;
 }
 
 .result-description {

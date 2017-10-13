@@ -17,7 +17,7 @@
     Found <b> {{ queryStatus.results.sampleCount }} </b> samples in <b> {{ queryStatus.results.studyCount }} </b> studies
 
     <div ngbDropdown class="d-inline-block download-dropdown dropdown float-right">
-      <button class="btn btn-lg btn-download" ngbDropdownToggle id="download-dropdown-button">Download</button>
+      <button class="btn btn-primary btn-lg btn-download" ngbDropdownToggle id="download-dropdown-button">Download</button>
       <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="download-dropdown-button">
         <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'json')" target="_blank">JSON</a>
         <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'csv')">CSV</a>

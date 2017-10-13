@@ -34,13 +34,15 @@ div#tagline a:hover {
 }
 
 
-.btn-feedback {
+.btn-primary {
   color: #FFF;
   background-color: #C0178C;
+  border: 0;
 }
-.btn-feedback:hover {
+.btn-primary:hover {
   color: #FFF;
   background-color: #EC0C8E;
+  border: 0;
 }
 
 

@@ -41,13 +41,8 @@ a.study-title:hover {
   padding-right: 0;
 }
 .show-samples-button {
-  color: #FFF;
-  background-color: #C0178C;
   vertical-align: middle;
   margin-left: 10px;
-}
-.show-samples-button:hover {
-  background-color: #EC0C8E;
 }
 .sample-count-label {
   font-size: 100%;
