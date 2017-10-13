@@ -63,13 +63,19 @@
   <span style="font-weight: bold; font-size: 140%;">Examples</span><br />
   <ul>
     <li>
-      <b>Find healthy liver tissue:</b> require <span class="btn btn-sm hilight-UBERON">liver</span>, exclude <span class="btn btn-sm hilight-DOID">disease</span> and <span class="btn btn-sm hilight-EFO">treatment</span>.  Sample type: <span class="sample-type-tag btn btn-sm">tissue</span>.
+      <a class="example" (click)="goToExample({and: [{ids:['UBERON:0002107'], name:'liver'}], 'not':[{ids:['DOID:4'], name:'disease'}, {ids:['EFO:0000727'], name:'treatment'}], sampleType:'tissue'})">
+        <b>Find healthy liver tissue:</b> require <span class="btn btn-sm hilight-UBERON">liver</span>, exclude <span class="btn btn-sm hilight-DOID">disease</span> and <span class="btn btn-sm hilight-EFO">treatment</span>.  Sample type: <span class="sample-type-tag btn btn-sm">tissue</span>.
+      </a>
     </li>
     <li>
-      <b>Find healthy, primary T-cells:</b> require <span class="btn btn-sm hilight-CL">T cell</span>, exclude <span class="btn btn-sm hilight-DOID">disease</span> and <span class="btn btn-sm hilight-EFO">treatment</span>.  Sample type: <span class="sample-type-tag btn btn-sm">primary cells</span>.
+      <a class="example" (click)="goToExample({and: [{ids:['CL:0000084'], name:'T cell'}], 'not':[{ids:['DOID:4'], name:'disease'}, {ids:['EFO:0000727'], name:'treatment'}], sampleType:'primary cells'})">
+        <b>Find healthy, primary T-cells:</b> require <span class="btn btn-sm hilight-CL">T cell</span>, exclude <span class="btn btn-sm hilight-DOID">disease</span> and <span class="btn btn-sm hilight-EFO">treatment</span>.  Sample type: <span class="sample-type-tag btn btn-sm">primary cells</span>.
+      </a>
     </li>
     <li>
-      <b>Find glioblastoma samples:</b> require <span class="btn btn-sm hilight-DOID">glioblastoma multiforme</span> and <span class="btn btn-sm hilight-UBERON">brain</span>.
+      <a class="example" (click)="goToExample({and: [{ids:['DOID:3068'], name:'glioblastoma multiforme'}, {ids:['UBERON:0000955'], name:'brain'}]})">
+        <b>Find glioblastoma samples:</b> require <span class="btn btn-sm hilight-DOID">glioblastoma multiforme</span> and <span class="btn btn-sm hilight-UBERON">brain</span>.
+      </a>
     </li>
   </ul>
 

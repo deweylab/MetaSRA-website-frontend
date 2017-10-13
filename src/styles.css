@@ -22,8 +22,8 @@ div#tagline a {
   line-height: 1;
 }
 div#tagline a:hover {
-  color: #999;
-  border-bottom: solid 2px #bbb;
+  color: #C0178C;
+  border-bottom: solid 2px rgba(192,23,140,0.7);
 }
 
 .top-nav {

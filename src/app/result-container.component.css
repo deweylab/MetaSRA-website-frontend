@@ -37,8 +37,12 @@
   margin-top: 10px;
 }
 
-.examples .btn {
-  pointer-events: none;
+
+a.example {
+  cursor: pointer;
+}
+a.example:hover {
+  color: #C0178C;
 }
 
 .examples .sample-type-tag {

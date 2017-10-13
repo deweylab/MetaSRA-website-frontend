@@ -8,11 +8,15 @@ export class SampleQuery {
   page: number;
 
   // Start at page 1, there is no page 0
-  constructor() {
+  constructor(props: any) {
     this.and = [];
     this.not = [];
     this.page = 1;
     this.sampleType = null; // this must be null instead of undefined for radio buttons
+
+    // If we got an object passed in the contrusctor, assign all its props to
+    // this SampleQuery instance.
+    if (props) { Object.assign(this, props) }
   }
 
   // This is used to avoid hitting the server if the user has deleted all the

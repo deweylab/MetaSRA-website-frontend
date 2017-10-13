@@ -81,6 +81,10 @@ export class SampleQueryService implements OnDestroy {
     return this.currentQuery;
   }
 
+  // Push a query given as an argument (used by the sample links)
+  pushQuery(query: SampleQuery) {
+    this.query.next(query);
+  }
 
 
 

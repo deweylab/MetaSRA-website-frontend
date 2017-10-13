@@ -43,6 +43,11 @@ export class ResultContainerComponent implements OnInit, OnDestroy{
     this.elRef.nativeElement.scrollIntoView({behavior: 'smooth'});
   }
 
+  private goToExample(queryProps: any): void {
+    this.sampleQueryService.pushQuery(new SampleQuery(queryProps));
+  }
+
+
   constructor(
     private sampleQueryService: SampleQueryService,
     private elRef: ElementRef
