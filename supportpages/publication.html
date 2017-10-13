@@ -1,0 +1,91 @@
+<html>
+    <head>
+      <title>MetaSRA: Publication</title>
+      <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="styles.css" />
+      <link rel="stylesheet" type="text/css" href="supportpages-styles.css" />
+      <link rel="icon" type="image/png" href="assets/favicon.png" />
+    </head>
+
+    <body>
+      <div class="container">
+        <script src="supportpages-navigation.js"></script>
+
+        <h2>Publication</h2>
+        <p>
+        A pre-print describing the MetaSRA can be found at the bioRxiv:<br>
+        <a href="http://biorxiv.org/content/early/2016/12/19/090506">http://biorxiv.org/content/early/2016/12/19/090506</a>
+        </p>
+
+        <p>
+        The manuscript is currently under submission.
+        </p>
+
+        <h4>Manually annotated data used in the study</h4>
+
+        <p>
+        To evaluated the methods described in the paper, we manually annotated raw metadata from
+        the Sequence Read Archive.  All raw metadata was retrieved from the
+        <a href="https://bioconductor.org/packages/release/bioc/html/SRAdb.html">SRAdb</a>.
+        </p>
+
+        <p>
+        422 samples were manually annotated with mapped
+        ontology terms, real-value properties.
+        This dataset was used as a test set to evaluate the ontology mapping
+        pipeline. More specifically, this data
+        was used as ground-truth for results shown in Figure 4.
+        <ul>
+            <li><a href="/static/publication_datasets/test_set_ontology_mapping.json">test_set_ontology_mapping.json</a></li>
+        </ul>
+        </p>
+
+        <p>
+        701 samples were manually labelled with their sample-types by consulting their
+        publications and other external descriptions of the experiments in which they were used.
+        This dataset was used to train the sample-type classifier:
+         <ul>
+            <li><a href="/static/publication_datasets/training_set_sample_type.json">training_set_sample_type.json</a></li>
+        </ul>
+        </p>
+
+        <p>
+        367 samples were used to evaluate the sample-type classifier's recall on each category and to
+        generate the row-normalized confusion matrix and reliability diagram in Figure 5.A and 5.B.
+        These samples are a subset of the 422 samples used to evaluate the ontology term mapping
+        pipeline.
+         <ul>
+            <li><a href="/static/publication_datasets/test_set_nonenriched_sample_type.json">test_set_nonenriched_sample_type.json</a></li>
+        </ul>
+        </p>
+
+        <p>
+        552 samples were used to evaluate the sample-type classifier's precision on each category and to
+        generate the transpose of the column-normalized confusion matrix in Figure 5.C.
+         <ul>
+            <li><a href="/static/publication_datasets/test_set_enriched_sample_type.json">test_set_enriched_sample_type.json</a></li>
+        </ul>
+        </p>
+
+
+        <h4>Cell line metadata</h4>
+
+        <p>
+        MetaSRA uses cell line information scraped from the <a href="https://www.atcc.org/">ATCC</a> website.
+        We mapped cell lines found in the <a href="http://web.expasy.org/cellosaurus/">Cellosaurus</a> to ontology
+        terms:
+        <ul>
+            <li><a href="/static/publication_datasets/cvcl_mappings.json">cvcl_mappings.json</a></li>
+        </ul>
+        </p>
+
+        <div class="footer d-flex align-items-center">
+            <a href="http://www.cpcp.wisc.edu/" target="_blank"><img class="footer_logo" src="assets/cpcp-logo.png"/></a>
+            <a href="http://www.wisc.edu/" target="_blank"><img class="footer_logo" src="assets/uw-logo.png"/></a>
+            <div class="copyright ml-auto">&copy; 2017</div>
+        </div>
+    </div>
+
+    </body>
+
+</html>
