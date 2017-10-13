@@ -72,3 +72,14 @@
 .term-ancestors-label {
   background-image: url('assets/icons/less-specific.png');
 }
+
+
+.ontology-list li {
+  list-style-type: none;
+  padding-top: 4px;
+}
+.ontology-dot {
+  font-size: 300%;
+  vertical-align: -5px;
+  line-height: 0;
+}

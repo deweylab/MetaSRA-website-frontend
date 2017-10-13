@@ -41,8 +41,8 @@ export class TermInputComponent {
 
 
   // Keep track of the top term in the returned search results; to add if the user
-  // presses enter.
-  topTerm: Term = null;
+  // presses enter.  If the search was empty, it might be {emptySearchPlaceholder:true.}
+  topTerm: Term | any = null;
 
   constructor(
     private termLookupService: TermLookupService,
@@ -69,7 +69,7 @@ export class TermInputComponent {
   // Select the top term on enter key press
   private handleKeyUp(e: KeyboardEvent): void {
     if (e.keyCode == 13) {
-      if (this.topTerm) {
+      if (this.topTerm && !this.topTerm.emptySearchPlaceholder) {
         this.selectTerm(this.topTerm, e.target);
       }
     }
@@ -87,7 +87,14 @@ export class TermInputComponent {
         if (inputText.length >= 2) {
           return this.termLookupService.search(inputText)
             //.do(() => this.searchFailed = false)
+
+            // If the search returned an empty list, populate the empty list with
+            // a 'emptySearchPlaceholder: true' object.
+            .map((result) => result.length ? result : [{emptySearchPlaceholder: true}])
+
+            // Keep track of top term to use when the user presses the enter key.
             .do((result) => this.topTerm = result[0])
+
             .catch(() => {
               //this.searchFailed = true;
               this.topTerm = null;

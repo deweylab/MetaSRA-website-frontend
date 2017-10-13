@@ -3,7 +3,7 @@
 </div>
 
 <ng-template #rt let-term="result" let-userinput="term">
-  <div class="autocomplete-item">
+  <div *ngIf="!term.emptySearchPlaceholder" class="autocomplete-item">
     <div class="term-ancestors" *ngIf="term.ancestors.length">
       <div class="term-ancestors-label">Less specific</div>
       <div *ngFor="let t of term.ancestors" [class]="'btn btn-sm related-term hilight-'+ t.ids[0].split(':')[0]" (click)="selectTerm(t, searchBox);">
@@ -17,6 +17,22 @@
           {{ t.name }}
       </div>
     </div>
+  </div>
+
+  <div *ngIf="term.emptySearchPlaceholder" class="autocomplete-item">
+    <h4 style="padding-top: 10px; padding-bottom: 10px;">No matching terms</h4>
+    <ul style="padding-left: 20px;">
+      <li>Search MetaSRA's standardized sample metadata with terms from these ontologies:
+        <ul class="ontology-list">
+          <li><span class="ontology-dot ontology-dot-UBERON">&#x25CF;</span> Uber Anatomy Ontology</li>
+          <li><span class="ontology-dot ontology-dot-DOID">&#x25CF;</span> Disease Ontology</li>
+          <li><span class="ontology-dot ontology-dot-CVCL">&#x25CF;</span> Cellosaurus Cell Line Ontology</li>
+          <li><span class="ontology-dot ontology-dot-CL">&#x25CF;</span> Cell Ontology</li>
+          <li><span class="ontology-dot ontology-dot-EFO">&#x25CF;</span> Experimental Factor Ontology</li>
+        </ul>
+      <li style="padding-top: 20px">Try breaking your search into multiple shorter ontology terms like <div class="btn btn-sm hilight-DOID">cystic fibrosis</div> and <div class="btn btn-sm hilight-UBERON">male organism</div> instead of "cycstic fibrosis in males."</li>
+      <li style="padding-top: 20px">If you need to do a full-text search, use the <a href="https://www.ncbi.nlm.nih.gov/sra" target="_blank">SRA website</a>.
+    </ul>
   </div>
 </ng-template>
 
