@@ -1,5 +1,5 @@
 {
-  "name": "MetaSRA-website",
+  "name": "MetaSRAWebsite",
   "version": "1.0.0",
   "description": "Front-end for MetaSRA website: easily search the Sequence Read Archive",
   "scripts": {

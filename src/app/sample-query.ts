@@ -8,7 +8,7 @@ export class SampleQuery {
   page: number;
 
   // Start at page 1, there is no page 0
-  constructor(props: any) {
+  constructor(props?: any) {
     this.and = [];
     this.not = [];
     this.page = 1;
