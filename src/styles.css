@@ -8,6 +8,11 @@ div#header-title {
   margin-bottom: 8px;
 }
 
+img#logo-big {
+  width: 350px;
+  height: auto;
+}
+
 div#tagline {
   padding-left: 94px;
   color: #777;
@@ -31,6 +36,11 @@ div#tagline a:hover {
 }
 .top-nav a:first-child {
   padding-left: 0;
+}
+
+img#uw-logo {
+  height: 72px;
+  width: 46px;
 }
 
 
