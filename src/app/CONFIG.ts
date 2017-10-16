@@ -13,7 +13,7 @@ export const SAMPLE_TYPES = [
   'primary cells',
   'stem cells',
   'in vitro differentiated cells',
-  'induced pluripotent stem cell line'
+  'iPS cell line'
 ]
 
 export const ONTOLOGY_NAMES = {
