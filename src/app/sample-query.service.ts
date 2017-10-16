@@ -104,7 +104,6 @@ export class SampleQueryService implements OnDestroy {
 
 
   // Subscription to query$ to keep the URL query string updated.
-  // TODO: add sample type (and page number?)
   private updateUrlQueryString: Subscription = this.query$.subscribe(
     query => {
       let params:any = {};
@@ -122,10 +121,8 @@ export class SampleQueryService implements OnDestroy {
 
   // When the page is first loaded, this function is called to parse a query
   // out of the URL parameters.
-  // TODO: add sample type (and page number?)
   private parseQueryFromUrlParams(params: ParamMap): SampleQuery {
     let query = new SampleQuery()
-    // TODO
 
     if (params.get('and')) {
       // Intialize terms with only ID's for now
