@@ -1,0 +1,271 @@
+<html>
+    <head>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MNNZ5NZ');</script>
+        <!-- End Google Tag Manager -->
+
+        <title>MetaSRA: API</title>
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <link rel="stylesheet" type="text/css" href="supportpages-styles.css" />
+        <link rel="icon" type="image/png" href="assets/favicon.png" />
+    </head>
+
+    <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MNNZ5NZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container">
+        <script src="supportpages-navigation.js"></script>
+
+        <h2>API</h2>
+        <p>MetaSRA provides an API for programmatic access to the current version of the database, with two resources: samples and terms.</p>
+        <p>If you need to download the whole database, or need an older version of MetaSRA, see the <a href="download.html">download page</a>.</p>
+
+        <h2>Samples resource</h2>
+        <p>Access samples as JSON by fetching <code>http://metasra.biostat.wisc.edu/api/v01/samples.json?</code>,
+          or fetch CSV with <code>http://metasra.biostat.wisc.edu/api/v01/samples.csv?</code>.
+
+        <h4>Parameters</h4>
+        <p>You can use any combination of the following query-string arguments to filter samples:</p>
+        <table class="table">
+          <tr>
+            <td><code>and</code></td>
+            <td><b>Required:</b> Given a comma-separated list of ontology term ID's (see below,) return only samples that match all of the terms.</td>
+          </tr>
+          <tr>
+            <td><code>not</code></td>
+            <td>Given a comma-separated list of ontology term ID's (see below,) return only samples that do not match any of the terms.</td>
+          </tr>
+          <tr>
+            <td><code>sampletype</code></td>
+            <td>
+              Show only samples matching this computationally-predicted sample type.  Valid options are <code>cell line</code>, <code>tissue</code>, <code>primary cells</code>, <code>stem cells</code>, <code>in vitro differentiated cells</code>, and <code>iPS cells</code>.
+              The server will accept any of the following as equivalent: <code>primary cells</code>, <code>primary+cells</code>, or <code>primary%20cells</code>.
+            </td>
+          </tr>
+          <tr>
+            <td><code>limit</code></td>
+            <td>Limit the results to this many studies.</td>
+          </tr>
+          <tr>
+            <td><code>skip</code></td>
+            <td>Skip this many studies (useful for paging in combination with limit.)</td>
+          </tr>
+        </table>
+
+        <h4>Examples</h4>
+        <ul>
+          <li>
+            Fetch a JSON file with "tissue" samples matching "liver" (UBERON:0002107) but not "disease" (DOID:4) or "treatment" (EFO:0000727):
+            <a href="http://metasra.biostat.wisc.edu/api/v01/samples.json?and=UBERON:0002107&not=DOID:4,EFO:0000727&sampletype=tissue">
+              http://metasra.biostat.wisc.edu/api/v01/samples.json?and=UBERON:0002107&amp;not=DOID:4,EFO:0000727&sampletype=tissue
+            </a>
+          </li>
+          <li>
+            Fetch a CSV file with samples matching "glioblastoma multiforme" (DOID:3068) and "brain" (UBERON:0000955), limit to 25 studies:
+            <a href="http://metasra.biostat.wisc.edu/api/v01/samples.csv?and=DOID:3068,UBERON:0000955&limit=25">
+              http://metasra.biostat.wisc.edu/api/v01/samples.csv?and=DOID:3068,UBERON:0000955&limit=25
+            </a>
+          </li>
+        </ul>
+
+        <h4>Results</h4>
+
+        <p>Returned <b>CSV</b> files have one row per sample, with the following fields:</p>
+        <table class="table">
+          <tr>
+            <td><b>study_id</b></td>
+            <td>SRA study ID</td>
+          </tr>
+          <tr>
+            <td><b>study_title</b></td>
+            <td>Study title</td>
+          </tr>
+          <tr>
+            <td><b>sample_id</b></td>
+            <td>SRA sample ID</td>
+          </tr>
+          <tr>
+            <td><b>sample_name</b></td>
+            <td>Sample name from SRA metadata - not all samples have a sample name.</td>
+          </tr>
+          <tr>
+            <td><b>sample_type</b></td>
+            <td>Computationally-predicted sample type</td>
+          </tr>
+          <tr>
+            <td><b>sample_type_confidence</b></td>
+            <td>Sample type confidence</td>
+          </tr>
+          <tr>
+            <td><b>mapped_ontology_ids</b></td>
+            <td>An ID for each of the most-specific ontology terms mapped to this sample (see note below), comma-separated</td>
+          </tr>
+          <tr>
+            <td><b>mapped_ontology_terms</b></td>
+            <td>Term name for the most-specific ontology terms mapped to this sample (see note below,) comma-separated</td>
+          </tr>
+          <tr>
+            <td><b>raw_SRA_metadata</b></td>
+            <td>Raw SRA metadata for this sample, except blacklisted fields (see note below.)  "key: value" pairs, semicolon-separated.</td>
+          </tr>
+        </table>
+        <br /><br />
+
+
+        <p>Returned <b>JSON</b> files have this shape:</p>
+        <pre><code>{
+  studyCount: 24,        // The total number of studies matching your search (not accounting for limit and skip)
+  sampleCount: 170,      // Total number of samples matching your search (not accounting for limit and skip)
+
+
+  terms: [               // Common ontology terms for samples in your search, roughly sorted by frequency
+      ...
+      {
+          sampleCount: 34,                // A rough count of matching samples (not counting descendant terms, see note below)
+          dterm: {
+              name: "female organism",    // Term name
+              ids: ["UBERON:0003100"]     // List of ID's for this term in one or more ontologies
+          }
+      }
+      ...
+  ],
+
+
+
+  studies: [            // Matching samples are grouped by study
+      {
+          study: {
+              title: "My super fantastic study"
+              id: "SRP012345"           // SRA study ID
+          }
+
+          sampleCount: 22,              // Number of samples from this study that match your search
+
+          dterms: [                     // All matching terms for samples in this study (see note below)
+              {
+                  name: "Brodmann (1909) area 11",
+                  ids: ["UBERON:0013528"],
+              }
+              ...
+          ],
+
+
+          sampleGroups: [       // Samples in each study are grouped by their raw SRA attributes, all being the same
+                                // except for a blacklist of ID-like fields (see note below) which can vary.
+              {
+                  samples: [                    // List of samples in this group
+                      {
+                          id: "SRS0123456"      // SRA sample ID
+                          name: "My sample"     // Not all samples have a name
+                      }
+                      ...
+                  ],
+
+                  attr: [
+                      ["tissue", "lung"],       // [key, value] for raw SRA metadata fields for these samples, excluding blacklist (see note below)
+                      ...
+                  ],
+
+                  type: {
+                      type: "tissue",           // Sample type, computationally predicted from sample attributes
+                      conf: 0.9445349           // Sample type confidence
+                  },
+
+                  dterms: {                     // Most-specific terms for these samples (see note below.)
+                      {
+                          name: "disease of cellular proliferation",
+                          ids: ["DOID:14566"]
+                      }
+                      ...
+                  }
+              }
+              ...
+          ]
+      }
+      ...
+  ]
+}</code></pre>
+
+        <p><b>Note on terms:</b> Ontology terms are hierarchical: eg "lung disease" is a descendant of "disease."  When you search on a term MetaSRA will include matches to all of its more-specific descendants, eg a search for "disease" will return samples that are labeled with "lung disease".  But for brevity, the results will show only the most specific terms for a sample that have no descendants in the set, eg a sample labeled with "lung disease" will show "lung disease" in the results but not "disease".</p>
+
+        <p><b>Note on attributes and sampleGroups:</b> MetaSRA excludes some raw SRA using a blacklist.  There is inconsistancy in how the fields are used, but the blacklisted fields are generally ID fields without information characterizing the sample.  This is so that when grouping terms by like-attributes, the grouping is not interrupted by ID fields (sampleGroups are presnt in the JSON files, but not in the CSV's.)  You can view the blacklist at the top of <a href="https://github.com/deweylab/MetaSRA-API-backend/blob/master/build-db-script/build-db.py" target="_blank">this file</a>.</p>
+
+
+
+
+
+        <h2>Terms resource</h2>
+        <p>To query ontology terms used by the metaSRA, you can fetch this URL as JSON: <code>http://metasra.biostat.wisc.edu/api/v01/terms?</code>.</p>
+        <p>This resource only returns terms that are associated with at least one sample in MetaSRA.</p>
+
+        <h4>Parameters</h4>
+        <p>You can use any combination of the these arguments to filter terms:</p>
+        <table class="table">
+          <tr>
+            <td><code>q</code></td>
+            <td>Search string - return terms with names like this argument.  Sort terms by relevance.
+          </tr>
+          <tr>
+            <td><code>ids</code></td>
+            <td>Comma-separated list of ontology term ID's.  Return terms matching any of these ID's.</td>
+          </tr>
+          <tr>
+            <td><code>limit</code></td>
+            <td>Only return up to this many terms.  The limit cannot exceed 500, and the limit will default to 500 if none is provided.</td>
+          </td>
+        </table>
+
+        <h4>Examples</h4>
+        <ul>
+          <li>
+            See the top 10 terms matching "brain":
+            <a href="http://metasra.biostat.wisc.edu/api/v01/terms?limit=10&q=brain">http://metasra.biostat.wisc.edu/api/v01/terms?limit=10&q=brain</a>
+          </li>
+          <li>
+            See the term for "EFO:0000322":
+            <a href="http://metasra.biostat.wisc.edu/api/v01/terms?id=EFO:0000322">http://metasra.biostat.wisc.edu/api/v01/terms?id=EFO:0000322</a>
+          </li>
+        </ul>
+
+        <h4>Results</h4>
+        Term results are shaped like this:
+        <pre><code>{
+  terms: [
+    {
+        name: "tetrapod frontal bone",                            // Term name
+        ids: ["UBERON:0000209"],                                  // List of ID's for this term in one or more ontologies
+        syn: "frontal, frontal bone, os frontal, os frontale"     // Comma-separated list of synonyms
+
+        ancestors: [                          // Jumble of less-specific (ancestor) related terms (at radius one or two)
+            {
+                name: "dermal bone",
+                ids: ["UBERON:0001474"]
+            }
+            ...
+        ],
+        descendants: [...]                    // List of more-specific (descendant) related terms (at radius one or two)
+    }
+    ...
+  ]
+}</code></pre>
+        <br />
+
+        <div class="footer d-flex align-items-center">
+            <a href="http://www.cpcp.wisc.edu/" target="_blank"><img class="footer_logo" src="assets/cpcp-logo.png"/></a>
+            <a href="http://www.wisc.edu/" target="_blank"><img class="footer_logo" src="assets/uw-logo.svg" id="uw-logo"/></a>
+            <div class="copyright ml-auto">&copy; 2017</div>
+        </div>
+
+    </div>
+
+    </body>
+
+</html>
