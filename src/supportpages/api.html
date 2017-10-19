@@ -194,9 +194,9 @@
   ]
 }</code></pre>
 
-        <p><b>Note on terms:</b> Ontology terms are hierarchical: eg "lung disease" is a descendant of "disease."  When you search on a term MetaSRA will include matches to all of its more-specific descendants, eg a search for "disease" will return samples that are labeled with "lung disease".  But for brevity, the results will show only the most specific terms for a sample that have no descendants in the set, eg a sample labeled with "lung disease" will show "lung disease" in the results but not "disease".</p>
+        <p><b>Note on terms:</b> Ontology terms are hierarchical: e.g. "lung disease" is a descendant of "disease."  When you search on a term MetaSRA will include matches to all of its more-specific descendants, e.g. a search for "disease" will return samples that are labeled with "lung disease".  But for brevity, the results will show only the most specific terms for a sample that have no descendants in the set, e.g. a sample labeled with "lung disease" will show "lung disease" in the results but not "disease".</p>
 
-        <p><b>Note on attributes and sampleGroups:</b> MetaSRA excludes some raw SRA using a blacklist.  There is inconsistancy in how the fields are used, but the blacklisted fields are generally ID fields without information characterizing the sample.  This is so that when grouping terms by like-attributes, the grouping is not interrupted by ID fields (sampleGroups are presnt in the JSON files, but not in the CSV's.)  You can view the blacklist at the top of <a href="https://github.com/deweylab/MetaSRA-API-backend/blob/master/build-db-script/build-db.py" target="_blank">this file</a>.</p>
+        <p><b>Note on attributes and sampleGroups:</b> MetaSRA excludes some raw SRA attributes using a blacklist.  There is inconsistancy in how the fields are used, but the blacklisted fields are generally ID fields without information characterizing the sample.  This is so that when grouping terms by like-attributes, the grouping is not interrupted by ID fields (sampleGroups are presnt in the JSON files, but not in the CSV's.)  You can view the blacklist at the top of <a href="https://github.com/deweylab/MetaSRA-API-backend/blob/master/build-db-script/build-db.py" target="_blank">this file</a>.</p>
 
 
 

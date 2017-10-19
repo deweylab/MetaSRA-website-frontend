@@ -81,6 +81,18 @@ h1 {
   cursor: pointer;
 }
 
+
+.ontology-list li {
+  list-style-type: none;
+  padding-top: 4px;
+}
+.ontology-dot {
+  font-size: 300%;
+  vertical-align: -5px;
+  line-height: 0;
+}
+
+
 /* Ontology term tag colors */
 .hilight-UBERON { background-color: #ff9933; color: #000; }
 .hilight-UBERON:hover { background-color: #ff7f00; }
