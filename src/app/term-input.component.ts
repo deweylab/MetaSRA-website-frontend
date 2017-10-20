@@ -98,10 +98,11 @@ export class TermInputComponent {
             .catch(() => {
               //this.searchFailed = true;
               this.topTerm = null;
-              return Observable.of([]);
+              return Observable.of([{errorPlaceholder: true}]);
             })
         }
         else {
+          // 0 or 1 characters in the query
           this.topTerm = null;
           return Observable.of([]);
         }
