@@ -33,7 +33,7 @@ import 'rxjs/add/operator/distinctUntilChanged'; // delete?
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/share'
+import 'rxjs/add/operator/share';
 
 import { TermLookupService } from './term-lookup.service'
 import { SampleQuery, Term } from './sample-query'
@@ -210,6 +210,10 @@ export class SampleQueryService implements OnDestroy {
 
       // Issue loading message
       .startWith({validQuery: true, loading: true, results:null})
+
+      .catch(() => Observable.of({validQuery: true, loading: false, results:{
+        error: 'We had a problem processing your search.  Please check your network connection, refresh the page, or try again later.'
+      }}))
   }
 
 
