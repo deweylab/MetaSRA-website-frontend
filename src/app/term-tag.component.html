@@ -38,7 +38,7 @@
       class="term-id"
       target="_blank"
       [href]="term_link(id)">
-      <span [class]="'ontology-dot ontology-dot-' + id.split(':')[0]">&#x25CF;</span>
+      <div [class]="'ontology-dot ontology-dot-' + id.split(':')[0]">&nbsp;</div>
       {{ ONTOLOGY_NAMES[id.split(':')[0]] }}: {{ id.split(':')[1] }}
     </a>
   </div>
