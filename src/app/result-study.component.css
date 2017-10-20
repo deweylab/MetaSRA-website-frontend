@@ -17,7 +17,7 @@
 .study-info {
   padding: 20px;
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 14px;
   background-color: #FFF;
 }
 
@@ -26,8 +26,24 @@ a.study-title {
   color: #000;
 }
 a.study-title:hover {
-  color: #000;
-  text-decoration: underline;
+  color: #EC0C8E;
+  text-decoration: none;
+}
+a.study-title::after {
+  margin-left: 10px;
+  content: url('assets/icons/icon-linkout.png');
+}
+a.study-title:hover::after {
+  content: url('assets/icons/icon-linkout-hover.png');
+}
+.study-title::before {
+  content: 'study';
+  color: #666;
+  font-variant: small-caps;
+  margin-right: 10px;
+}
+.study-title:hover::before {
+  color: #EC0C8E;
 }
 
 .sample-summary-row {
