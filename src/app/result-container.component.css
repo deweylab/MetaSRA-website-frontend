@@ -1,6 +1,6 @@
 .btn-download {
   position: relative;
-  bottom: 16px;
+  bottom: 6px;
   padding-left: 40px;
   background-image: url('assets/icons/icon-download.png');
   background-repeat: no-repeat;
@@ -11,7 +11,7 @@
   margin-top: 70px;
   margin-bottom: 40px;
   padding-left: 4px;
-  font-size: 135%;
+  font-size: 180%;
 }
 
 .expand-terms-list-btn {
