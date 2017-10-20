@@ -1,20 +1,20 @@
-<ngb-alert *ngIf="queryStatus?.loading" type="secondary" [dismissible]="false">
+<div *ngIf="queryStatus?.loading" class="alert alert-secondary" style="font-size: 140%">
   Loading...
-</ngb-alert>
+</div>
 
-<ngb-alert *ngIf="queryStatus?.results?.error" type="danger" [dismissible]="false">
+<div *ngIf="queryStatus?.results?.error" class="alert alert-danger" style="font-size: 140%">
   <b>Error:</b> {{ queryStatus.results.error }}
-</ngb-alert>
+</div>
 
-<ngb-alert *ngIf="!queryStatus?.results?.error && queryStatus?.results && !queryStatus.results.studyCount"
-  type="danger" [dismissible]="false">
+<div *ngIf="!queryStatus?.results?.error && queryStatus?.results && !queryStatus.results.studyCount"
+  class="alert alert-warning">
   <br />
   <h4>No matching samples found</h4>
   <ul>
     <li>Try searching for less-specific terms.</li>
     <li>MetaSRA currently only has <b>RNA-seq</b> samples for <b>humans</b>.
   </ul>
-</ngb-alert>
+</div>
 
 <div *ngIf="queryStatus?.results?.studyCount">
 
