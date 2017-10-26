@@ -9,16 +9,10 @@ This service handles mainly 2 things:
 It also handles the URL query string of the main application page: it changes
 the URL when the user changes the query, and updates the application state from
 the URL when the page first loads.
-
-TODO: add network/server error handling
 */
 
 
-const SAMPLE_API_PATH = '/api/v01/samples';
-
-
-
-import { STUDIES_PER_RESULTS_PAGE } from './CONFIG';
+import { SAMPLE_API_PATH, EXPERIMENT_API_PATH, STUDIES_PER_RESULTS_PAGE } from './CONFIG';
 
 import { Injectable, OnDestroy } from '@angular/core';
 import { Http, URLSearchParams }       from '@angular/http';
@@ -230,13 +224,18 @@ export class SampleQueryService implements OnDestroy {
 
 
 
-  downloadURL(query: SampleQuery, extension: string): string {
+  downloadURL(query: SampleQuery, resource:string, extension: string): string {
     let params: URLSearchParams = new URLSearchParams()
     if (query.and.length) { params.set('and', query.and.map(term => term.ids[0]).join(',')) }
     if (query.not.length) { params.set('not', query.not.map(term => term.ids[0]).join(',')) }
     if (query.sampleType) { params.set('sampletype', query.sampleType) }
 
-    return SAMPLE_API_PATH + '.' + extension + '?' + params.toString();
+    let path: string = {
+      'samples': SAMPLE_API_PATH,
+      'experiments': EXPERIMENT_API_PATH
+    }[resource]
+
+    return (path + '.' + extension + '?' + params.toString();
   }
 
 

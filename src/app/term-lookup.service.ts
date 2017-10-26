@@ -1,7 +1,7 @@
 // Accesses the 'term' API resource for term autocomplete.
-// TODO: put the API URL in a config file.
-// TODO: add error handling
 
+
+import { TERM_API_PATH } from './CONFIG'
 import { Injectable } from '@angular/core';
 import { Http }       from '@angular/http';
 
@@ -21,7 +21,7 @@ export class TermLookupService {
   // Lookup terms by search string
   search(q: string): Observable<Term[]> {
     return this.http
-            .get(`/api/v01/terms?limit=10&q=${q}`)
+            .get(TERM_API_PATH + `?limit=10&q=${q}`)
             .map(response => response.json().terms as Term[]);
   }
 
@@ -33,7 +33,7 @@ export class TermLookupService {
     let idArg = typeof id === 'string' ? id : id.join(',')
 
     return this.http
-        .get(`/api/v01/terms?id=${idArg}`)
+        .get(TERM_API_PATH+ `?id=${idArg}`)
         .map(response => response.json().terms as Term[])
   }
 

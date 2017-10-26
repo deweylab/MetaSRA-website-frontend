@@ -24,8 +24,9 @@
     <div ngbDropdown class="d-inline-block download-dropdown dropdown float-right">
       <button class="btn btn-primary btn-lg btn-download" ngbDropdownToggle id="download-dropdown-button">Download</button>
       <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="download-dropdown-button">
-        <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'json')" target="_blank">JSON</a>
-        <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'csv')">CSV</a>
+        <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'samples', 'json')" target="_blank">Samples: JSON</a>
+        <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'samples', 'csv')">Samples: CSV</a>
+        <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'experiments', 'csv')">Experiments: CSV</a>
       </div>
     </div>
   </div>

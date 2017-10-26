@@ -1,4 +1,16 @@
 
+
+// URL for the sample resource of the API, for searching samples
+export const SAMPLE_API_PATH = '/api/v01/samples';
+
+// Experiment resource (only used to generate download links)
+export const EXPERIMENT_API_PATH = '/api/v01/experiments'
+
+// API resource used by the autocomplete and term popups
+export const TERM_API_PATH = '/api/v01/terms';
+
+
+
 // Number of studies to show on each results page
 export const STUDIES_PER_RESULTS_PAGE = 25
 
