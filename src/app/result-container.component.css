@@ -2,7 +2,7 @@
   position: relative;
   bottom: 6px;
   padding-left: 40px;
-  background-image: url('assets/icons/icon-download.png');
+  background-image: url('assets/icons/icon-download.png') !important;
   background-repeat: no-repeat;
   background-position: 18px center;
 }

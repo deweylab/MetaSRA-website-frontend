@@ -54,6 +54,9 @@ img#uw-logo {
   background-color: #EC0C8E;
   border: 0;
 }
+.show>.btn-primary.dropdown-toggle { /* override bootstrap */
+  background-color: #C0178C;
+}
 
 
 .footer {
