@@ -21,12 +21,25 @@ export class ResultStudyComponent {
   private INITIAL_SAMPLEGROUP_DISPLAY = 3;
   private sampleGroupsExpanded = false;
 
+  // Show the first INITIAL_SAMPLEGROUP_DISPLAY sample groups
   showSampleGroups(): void {
     this.sampleGroupsVisible = true;
   }
 
+  // Show all samples
   expandSampleGroups(): void {
     this.sampleGroupsExpanded = true;
+  }
+
+  // Reset the sample-display state
+  hideSampleGroups(elRef?: Element): void {
+    this.sampleGroupsVisible = false;
+    this.sampleGroupsExpanded = false;
+
+    // If we were passed an element reference (the study box div), scroll to that element.
+    if (elRef) {
+      elRef.scrollIntoView();
+    }
   }
 
 }

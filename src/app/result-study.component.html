@@ -1,4 +1,7 @@
-<div class="studybox" [class.samplesVisible]="sampleGroupsVisible">
+<div class="studybox" [class.samplesVisible]="sampleGroupsVisible" #studyBox>
+  <div *ngIf="sampleGroupsVisible" class="container-fluid text-right">
+    <a class="hidesamples" (click)="hideSampleGroups()">HIDE SAMPLES &times;</a>
+  </div>
   <div class="study-info">
     <a [href]="'https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' +  study.study.id" target="_blamk" class="study-title">{{ study.study.title }}</a>
   </div>
@@ -23,12 +26,16 @@
     </div>
   </div>
 
-  <div *ngIf="sampleGroupsVisible" class="container-fluid">
+  <div *ngIf="sampleGroupsVisible" class="container-fluid" style="padding-bottom: 10px;">
     <result-sample-group *ngFor="let sampleGroup of (study.sampleGroups | slice:0:(sampleGroupsExpanded ? undefined : INITIAL_SAMPLEGROUP_DISPLAY))" [sampleGroup]="sampleGroup"></result-sample-group>
-    <a
-      class="show-all-samples"
-      *ngIf="study.sampleGroups.length > INITIAL_SAMPLEGROUP_DISPLAY && !sampleGroupsExpanded"
-      (click)="expandSampleGroups()">
-      (+) Show all <b>{{ study.sampleCount }}</b> matching samples for this study
-    </a>
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a
+        class="show-all-samples"
+        *ngIf="study.sampleGroups.length > INITIAL_SAMPLEGROUP_DISPLAY && !sampleGroupsExpanded"
+        (click)="expandSampleGroups()">
+        (+) Show all <b>{{ study.sampleCount }}</b> matching samples for this study
+      </a>
+      <a class="hidesamples" (click)="hideSampleGroups(studyBox)">HIDE SAMPLES &times;</a>
+    </div>
 </div>
