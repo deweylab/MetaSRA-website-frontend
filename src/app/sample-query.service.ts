@@ -235,7 +235,7 @@ export class SampleQueryService implements OnDestroy {
       'experiments': EXPERIMENT_API_PATH
     }[resource]
 
-    return (path + '.' + extension + '?' + params.toString();
+    return (path + '.' + extension + '?' + params.toString());
   }
 
 
