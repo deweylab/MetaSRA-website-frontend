@@ -11,6 +11,7 @@ div#header-title {
 img#logo-big {
   width: 350px;
   height: auto;
+  cursor: pointer;
 }
 
 div#tagline {

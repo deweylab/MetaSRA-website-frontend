@@ -43,6 +43,10 @@ export class SearchControlsComponent implements OnDestroy {
     this.termInfoUpdateSubscription = this.sampleQueryService.termInfoUpdate$.subscribe(
       query => { this.sampleQuery = query; this.selectedSampleType = query.sampleType }
     )
+
+
+    // Make the logo clickable to reset query
+    document.getElementById('logo-big').addEventListener('click', ()=>this.sampleQueryService.resetQuery())
   }
 
   ngOnDestroy() {

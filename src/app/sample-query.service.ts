@@ -181,7 +181,6 @@ export class SampleQueryService implements OnDestroy {
   // Subscribe to URL query parameter changes to detect forward/back presses, using
   // a time-debounce (see above) to distinguish from programmatic navigation actions.
   private queryParamSubscription = this.route.queryParams.subscribe((params) => {
-    console.log(params);
     if (Date.now() - this.queryParamUpdateTimestamp > this.debounceThresholdMS) {
       this.initQueryFromUrl();
     }
