@@ -4,6 +4,7 @@ div#search-controls {
   padding: 20px;
   border-radius: 4px;
   margin-bottom: 16px;
+  position: relative;
 }
 
 div#search-controls-title {
@@ -34,4 +35,23 @@ div#search-controls-title {
 
 .btn-sampletype.focus {
   box-shadow: 0 0 0 2px rgba(193, 23, 140, 0.6);
+}
+
+
+a#reset-query{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+/*a#reset-query:hover {
+  text-decoration: underline;
+}*/
+
+@media (max-width: 768px) {
+  a#reset-query {
+    position: static;
+    display: block;
+    text-align: center;
+    padding-top: 30px;
+  }
 }

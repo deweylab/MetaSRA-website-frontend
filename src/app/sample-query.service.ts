@@ -23,7 +23,6 @@ import { Observable } from 'rxjs/Observable'
 import { Subject } from 'rxjs/Subject'
 import { Subscription }   from 'rxjs/Subscription';
 import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/filter'; // delete?
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
@@ -283,6 +282,11 @@ export class SampleQueryService implements OnDestroy {
 
 
   // Methods for updating query parameters
+
+  resetQuery(): void {
+    this.query.next(new SampleQuery());
+  }
+
 
   updateSampleType(sampleType: string|null): void {
     this.currentQuery.sampleType = sampleType || null; // Must be null instead of empty string for radio button to work
