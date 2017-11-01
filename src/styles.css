@@ -60,6 +60,10 @@ img#uw-logo {
 }
 
 
+.btn-group.term-tag {
+  border-radius: 10px;
+}
+
 .footer {
   margin-top: 120px;
   margin-bottom: 50px;
