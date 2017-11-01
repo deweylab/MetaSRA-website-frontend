@@ -5,29 +5,23 @@
   margin-bottom: 10px;
   border: 1px #CCC solid;
   border-radius: 5px;
-  padding-top: 20px;
 
   -webkit-box-shadow: 2px 2px 5px 1px rgba(200,200,200,0.3);
   -moz-box-shadow: 2px 2px 5px 1px rgba(200,200,200,0.3);
   box-shadow: 2px 2px 5px 1px rgba(200,200,200,0.3);
 }
 
-.studybox.samplesVisible {
-  padding-top: 10px;
-}
-
-a.hidesamples {
+a.hide-samples-link {
   color: #666;
   cursor: pointer;
   font-size: 90%;
 }
-a.hidesamples:hover, a.hidesamples:focus {
+a.hide-samples-link:hover, a.hide-samples-link:focus {
   text-decoration: underline;
 }
 
 .study-info {
   padding: 20px;
-  padding-top: 0;
   padding-bottom: 14px;
   background-color: #FFF;
 }
@@ -58,7 +52,8 @@ a.study-title:hover::after {
 }
 
 .sample-summary-row {
-  margin-bottom: 10px;
+  padding-bottom: 10px;
+  background-color: #FFF;
 }
 
 
@@ -67,7 +62,7 @@ a.study-title:hover::after {
   background-color: #FFF;
   padding-right: 0;
 }
-.show-samples-button {
+.toggle-samples-button {
   vertical-align: middle;
   margin-left: 10px;
 }

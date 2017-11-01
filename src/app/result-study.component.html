@@ -1,12 +1,9 @@
 <div class="studybox" [class.samplesVisible]="sampleGroupsVisible" #studyBox>
-  <div *ngIf="sampleGroupsVisible" class="container-fluid text-right">
-    <a class="hidesamples" (click)="hideSampleGroups()">HIDE SAMPLES &times;</a>
-  </div>
   <div class="study-info">
     <a [href]="'https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' +  study.study.id" target="_blamk" class="study-title">{{ study.study.title }}</a>
   </div>
 
-  <div *ngIf="!sampleGroupsVisible" class="container-fluid sample-summary-row">
+  <div class="container-fluid sample-summary-row">
     <div class="row">
       <div class="col-lg-4 col-md-5 sample-count-cell">
         <span class="sample-count-label" (click)="showSampleGroups()">
@@ -14,9 +11,16 @@
           {{ study.sampleCount > 1 ? 'samples' : 'sample' }}
         </span>
         <button
+          *ngIf="!sampleGroupsVisible"
           (click)="showSampleGroups()"
-          class="btn btn-primary show-samples-button">
+          class="btn btn-primary toggle-samples-button">
           View matching samples
+        </button>
+        <button
+          *ngIf="sampleGroupsVisible"
+          (click)="hideSampleGroups()"
+          class="btn btn-primary toggle-samples-button">
+          Hide samples
         </button>
       </div>
       <div class="col-lg-8 col-md-7 study-terms-cell">
@@ -36,6 +40,6 @@
         (click)="expandSampleGroups()">
         (+) Show all <b>{{ study.sampleCount }}</b> matching samples for this study
       </a>
-      <a class="hidesamples ml-auto" (click)="hideSampleGroups(studyBox)">HIDE SAMPLES &times;</a>
+      <a class="hide-samples-link ml-auto" (click)="hideSampleGroups(studyBox)">HIDE SAMPLES &times;</a>
     </div>
 </div>
