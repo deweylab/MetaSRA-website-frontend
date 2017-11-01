@@ -23,7 +23,7 @@ import { Observable } from 'rxjs/Observable'
 import { Subject } from 'rxjs/Subject'
 import { Subscription }   from 'rxjs/Subscription';
 import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/distinctUntilChanged'; // delete?
+import 'rxjs/add/operator/filter'; // delete?
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
@@ -106,6 +106,11 @@ export class SampleQueryService implements OnDestroy {
       if (query.page > 1) { params.page = query.page }
       if (query.sampleType) { params.sampletype = query.sampleType }
 
+      // Record that the next Query Param change should be ignored, eg currentQuery is
+      // already up to date and we don't need to parse the state of the URL params
+      // for the next param change caused by router.navigate().
+      this.setQueryParamDebounceFlag();
+
       this.router.navigate([''], {
         queryParams: params,
         relativeTo: this.route
@@ -160,6 +165,30 @@ export class SampleQueryService implements OnDestroy {
 
 
 
+  // GROSS HACK: This is to prevent circular calls of state-changes changing the URL,
+  // then in tern changing the state, causing unneccesary API calls.  I can't find a good
+  // way to distinguish between back/forward presses and programmatic navigation state-changes
+  // in Angular's routing API, so this waits to see if a certain number of miliseconds have
+  // passed between the query-param change and the last programmatic navigation action to
+  // determine if this was a user-generated action.  (A boolean flag doesn't work because
+  // the queryParams observable doesn't fire for every navigation action.)
+  private debounceThresholdMS = 30; // milliseconds
+  private queryParamUpdateTimestamp = 0;
+  private setQueryParamDebounceFlag(): void {
+    this.queryParamUpdateTimestamp = Date.now();
+  }
+
+
+  // Subscribe to URL query parameter changes to detect forward/back presses, using
+  // a time-debounce (see above) to distinguish from programmatic navigation actions.
+  private queryParamSubscription = this.route.queryParams.subscribe((params) => {
+    console.log(params);
+    if (Date.now() - this.queryParamUpdateTimestamp > this.debounceThresholdMS) {
+      this.initQueryFromUrl();
+    }
+  })
+
+
 
 
   // Observable keeping track of query validity/loading/error/complete status,
@@ -178,8 +207,6 @@ export class SampleQueryService implements OnDestroy {
   // Given a query, construct a URL and hit the API server to fetch samples.
   // Returns an Observable<QueryStatus>, which first issues a loading flag
   // and then issues the query results once the request returns from the server.
-  // TODO: put the API path in a config file
-  // TODO: add error handling
   private lookupResults(query: SampleQuery): Observable<QueryStatus> {
     // Put together query string to send to server
     let params: URLSearchParams = new URLSearchParams()
@@ -246,6 +273,7 @@ export class SampleQueryService implements OnDestroy {
   ngOnDestroy() {
     this.currentQueryUpdater.unsubscribe()
     this.updateUrlQueryString.unsubscribe()
+    this.queryParamSubscription.unsubscribe()
   }
 
 
