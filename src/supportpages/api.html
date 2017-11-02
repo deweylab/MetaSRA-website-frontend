@@ -76,9 +76,15 @@
             </a>
           </li>
           <li>
-            Fetch a CSV file with samples matching "glioblastoma multiforme" (DOID:3068) and "brain" (UBERON:0000955), limit to 25 studies:
+            Fetch a CSV file with one row <i>per sample</i> matching "glioblastoma multiforme" (DOID:3068) and "brain" (UBERON:0000955), limit to 25 studies:
             <a href="http://metasra.biostat.wisc.edu/api/v01/samples.csv?and=DOID:3068,UBERON:0000955&limit=25">
               http://metasra.biostat.wisc.edu/api/v01/samples.csv?and=DOID:3068,UBERON:0000955&limit=25
+            </a>
+          </li>
+          <li>
+            Fetch a CSV file with one row <i>per run</i> matching "glioblastoma multiforme" (DOID:3068) and "brain" (UBERON:0000955), limit to 25 studies (useful for downloading data with SRA Toolkit):
+            <a href="http://metasra.biostat.wisc.edu/api/v01/experiments.csv?and=DOID:3068,UBERON:0000955&limit=25">
+              http://metasra.biostat.wisc.edu/api/v01/experiments.csv?and=DOID:3068,UBERON:0000955&limit=25
             </a>
           </li>
           <li>
