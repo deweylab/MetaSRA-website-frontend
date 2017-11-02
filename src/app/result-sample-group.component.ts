@@ -2,6 +2,7 @@
 import { Component, Input } from '@angular/core';
 
 import { SampleGroup } from './sample-query.service'
+import { ClosePopoverService } from './close-popover.service'
 
 @Component({
   moduleId: module.id,
@@ -16,6 +17,10 @@ export class ResultSampleGroupComponent {
 
   private INITIAL_SAMPLE_DISPLAY = 5
   private samplesExpanded = false;
+
+  constructor(
+    private closePopoverService: ClosePopoverService
+  ) {}
 
   expandSamples(): void {
     this.samplesExpanded = true

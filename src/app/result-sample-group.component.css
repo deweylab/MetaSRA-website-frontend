@@ -89,3 +89,9 @@ a.show-all-samples:hover {
   color: #EC0C8E;
   text-decoration: underline;
 }
+
+table.sample-links tr td:first-child{
+  font-weight: bold;
+  text-align: right;
+  padding-right: 8px;
+}

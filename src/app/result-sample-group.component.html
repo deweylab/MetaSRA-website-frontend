@@ -8,14 +8,45 @@
       {{ sampleGroup.type.type }}
       <span class="sampletype-confidence">{{ sampleGroup.type.conf < 0.7 ? '(low confidence)' : '(high confidence)' }}</span>
     </div>
-    <a
-      [href]="'https://www.ncbi.nlm.nih.gov/biosample/' + sample.id"
-      target="_blank"
-      class="btn btn-sample"
-      *ngFor="let sample of (sampleGroup.samples | slice:0:(samplesExpanded ? undefined : INITIAL_SAMPLE_DISPLAY))">
-        <div class="sample-id">{{ sample.id }}</div>
-        <div *ngIf="sample.name" class="sample-name">{{ sample.name }}</div>
-    </a>
+
+    <ng-container *ngFor="let sample of (sampleGroup.samples | slice:0:(samplesExpanded ? undefined : INITIAL_SAMPLE_DISPLAY))">
+      <a
+        class="btn btn-sample"
+        [ngbPopover]="samplePopover"
+        #p="ngbPopover"
+        triggers="manual"
+        (click)="this.closePopoverService.registerPopover(p); p.open();"
+        placement="right"
+        tabindex="0">
+          <div class="sample-id">{{ sample.id }}</div>
+          <div *ngIf="sample.name" class="sample-name">{{ sample.name }}</div>
+      </a>
+
+      <ng-template #samplePopover>
+        <table class="sample-links table">
+          <tr>
+            <td>Biosample<br><span style="font-weight:normal;font-size:90%">(links to GEO)</span></td>
+            <td><a [href]="'https://www.ncbi.nlm.nih.gov/biosample/' + sample.id" target="_blank">{{ sample.id }}</a></td>
+          </tr>
+          <tr>
+            <td>SRA Sample</td>
+            <td><a [href]="'https://www.ncbi.nlm.nih.gov/sra/' + sample.id" target="_blank">{{ sample.id }}</a></td>
+          </tr>
+          <tr>
+            <td>Experiments</td>
+            <td><a *ngFor="let experiment of sample.experiments" [href]="'https://www.ncbi.nlm.nih.gov/sra/' + experiment.id" target="_blank">{{ experiment.id }} </a></td>
+          </tr>
+          <tr>
+            <td>Runs</td>
+            <td>
+              <ng-container *ngFor="let experiment of sample.experiments">
+                <a *ngFor="let run of experiment.runs" [href]="'https://www.ncbi.nlm.nih.gov/sra/' + run" target="_blank">{{ run }} </a>
+              </ng-container>
+            </td>
+          </tr>
+        </table>
+      </ng-template>
+    </ng-container>
 
     <a (click)="expandSamples()"
       class="show-all-samples"
@@ -23,6 +54,8 @@
       (+) Show all {{ sampleGroup.samples.length }} samples
     </a>
   </div>
+
+
 
   <div class="term-cell col-md-4">
     <div class="term-cell-header">EXTRACTED TERMS</div>
@@ -32,6 +65,7 @@
       buttonClasses="btn-sm">
     </term-tag>
   </div>
+
 
 
   <div class="attribute-cell col-md-4">
