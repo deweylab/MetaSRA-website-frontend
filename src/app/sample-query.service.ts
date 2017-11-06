@@ -12,7 +12,7 @@ the URL when the page first loads.
 */
 
 
-import { SAMPLE_API_PATH, EXPERIMENT_API_PATH, STUDIES_PER_RESULTS_PAGE } from './CONFIG';
+import { SAMPLE_API_PATH, RUN_API_PATH, STUDIES_PER_RESULTS_PAGE } from './CONFIG';
 
 import { Injectable, OnDestroy } from '@angular/core';
 import { Http, URLSearchParams }       from '@angular/http';
@@ -257,7 +257,7 @@ export class SampleQueryService implements OnDestroy {
 
     let path: string = {
       'samples': SAMPLE_API_PATH,
-      'experiments': EXPERIMENT_API_PATH
+      'runs': RUN_API_PATH
     }[resource]
 
     return (path + '.' + extension + '?' + params.toString());

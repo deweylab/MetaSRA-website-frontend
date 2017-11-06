@@ -22,17 +22,36 @@
     Found <b> {{ queryStatus.results.sampleCount }} </b> samples in <b> {{ queryStatus.results.studyCount }} </b> studies
 
     <div ngbDropdown class="d-inline-block download-dropdown dropdown float-right">
-      <button class="btn btn-primary btn-lg btn-download" ngbDropdownToggle id="download-dropdown-button">Download</button>
-      <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="download-dropdown-button">
-        <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'samples', 'json')" target="_blank">Samples: JSON</a>
-        <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'samples', 'csv')">Samples: CSV</a>
-        <a class="dropdown-item" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'experiments', 'csv')">Experiments: CSV</a>
-      </div>
+      <button
+        class="btn btn-primary btn-lg btn-download btn-download-lg"
+        id="download-dropdown-button"
+        [ngbPopover]="downloadPopover"
+        #p="ngbPopover"
+        triggers="manual"
+        (click)="this.closePopoverService.registerPopover(p); p.open();"
+        placement="left"
+        >
+          Download
+      </button>
+      <ng-template #downloadPopover>
+        <div id="download-popover">
+          <h4>Sample metadata</h4>
+          <p>Download a CSV or JSON with metadata about the samples and studies returned by your search.</p>
+          <a class="btn btn-sm btn-primary btn-download btn-download-sm" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'samples', 'csv')">Samples: CSV</a>
+          <a class="btn btn-sm btn-primary btn-download btn-download-sm" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'samples', 'json')" target="_blank">Samples: JSON</a>
+
+          <br /><br /><br />
+          <h4>Runs</h4>
+          <p>Download a CSV file with info about each experiment/run in these results, or download a file with only the run ID's.  <a href="sequence-data-download.html" target="_blank">See here</a> for instructions on using these files to download raw sequence data from SRA, or processed expression data ffrom Recount2.</p>
+          <a class="btn btn-sm btn-primary btn-download btn-download-sm" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'runs', 'csv')">Runs: CSV</a>
+          <a class="btn btn-sm btn-primary btn-download btn-download-sm" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'runs', 'ids.txt')">Run ID List</a>
+        </div>
+      </ng-template>
     </div>
   </div>
 
   <div class="result-term-list">
-    <div class="term-list-label"><b>Most common terms:</b></div>
+    <div class="term-list-label">Most common terms:</div>
     <term-tag
       *ngFor="let term of queryStatus.results.terms.slice(0, termsListExpanded ? undefined : INITIAL_COMMON_TERM_COUNT)"
       [term]="term.dterm"

@@ -4,7 +4,7 @@
 export const SAMPLE_API_PATH = '/api/v01/samples';
 
 // Experiment resource (only used to generate download links)
-export const EXPERIMENT_API_PATH = '/api/v01/experiments'
+export const RUN_API_PATH = '/api/v01/runs'
 
 // API resource used by the autocomplete and term popups
 export const TERM_API_PATH = '/api/v01/terms';

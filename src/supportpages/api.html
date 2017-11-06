@@ -27,14 +27,16 @@
         <h2>API</h2>
         <p>MetaSRA provides an API for programmatic access to the current version of the database, with two resources: samples and terms.</p>
         <p>If you need to download the whole database, or need an older version of MetaSRA, see the <a href="download.html">download page</a>.</p>
-        <p>See <a href="sequence-data-download.html">here</a> for instructions on downloading sequence data from SRA and processed expression data from Recount2.</p>
+        <p></p>
 
         <h2>Samples resource</h2>
         <p>Access samples as JSON by fetching <code>http://metasra.biostat.wisc.edu/api/v01/samples.json?</code>,
           or fetch CSV with <code>http://metasra.biostat.wisc.edu/api/v01/samples.csv?</code>.</p>
 
-        <p>For downloading SRA data with the <a href="https://ncbi.github.io/sra-tools/" target="_blank">SRA Toolkit</a>, you can fetch a CSV
-        file with one run ID per row with <code>http://metasra.biostat.wisc.edu/api/v01/experiments.csv?</code></p>
+        <p>For downloading SRA data with the <a href="https://ncbi.github.io/sra-tools/" target="_blank">SRA Toolkit</a>, you can fetch a text
+        file with one run ID per line with <code>http://metasra.biostat.wisc.edu/api/v01/runs.ids.txt?</code>, or a CSV file with one run per line
+        and accompanying metadata with <code>http://metasra.biostat.wisc.edu/api/v01/runs.csv?</code>.  See <a href="sequence-data-download.html">here</a>
+        for instructions on using these files to download sequence data from SRA and processed expression data from Recount2.</p>
 
         <h4>Parameters</h4>
         <p>You can use any combination of the following query-string arguments to filter samples:</p>

@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs/Subscription'
 
 import { SampleQueryService, QueryStatus } from './sample-query.service'
 import { SampleQuery } from './sample-query'
+import { ClosePopoverService } from './close-popover.service'
 
 import { STUDIES_PER_RESULTS_PAGE, INITIAL_COMMON_TERM_COUNT } from './CONFIG'
 
@@ -50,7 +51,8 @@ export class ResultContainerComponent implements OnInit, OnDestroy{
 
   constructor(
     private sampleQueryService: SampleQueryService,
-    private elRef: ElementRef
+    private elRef: ElementRef,
+    private closePopoverService: ClosePopoverService
   ) {}
 
   ngOnInit() {

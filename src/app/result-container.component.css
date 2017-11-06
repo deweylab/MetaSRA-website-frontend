@@ -1,12 +1,3 @@
-.btn-download {
-  position: relative;
-  bottom: 6px;
-  padding-left: 40px;
-  background-image: url('assets/icons/icon-download.png') !important;
-  background-repeat: no-repeat;
-  background-position: 18px center;
-}
-
 .result-description {
   margin-top: 80px;
   margin-bottom: 60px;
@@ -17,14 +8,35 @@
 .expand-terms-list-btn {
   margin-bottom: 2px;
 }
-
 .result-term-list {
   margin-bottom: 10px;
   padding-left: 4px;
 }
 
+
 .pagination-widget {
   margin-top: 50px;
+}
+
+
+.btn-download {
+  background-image: url('assets/icons/icon-download.png') !important;
+  background-repeat: no-repeat;
+}
+.btn-download-lg {
+  position: relative;
+  bottom: 6px;
+  padding-left: 40px;
+  background-position: 18px center;
+}
+.btn-download-sm {
+  padding-left: 30px;
+  background-position: 8px center;
+}
+
+#download-popover {
+  margin: 30px;
+  width: 360px;
 }
 
 
@@ -32,12 +44,9 @@
 .examples {
   margin-top: 30px;
 }
-
 .examples li {
   margin-top: 10px;
 }
-
-
 a.example {
   cursor: pointer;
 }
