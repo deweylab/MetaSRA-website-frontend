@@ -32,7 +32,7 @@
   </div>
 
   <div class="result-term-list">
-    <div class="term-list-label">Most common terms:</div>
+    <div class="term-list-label"><b>Most common terms:</b></div>
     <term-tag
       *ngFor="let term of queryStatus.results.terms.slice(0, termsListExpanded ? undefined : INITIAL_COMMON_TERM_COUNT)"
       [term]="term.dterm"
@@ -50,6 +50,15 @@
       See less
     </button>
   </div>
+
+  <ul class="ontology-list ontology-list-inline">
+    <li><b>Key:</b></li>
+    <li><div class="ontology-dot ontology-dot-UBERON">&nbsp;</div> Anatomy</li>
+    <li><div class="ontology-dot ontology-dot-DOID">&nbsp;</div> Disease</li>
+    <li><div class="ontology-dot ontology-dot-CVCL">&nbsp;</div> Cell Line</li>
+    <li><div class="ontology-dot ontology-dot-CL">&nbsp;</div> Cell Type</li>
+    <li><div class="ontology-dot ontology-dot-EFO">&nbsp;</div> Experimental Factor</li>
+  </ul>
 
   <result-study *ngFor="let study of queryStatus.results.studies" [study]="study"></result-study>
 
@@ -83,6 +92,15 @@
         <b>Find glioblastoma samples:</b> require <span class="btn btn-sm hilight-DOID">glioblastoma multiforme</span> and <span class="btn btn-sm hilight-UBERON">brain</span>.
       </a>
     </li>
+  </ul>
+
+  <ul class="ontology-list ontology-list-inline">
+    <li><b>Key:</b></li>
+    <li><div class="ontology-dot ontology-dot-UBERON">&nbsp;</div> Anatomy</li>
+    <li><div class="ontology-dot ontology-dot-DOID">&nbsp;</div> Disease</li>
+    <li><div class="ontology-dot ontology-dot-CVCL">&nbsp;</div> Cell Line</li>
+    <li><div class="ontology-dot ontology-dot-CL">&nbsp;</div> Cell Type</li>
+    <li><div class="ontology-dot ontology-dot-EFO">&nbsp;</div> Experimental Factor</li>
   </ul>
 
 </div>

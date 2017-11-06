@@ -19,7 +19,7 @@
 }
 
 .result-term-list {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   padding-left: 4px;
 }
 
@@ -48,4 +48,14 @@ a.example:hover {
 .examples .sample-type-tag {
   color: #FFF;
   background-color: #555;
+}
+
+
+.ontology-list-inline {
+  padding-left: 4px;
+  margin-bottom: 40px;
+}
+.ontology-list-inline li {
+  display: inline-block;
+  margin-right: 20px;
 }
