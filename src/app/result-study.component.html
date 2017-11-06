@@ -20,7 +20,7 @@
           *ngIf="sampleGroupsVisible"
           (click)="hideSampleGroups()"
           class="btn btn-primary toggle-samples-button">
-          Hide samples
+          &times;&nbsp;&nbsp;Hide samples
         </button>
       </div>
       <div class="col-lg-8 col-md-7 study-terms-cell">
@@ -40,6 +40,6 @@
         (click)="expandSampleGroups()">
         (+) Show all <b>{{ study.sampleCount }}</b> matching samples for this study
       </a>
-      <a class="hide-samples-link ml-auto" (click)="hideSampleGroups(studyBox)">HIDE SAMPLES &times;</a>
+      <button class="ml-auto btn btn-sm btn-outline-secondary" (click)="hideSampleGroups(studyBox)">HIDE SAMPLES &times;</button>
     </div>
 </div>

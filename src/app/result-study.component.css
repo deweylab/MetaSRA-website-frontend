@@ -11,14 +11,6 @@
   box-shadow: 2px 2px 5px 1px rgba(200,200,200,0.3);
 }
 
-a.hide-samples-link {
-  color: #666;
-  cursor: pointer;
-  font-size: 90%;
-}
-a.hide-samples-link:hover, a.hide-samples-link:focus {
-  text-decoration: underline;
-}
 
 .study-info {
   padding: 20px;
