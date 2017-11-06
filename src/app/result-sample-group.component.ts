@@ -15,7 +15,7 @@ export class ResultSampleGroupComponent {
   @Input()
   sampleGroup: SampleGroup;
 
-  private INITIAL_SAMPLE_DISPLAY = 5
+  private INITIAL_SAMPLE_DISPLAY = 3
   private samplesExpanded = false;
 
   constructor(
