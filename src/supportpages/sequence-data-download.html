@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<title>MetaSRA: Downloading sequence data for selected samples</title>
+
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="styles.css" />
+<link rel="stylesheet" type="text/css" href="supportpages-styles.css" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+
+</head>
+
+<body>
+
+<div class="container">
+<script src="supportpages-navigation.js"></script>
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h2>Downloading sequence data for MetaSRA selected samples</h2>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#raw-sequence-data-via-the-sra-toolkit">Raw sequence data via the SRA toolkit</a></li>
+<li><a href="#raw-sequence-data-via-the-sradb-r-package">Raw sequence data via the SRAdb R package</a></li>
+<li><a href="#processed-rna-seq-data-via-recount">Processed RNA-seq data via recount</a></li>
+</ul>
+</div>
+
+<p>The MetaSRA website allows you to download the raw and standardized metadata for a set of SRA samples, selected via the MetaSRA’s query interface. In addition, it provides SRA accessions for sequencing studies, experiments, and runs associated with the selected samples. These accessions may be used to retrieve raw or processed sequencing data from the SRA or other databases. Below, we provide examples of how to access such data.</p>
+<div id="raw-sequence-data-via-the-sra-toolkit" class="section level2">
+<h2>Raw sequence data via the SRA toolkit</h2>
+<p>The <a href="https://www.ncbi.nlm.nih.gov/books/NBK158900/">SRA Toolkit</a> is the primary low-level interface for downloading raw sequence data from the SRA. The SRA Tookit tools are run from the command line. These tools operate on SRA run accessions. After querying the MetaSRA, click on the “Download” button and then select “Run list” to download a file containing a list of run accessions associated with the selected samples. To retrieve <a href="https://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a>-formatted sequence data for these runs, you will use the <a href="https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc&amp;f=fastq-dump">fastq-dump</a> tool from the command-line. This tool accepts multiple run accessions as arguments. To give all of the run accessions in the run list file to the fastq-dump command, you can use the xargs command:</p>
+<pre class="bash"><code>cat run_list.txt | xargs fastq-dump</code></pre>
+<pre><code>## Read 10198022 spots for SRR091670
+## Written 10198022 spots for SRR091670
+## Read 10676183 spots for SRR091671
+## Written 10676183 spots for SRR091671
+## Read 14433257 spots for SRR091672
+## Written 14433257 spots for SRR091672
+## Read 13355599 spots for SRR091673
+## Written 13355599 spots for SRR091673
+## Read 48663061 spots total
+## Written 48663061 spots total</code></pre>
+<p>The fastq-dump tool will download the sequence data from the SRA and convert it to FASTQ format. After running the tool, you will find a number of FASTQ files in your current directory:</p>
+<pre class="bash"><code>ls *.fastq</code></pre>
+<pre><code>## SRR091670.fastq
+## SRR091671.fastq
+## SRR091672.fastq
+## SRR091673.fastq</code></pre>
+</div>
+<div id="raw-sequence-data-via-the-sradb-r-package" class="section level2">
+<h2>Raw sequence data via the SRAdb R package</h2>
+<p>The <a href="http://bioconductor.org/packages/release/bioc/html/SRAdb.html">SRAdb</a> R package within <a href="https://www.bioconductor.org/">Bioconductor</a> provides a convenient interface within R to download raw sequence data from the SRA. To use this package, you must first download the SRAdb database (if you have not done so already) and create a connection to this database:</p>
+<pre class="r"><code>library(SRAdb)
+sqlfile &lt;- 'SRAmetadb.sqlite'
+if(!file.exists('SRAmetadb.sqlite')) sqlfile &lt;&lt;- getSRAdbFile()
+sra_con &lt;- dbConnect(SQLite(),sqlfile)</code></pre>
+<p>To download sequence data files, you will need a list of SRA run accessions for your selected samples. You can either obtain this list by downloading the “Run list” file as described in the previous section, or we can access this list programmatically by downloading the information directly into an R data frame:</p>
+<pre class="r"><code>api_url &lt;- &quot;http://metasra.biostat.wisc.edu/api/v01/&quot;
+query &lt;- &quot;?and=DOID:9952,CL:0000084&amp;sampletype=primary cells&quot;
+experiments_url &lt;- paste0(api_url, &quot;experiments.csv&quot;, query)
+samples_url &lt;- paste0(api_url, &quot;samples.csv&quot;, query)
+
+experiments &lt;- read.csv(experiments_url, stringsAsFactors=FALSE)
+samples &lt;- read.csv(samples_url, stringsAsFactors=FALSE)
+
+run_accessions &lt;- experiments$sra_run_id</code></pre>
+<p>To download FASTQ files from the EBI for the runs, you can use the getSRAfile command:</p>
+<pre class="r"><code>getSRAfile(run_accessions, sra_con, fileType='fastq')</code></pre>
+<p>Alternatively, to download SRA-formatted files from the NCBI, change the fileType option to “sra”:</p>
+<pre class="r"><code>getSRAfile(run_accessions, sra_con, fileType='sra')</code></pre>
+<p>You will then need to use the fastq-dump command-line tool described in the previous section, to convert the SRA files into your desired format.</p>
+</div>
+<div id="processed-rna-seq-data-via-recount" class="section level2">
+<h2>Processed RNA-seq data via recount</h2>
+<p>The <a href="https://jhubiostatistics.shinyapps.io/recount/">recount</a> project provides uniformly processed RNA-seq data in the form of gene, exon, and junction counts for many of the human samples assayed by RNA-seq in the SRA. These processed data can be accessed manually via the <a href="https://jhubiostatistics.shinyapps.io/recount/">recount website</a> or programatically via the <a href="http://bioconductor.org/packages/release/bioc/html/recount.html">recount Bioconductor package</a>. The recount data are grouped by study, and therefore to obtain processed data for a set of runs, one must first retrieve the processed data for the studies that include those runs.</p>
+<pre class="r"><code>library(recount)
+
+## Our experiments table contains runs from a single study
+study_accession &lt;- experiments$sra_study_id[1]
+
+## Download the gene-level RangedSummarizedExperiment data for this study
+download_study(study_accession)
+
+## Load the gene-level RangedSummarizedExperiment data,
+## referenced by variable rse_gene
+load(file.path(study_accession, 'rse_gene.Rdata'))
+colnames(rse_gene)</code></pre>
+<pre><code>##  [1] &quot;SRR091652&quot; &quot;SRR091653&quot; &quot;SRR091654&quot; &quot;SRR091655&quot; &quot;SRR091656&quot;
+##  [6] &quot;SRR091657&quot; &quot;SRR091658&quot; &quot;SRR091659&quot; &quot;SRR091660&quot; &quot;SRR091661&quot;
+## [11] &quot;SRR091662&quot; &quot;SRR091663&quot; &quot;SRR091664&quot; &quot;SRR091665&quot; &quot;SRR091666&quot;
+## [16] &quot;SRR091667&quot; &quot;SRR091668&quot; &quot;SRR091669&quot; &quot;SRR091670&quot; &quot;SRR091671&quot;
+## [21] &quot;SRR091672&quot; &quot;SRR091673&quot; &quot;SRR627491&quot; &quot;SRR627493&quot; &quot;SRR627494&quot;
+## [26] &quot;SRR627495&quot; &quot;SRR627496&quot; &quot;SRR627497&quot; &quot;SRR627498&quot; &quot;SRR627499&quot;
+## [31] &quot;SRR627500&quot; &quot;SRR627501&quot; &quot;SRR627502&quot; &quot;SRR627503&quot; &quot;SRR627504&quot;</code></pre>
+<p>To construct a dataset with only data from our selected runs, we can subset the study-level data using our list of run accessions.</p>
+<pre class="r"><code>my_runs_rse_gene &lt;- rse_gene[, run_accessions]
+colnames(my_runs_rse_gene)</code></pre>
+<pre><code>## [1] &quot;SRR091670&quot; &quot;SRR091671&quot; &quot;SRR091672&quot; &quot;SRR091673&quot;</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+
+</script>
+
+
+</body>
+</html>
