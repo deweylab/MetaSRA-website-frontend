@@ -42,9 +42,9 @@
 
           <br /><br /><br />
           <h4>Runs</h4>
-          <p>Download a CSV file with info about each experiment/run in these results, or download a file with only the run ID's.  <a href="sequence-data-download.html" target="_blank">See here</a> for instructions on using these files to download raw sequence data from SRA, or processed expression data ffrom Recount2.</p>
+          <p>Download a CSV file with info about each experiment/run in these results, or download a file with only the run ID's.  <a href="sequence-data-download.html" target="_blank">See here</a> for instructions on using these files to download raw sequence data from SRA, or processed expression data from Recount2.</p>
           <a class="btn btn-sm btn-primary btn-download btn-download-sm" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'runs', 'csv')">Runs: CSV</a>
-          <a class="btn btn-sm btn-primary btn-download btn-download-sm" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'runs', 'ids.txt')">Run ID List</a>
+          <a class="btn btn-sm btn-primary btn-download btn-download-sm" [href]="this.sampleQueryService.downloadURL(this.sampleQuery, 'runs', 'ids.txt')">Runs: ID List</a>
         </div>
       </ng-template>
     </div>

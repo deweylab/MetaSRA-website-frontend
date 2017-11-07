@@ -2,6 +2,9 @@
 import { Component, Input } from '@angular/core';
 
 import { ResultStudy } from './sample-query.service'
+import { ClosePopoverService } from './close-popover.service'
+import { SampleQueryService } from './sample-query.service'
+
 
 @Component({
   moduleId: module.id,
@@ -20,6 +23,11 @@ export class ResultStudyComponent {
   private sampleGroupsVisible = false;
   private INITIAL_SAMPLEGROUP_DISPLAY = 3;
   private sampleGroupsExpanded = false;
+
+  constructor(
+    private closePopoverService: ClosePopoverService,
+    private sampleQueryService: SampleQueryService
+  ) {}
 
   // Show the first INITIAL_SAMPLEGROUP_DISPLAY sample groups
   showSampleGroups(): void {

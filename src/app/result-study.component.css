@@ -21,6 +21,7 @@
 a.study-title {
   font-size: 140%;
   color: #000;
+  cursor: pointer;
 }
 a.study-title:hover {
   color: #EC0C8E;
@@ -94,4 +95,15 @@ a.show-all-samples {
 a.show-all-samples:hover {
   color: #EC0C8E;
   text-decoration: underline;
+}
+
+
+div.study-popover {
+  width: 360px;
+}
+
+table.study-links tr td:first-child{
+  font-weight: bold;
+  text-align: right;
+  padding-right: 8px;
 }

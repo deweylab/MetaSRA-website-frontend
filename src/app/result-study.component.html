@@ -1,6 +1,42 @@
 <div class="studybox" [class.samplesVisible]="sampleGroupsVisible" #studyBox>
   <div class="study-info">
-    <a [href]="'https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' +  study.study.id" target="_blamk" class="study-title">{{ study.study.title }}</a>
+    <a
+      class="study-title"
+      [ngbPopover]="studyPopover"
+      #p="ngbPopover"
+      triggers="manual"
+      (click)="this.closePopoverService.registerPopover(p); p.open();">
+        {{ study.study.title }}
+    </a>
+    <ng-template #studyPopover>
+      <div class="study-popover">
+        <table class="table study-links">
+          <tr>
+            <td>SRA</td>
+            <td>
+              <a [href]="'https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' +  study.study.id" target="_blamk">
+                {{ study.study.id }}
+              </a>
+            </td>
+          </tr>
+          <tr *ngIf="study.study.recountId">
+            <td>Recount2<br /><span style="font-weight: normal; font-size:90%">Processed expression</span></td>
+            <td>
+              <a [href]="'http://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' + study.study.recountId" target="_blank">
+                {{ study.study.recountId }}
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Runs</td>
+            <td> <a [href]="this.sampleQueryService.downloadURL(this.sampleQueryService.getCurrentQuery(), 'runs', 'ids.txt') + '&study=' + study.study.id">Download Run ID's</a></td>
+          </tr>
+        </table>
+        <div style="text-align: center; line-height: 1.2">
+          <a href="sequence-data-download.html" target="_blank">Instructions for downloading sequence data</a>
+        </div>
+      </div>
+    </ng-template>
   </div>
 
   <div class="container-fluid sample-summary-row">
