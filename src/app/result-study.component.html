@@ -20,11 +20,10 @@
             </td>
           </tr>
           <tr *ngIf="study.study.recountId">
-            <td>Recount2<br /><span style="font-weight: normal; font-size:90%">Processed expression</span></td>
+            <td>Recount2</td>
             <td>
-              <a [href]="'http://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' + study.study.recountId" target="_blank">
-                {{ study.study.recountId }}
-              </a>
+              <a href="https://jhubiostatistics.shinyapps.io/recount/" target="_blank">Processed expression available</a>
+              <br><span color="#555">(Search Recount2 for "{{ study.study.recountId }}")</span>
             </td>
           </tr>
           <tr>
