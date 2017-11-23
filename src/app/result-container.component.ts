@@ -1,3 +1,14 @@
+/**
+This component renders the results of the sample query.
+
+If there are valid sample results, this component renders the list of resulting
+studies, as well as the download button, pager widget, and "X samples in Y studies."
+
+Otherwise if there are no sample results, it will show messages for these states:
+- The results are loading
+- There is an error
+- The user's query is empty (then show the examples.)
+*/
 
 
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
@@ -18,13 +29,20 @@ import { STUDIES_PER_RESULTS_PAGE, INITIAL_COMMON_TERM_COUNT } from './CONFIG'
 })
 export class ResultContainerComponent implements OnInit, OnDestroy{
 
+  constructor(
+    private sampleQueryService: SampleQueryService,
+    private elRef: ElementRef,
+    private closePopoverService: ClosePopoverService
+  ) {}
+
+  // Keep track of the sample query and query-status (which sometimes contains results)
   private sampleQuery: SampleQuery = this.sampleQueryService.getCurrentQuery();
   private sampleQuerySubscription: Subscription;
 
   private queryStatus: QueryStatus = this.sampleQueryService.getCurrentQueryStatus();
   private queryStatusSubscription: Subscription;
 
-  // So it's accessible to the pagniation widget
+  // Set class members for these constants so they're accessible to the pagniation widget.
   private STUDIES_PER_RESULTS_PAGE = STUDIES_PER_RESULTS_PAGE;
   private INITIAL_COMMON_TERM_COUNT = INITIAL_COMMON_TERM_COUNT;
 
@@ -48,14 +66,8 @@ export class ResultContainerComponent implements OnInit, OnDestroy{
     this.sampleQueryService.pushQuery(new SampleQuery(queryProps));
   }
 
-
-  constructor(
-    private sampleQueryService: SampleQueryService,
-    private elRef: ElementRef,
-    private closePopoverService: ClosePopoverService
-  ) {}
-
   ngOnInit() {
+    // Update this component's copy of the query status when it changes.
     this.queryStatusSubscription = this.sampleQueryService.queryStatus$.subscribe(
       status => {
         this.termsListExpanded = false;
@@ -63,13 +75,15 @@ export class ResultContainerComponent implements OnInit, OnDestroy{
       }
     )
 
+    // Update this component's copy of the query when it changes. 
     this.sampleQuerySubscription = this.sampleQueryService.query$.subscribe(
       query => { this.sampleQuery = query; }
     )
   }
 
   ngOnDestroy() {
-    this.queryStatusSubscription.unsubscribe()
+    this.queryStatusSubscription.unsubscribe();
+    this.sampleQuerySubscription.unsubscribe();
   }
 
 }

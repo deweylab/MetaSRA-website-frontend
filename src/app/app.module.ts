@@ -1,3 +1,7 @@
+/*
+Root module - specifies imports, services, directives, etc. used in the app.
+*/
+
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';

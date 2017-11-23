@@ -1,3 +1,14 @@
+/**
+Renders form widgets for querying samples.
+
+For the most part, this component does not have its own state but rather relies
+on the SampleQueryService to maintain the state of the query.
+
+The exception is for the sample type widget - to make sure the right option is
+selected in the rendered HTML, we need to use ngModel which requries the selected
+sample type to be a class member which we have to keep updated.
+*/
+
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription'
 
@@ -22,7 +33,7 @@ export class SearchControlsComponent implements OnDestroy {
 
   // The selected sample type is split out into a separate variable so we can
   // use it with ngForms to keep the radio button state updated.  (This is a
-  // background-position tedious to keep updated, but there's no other way to
+  // bit tedious to keep updated, but there's no other way to
   // set the value of the ngbRadioGroup.)
   private selectedSampleType: string;
 

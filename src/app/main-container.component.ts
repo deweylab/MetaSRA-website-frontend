@@ -1,3 +1,8 @@
+/*
+This doesn't do much - just includes the search-controls and result-container
+directives inside of a bootstrap container.
+*/
+
 import { Component } from '@angular/core';
 
 @Component({

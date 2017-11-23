@@ -1,3 +1,9 @@
+/**
+Renders one sample group in a study.
+
+The only internal state is whether the "show all samples" link has been clicked or not.
+*/
+
 
 import { Component, Input } from '@angular/core';
 

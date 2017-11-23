@@ -1,3 +1,11 @@
+/**
+Renders one study in the results, including some info about the study and the
+study's sample-groups.
+
+The only internal state is whether the "show samples" button has been clicked,
+and whether the "show all XX samples for this study" link has been clicked.
+*/
+
 
 import { Component, Input } from '@angular/core';
 

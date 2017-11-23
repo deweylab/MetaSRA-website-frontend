@@ -1,3 +1,6 @@
+/**
+Renders a term tag that can be clicked to open a term popup.
+*/
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 

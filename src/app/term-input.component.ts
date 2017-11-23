@@ -1,3 +1,7 @@
+/**
+Term input widget, with a set of terms which can be removed, and a text box
+which uses autocomplete to add new terms.
+*/
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
