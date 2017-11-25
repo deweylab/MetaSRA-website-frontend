@@ -52,5 +52,5 @@ Familiarize yourself with Angular 2 for this to make sense.   https://angular.io
 + close-popover.service : This is a dumb and over-complicated way to close popovers when the user clicks somewhere else on the page.  Every component that opens popovers uses this service and registers popovers when they're opened.  Maybe ngbootstrap will get an update someday that makes this unnecessary.  
 
 #### Other
-CONFIG.ts : some constants you can change, and URL's for accessing the back-end.
-sample-query.ts : class representing a user-entered query
++ CONFIG.ts : some constants you can change, and URL's for accessing the back-end.
++ sample-query.ts : class representing a user-entered query
